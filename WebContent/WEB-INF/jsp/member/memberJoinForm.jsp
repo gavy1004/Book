@@ -4,6 +4,24 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 	
+function formCheck(){
+	if(frm.memberId==""){
+		alert("아이디를 입력하세요");
+		frm.memberId.focus();
+		return.false;
+	}
+	if(frm.idCheck.value == 'unChecked'){
+		alert("중복체크를 하세요.");
+		return false;
+	}
+	if(frm.memberPwd.value == ""){
+		alert("비밀번호를 입력하세요.");
+		frm.memberPwd.focus();
+		return false;
+	}
+	frm.submit();
+
+}
 </script>
 
 <div align="center">
@@ -42,7 +60,7 @@
 				</table>
 			</div>
 			<div>
-				<button type="button" onclick="">회원가입</button>
+				<button type="button" onclick="formCheck()">회원가입</button>
 				<button type="reset">취소</button>
 
 			</div>
