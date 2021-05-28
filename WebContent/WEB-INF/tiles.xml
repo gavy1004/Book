@@ -7,7 +7,7 @@
 	<definition name="home" template="/WEB-INF/jsp/layout/template.jsp">
 		<put-attribute name="title" value="Welcome to Home!!" />
 		<put-attribute name="head" value="/WEB-INF/jsp/layout/head.jsp" />
-		<put-attribute name="section" value="/WEB-INF/jsp/layout/section.jsp" />
+		<put-attribute name="section" value="/WEB-INF/jsp/layout/section.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/jsp/layout/body.jsp" />
 		<put-attribute name="foot" value="/WEB-INF/jsp/layout/foot.jsp" />
 	</definition>
