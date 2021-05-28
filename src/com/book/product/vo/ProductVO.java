@@ -5,10 +5,11 @@ public class ProductVO {
 	private String bookName;
 	private String bookImage;
 	private String contents;
-	private String pride;
+	private String price;
 	private String salePrice;
 	private String sale;
 	private String writer;
+	
 	public String getBookCode() {
 		return bookCode;
 	}
@@ -33,11 +34,11 @@ public class ProductVO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public String getPride() {
-		return pride;
+	public String getPrice() {
+		return price;
 	}
-	public void setPride(String pride) {
-		this.pride = pride;
+	public void setPrice(String price) {
+		this.price = price;
 	}
 	public String getSalePrice() {
 		return salePrice;
