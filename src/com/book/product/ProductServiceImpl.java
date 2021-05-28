@@ -20,7 +20,6 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	
 	@Override
 	public List<ProductVO> selectProductList() {
-		
 		sql ="select * from novel";
 		List<ProductVO> list = new ArrayList<>();
 		
