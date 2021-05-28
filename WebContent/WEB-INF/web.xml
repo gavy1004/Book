@@ -19,4 +19,16 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
+	<listener>
+		<listener-class>org.apache.tiles.extras.complete.CompleteAutoloadTilesListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>Tiles Dispatch Servlet</servlet-name>
+		<servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>FrontControl</servlet-name>
+		<servlet-class>com.book.common.FrontController</servlet-class>
+	</servlet>
 </web-app>
