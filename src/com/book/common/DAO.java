@@ -4,19 +4,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 public class DAO {
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String user = "book";
-	private String passwd = "aktmxjdkagh";
-	public Connection conn;
+	static Connection conn;
 	
-	public DAO() {
+	public static Connection getConnect() {
 		try {
-			Class.forName(driver);
-			conn = DriverManager.getConnection(url, user, passwd);
-		} catch (ClassNotFoundException | SQLException e) {
+			InitialContext ic = new InitialContext();
+			javax.sql.DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/mini");
+			conn = ds.getConnection();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return conn;
 	}
+
 }

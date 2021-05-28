@@ -1,5 +1,6 @@
 package com.book.product;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,30 +11,33 @@ import com.book.common.DAO;
 import com.book.product.service.ProductService;
 import com.book.product.vo.ProductVO;
 
+
 public class ProductServiceImpl extends DAO implements ProductService {
-	
-	PreparedStatement psmt;
+	Connection conn;
+	PreparedStatement psmt ;
 	ResultSet rs;
 	String sql;
 	
-	
 	@Override
 	public List<ProductVO> selectProductList() {
+		
 		sql ="select * from novel";
 		List<ProductVO> list = new ArrayList<>();
+		DAO.getConnect();
+		conn = DAO.getConnect();
 		
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs= psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
-				vo.setBookCode(rs.getString("bookCode"));
-				vo.setBookImage(rs.getString("bookImage"));
-				vo.setBookName(rs.getString("bookName"));
+				vo.setBookCode(rs.getString("book_code"));
+				vo.setBookName(rs.getString("book_Name"));
+				vo.setBookImage(rs.getString("book_Image"));
 				vo.setContents(rs.getString("contents"));
 				vo.setPrice(rs.getString("price"));
+				vo.setSalePrice(rs.getString("sale_Price"));
 				vo.setSale(rs.getString("sale"));
-				vo.setSalePrice(rs.getString("salePrice"));
 				vo.setWriter(rs.getString("writer"));
 				
 				list.add(vo);
