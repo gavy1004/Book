@@ -16,7 +16,10 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> 로그인</a>
+                                <a href="#"><i class="fa fa-user"></i>로그인</a>
+                            </div>
+                             <div class="header__top__right__auth">
+                                <a href="memberJoinForm.do"><i class="fa fa-user2"></i> 회원가입</a>
                             </div>
                         </div>
                     </div>

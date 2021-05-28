@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.book.member.web.memberJoinForm;
+
 public class FrontController extends HttpServlet {
 	
 	private HashMap<String , DBCommand> map = new HashMap<>();
@@ -17,6 +19,10 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/index.do", new IndexPage());
+		
+		
+		//맴버관련
+		map.put("/memberJoinForm.do", new memberJoinForm());
 		
 	}
 	

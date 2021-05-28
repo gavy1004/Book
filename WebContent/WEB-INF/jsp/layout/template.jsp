@@ -40,8 +40,6 @@
    <hr>
    <tiles:insertAttribute name="head"></tiles:insertAttribute>
    <hr>
-      <tiles:insertAttribute name="section"></tiles:insertAttribute>
-   <hr>
    <tiles:insertAttribute name="body"></tiles:insertAttribute>
    <hr>
    <tiles:insertAttribute name="foot"></tiles:insertAttribute>
