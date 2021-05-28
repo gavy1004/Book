@@ -18,7 +18,7 @@ public class NovelList implements DBCommand {
 		
 		request.setAttribute("list", list);
 		System.out.println("성공");
-		return "common/section.tiles";
+		return "layout/section.tiles";
 	}
 
 }

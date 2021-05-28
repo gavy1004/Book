@@ -23,6 +23,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		
 		sql ="select * from novel";
 		List<ProductVO> list = new ArrayList<>();
+		
 		DAO.getConnect();
 		conn = DAO.getConnect();
 		

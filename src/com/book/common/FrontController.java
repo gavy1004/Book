@@ -25,7 +25,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberJoinForm.do", new memberJoinForm());
 		
 		//상품
-		map.put("/novelList.do", new NovelList());
+		map.put("/novelList.do", new NovelList());	//메인 리스트 조회
 		
 	}
 	
