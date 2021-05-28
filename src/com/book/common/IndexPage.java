@@ -7,7 +7,7 @@ public class IndexPage implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		return "common/section.tiles";
+		return "/index.tiles";
 	}
 
 }
