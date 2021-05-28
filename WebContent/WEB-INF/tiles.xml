@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="home" template="#">
+		<put-attribute name="title" value="Welcome to Home!!" />
+		<put-attribute name="menu" value="#" />
+		<put-attribute name="body" value="#" />
+		<put-attribute name="head" value="#" />
+		<put-attribute name="foot" value="#" />
+	</definition>
+
+	<definition name="WILDCARD:*/*" extends="home">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+</tiles-definitions>
