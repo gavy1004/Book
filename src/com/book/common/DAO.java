@@ -13,7 +13,7 @@ public class DAO {
 	public static Connection getConnect() {
 		try {
 			InitialContext ic = new InitialContext();
-			javax.sql.DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/mini");
+			javax.sql.DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/book");
 			conn = ds.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
