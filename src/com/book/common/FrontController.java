@@ -17,7 +17,7 @@ import com.book.member.web.MemberLogin;
 import com.book.member.web.MemberLoginForm;
 
 public class FrontController extends HttpServlet {
-	  
+	
 	private HashMap<String , DBCommand> map = new HashMap<>();
 	
 	@Override
@@ -29,13 +29,12 @@ public class FrontController extends HttpServlet {
 		map.put("/memberJoinForm.do", new MemberJoinForm());
 		map.put("/memberJoin.do", new MemberJoin());
 		map.put("/memberLoginForm.do", new MemberLoginForm());
-		map.put("/memberLoign.do", new MemberLogin());
+		map.put("/memberLogin.do", new MemberLogin());
 		map.put("/memberLogOut.do", new MemberLogOut());
 		
 		//상품
-		map.put("/novelList.do", new NovelList());		//메인 리스트 조회
-		map.put("/novelSelect.do", new NovelSelect());	// 한건 조회 
-		map.put("/likeIt.do", new likeIt());			// 좋아요
+		map.put("/novelList.do", new NovelList());	//메인 리스트 조회
+		
 	}
 	
 	@Override

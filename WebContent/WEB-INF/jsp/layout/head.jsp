@@ -14,7 +14,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6">
+				<div class="col-lg-6 col-md-6"> 
 					<div class="header__top__right">
 						<c:if test="${empty id }">
 							<div class="header__top__right__auth">

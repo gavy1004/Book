@@ -13,15 +13,18 @@ import com.book.member.vo.MemberVO;
 public class MemberServiceImpl extends DAO implements MemberService {
 	Connection conn;
 	PreparedStatement psmt;
-	ResultSet rs;
+	ResultSet rs; 
 	String sql;
 	//id, passwd 체크
 	public MemberVO loginCheck(MemberVO vo) {
+
+		conn=DAO.getConnect(); 
+		
 		String sql="select * from member where id=? and passwd=?";
 		MemberVO rvo = null;
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getId());
+			psmt.setString(1, vo.getId()); 
 			psmt.setString(2, vo.getPasswd());
 			rs = psmt.executeQuery();
 			if(rs.next()) {

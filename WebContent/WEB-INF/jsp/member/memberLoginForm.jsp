@@ -21,7 +21,7 @@
 		frm.submit();
 	}
 </script>
-</head>
+</head> 
 <body>
 <div align ="center">
 <h1>로그인</h1>
@@ -42,7 +42,7 @@
 			<div>
 				<button type="button" onclick="formCheck()">로그인</button>
 				<button type="reset">취소</button>
-				<button type="button" onclick="location.href='main.do'">홈</button>
+				<button type="button" onclick="location.href=''">홈</button>
 			</div>
 		</form>
 	</div>

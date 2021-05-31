@@ -14,8 +14,8 @@ public class MemberLogin implements DBCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		
-		String id = request.getParameter("memberId");
-		String pwd = request.getParameter("memberPwd");
+		String id = request.getParameter("memberId"); 
+		String pwd = request.getParameter("memberPwd"); 
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
 		vo.setPasswd(pwd);
@@ -24,7 +24,7 @@ public class MemberLogin implements DBCommand {
 		MemberVO rvo = service.loginCheck(vo);
 		String path="";
 		
-		if(rvo == null) {
+		if(rvo == null) { 
 			
 			path = "member/memberLoginFail.tiles";
 		}else {

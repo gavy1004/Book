@@ -26,4 +26,4 @@ public class AjaxMemberIdCheck extends HttpServlet {
 		
 		
 	}
-}
+} 
