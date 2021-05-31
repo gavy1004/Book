@@ -15,7 +15,7 @@
 		<td>주문관리</td>
 	</tr>
 	<tr>
-		<td><a href="memberListPaging.do">전체회원조회</a></td>
+		<td><a href="memberList.do">전체회원조회</a></td>
 		<td><a href="novelList.do">전체상품조회 - 리스트페이지만들기</a></td>
 		<td><a href="">주문조회</a></td>
 	</tr>

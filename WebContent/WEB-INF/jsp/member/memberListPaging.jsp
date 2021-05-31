@@ -19,7 +19,7 @@
 </script>
 </head>
 <body>
-	<h3>게시판 리스트(Paging)</h3>
+	<h3>전체 맴버리스트</h3>
 	<form id="frm" action="memberSelect.do" method="post">
 		<input type="hidden" id="id" name="id">
 	</form>
@@ -46,10 +46,7 @@
 		</div>
 		<div>
 			<button type="button" onclick="location.href='main.do'">홈</button>
-			<c:if test="${id eq 'admin' }">
-				<button type="button" onclick="location.href='memberInsert.do'">등록</button>
 				<button type="button" onclick="location.href=''">삭제</button>
-			</c:if>
 		</div>
 		<jsp:include page="../common/paging.jsp" flush="true">
 			<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />

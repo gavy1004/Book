@@ -154,7 +154,7 @@ public class MemberServiceImpl extends DAO implements MemberService {
 	}
 	
 	
-	public List<MemberVO> bulletinListPaging(int page) {
+	public List<MemberVO> memberListPaging(int page) {
 		String sql = "select b.*\r\n"
 				+ "from(select rownum rn, a.* \r\n"
 				+ "      from (select * from member n order by n.id)a\r\n"

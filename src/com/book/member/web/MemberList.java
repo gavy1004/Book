@@ -23,7 +23,7 @@ public class MemberList implements DBCommand {
 		List<MemberVO> total = service.selectMemberList();		//전체 카운트
 		
 		service = new MemberServiceImpl();
-		List<MemberVO> list = service.bulletinListPaging(pageCnt);
+		List<MemberVO> list = service.memberListPaging(pageCnt);
 		
 		Paging paging = new Paging();
 	    paging.setPageNo(pageCnt);
@@ -31,7 +31,7 @@ public class MemberList implements DBCommand {
 	    paging.setTotalCount(total.size());
 
 	    request.setAttribute("paging", paging);
-	    request.setAttribute("bulletinList", list);
+	    request.setAttribute("memberList", list);
 		
 		return "member/memberListPaging.tiles";
 	}
