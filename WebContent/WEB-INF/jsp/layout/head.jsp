@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Header Section Begin -->
 <header class="header">
-	<div class="header__top">
+	<div class="header__top"> 
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-6">
@@ -14,27 +14,25 @@
 						</ul>
 					</div>
 				</div>
-				<c:choose>
-					<c:when test="${empty id }">
-						<div class="col-lg-6 col-md-6">
-							<div class="header__top__right">
-								<div class="header__top__right__auth">
-									<a href="memberLoginForm.do"><i class="fa fa-user"></i>로그인</a>
-								</div>
-								<div class="header__top__right__auth">
-									<a href="memberJoinForm.do"><i class="fa fa-user2"></i>회원가입</a>
-								</div>
-					</c:when>
-					<c:otherwise>
+				<div class="col-lg-6 col-md-6">
+					<div class="header__top__right">
+						<c:if test="${empty id }">
 							<div class="header__top__right__auth">
-							<a href="memberLogOut.do"><i class="fa fa-user"></i>로그아웃</a>
+								<a href="memberLoginForm.do"><i class="fa fa-user"></i>로그인</a>
 							</div>
-					</c:otherwise>
-				</c:choose>
+							<div class="header__top__right__auth">
+								<a href="memberJoinForm.do"><i class="fa fa-user2"></i>회원가입</a>
+							</div>
+						</c:if>
+						<c:if test="${not empty id }">
+							<div class="header__top__right__auth">
+								<a href="memberLogOut.do"><i class="fa fa-user"></i>로그아웃</a>
+							</div>
+						</c:if>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 	<div class="container">
 		<div class="row">
@@ -46,7 +44,7 @@
 			<div class="col-lg-6">
 				<nav class="header__menu">
 					<ul>
-						<li class="active"><a href="./index.html">홈</a></li>
+						<li class="active"><a href="novelList.do">홈</a></li>
 						<li><a href="./shop-grid.html">공지사항</a></li>
 						<li><a href="#">카테고리</a>
 							<ul class="header__menu__dropdown">
