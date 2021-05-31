@@ -29,7 +29,7 @@
 					<div class="featured__item">
 						<div>
 							<img class="featured__item__pic set-bg"
-								src="upload/${vo.bookimage }">
+								src="upload/${vo.bookImage }">
 								
 								<ul class="featured__item__pic__hover">
 									<li><a href="#"><i class="fa fa-heart"></i></a></li>

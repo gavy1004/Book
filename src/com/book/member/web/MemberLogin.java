@@ -23,6 +23,7 @@ public class MemberLogin implements DBCommand {
 		MemberServiceImpl service = new MemberServiceImpl();
 		MemberVO rvo = service.loginCheck(vo);
 		String path="";
+		
 		if(rvo == null) {
 			
 			path = "member/memberLoginFail.tiles";
