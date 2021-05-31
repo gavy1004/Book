@@ -11,6 +11,12 @@ public class ProductVO {
 	private String writer;
 	private int likeIt;
 	
+	public int getLikeIt() {
+		return likeIt;
+	}
+	public void setLikeIt(int likeIt) {
+		this.likeIt = likeIt;
+	}
 	public String getBookCode() {
 		return bookCode;
 	}

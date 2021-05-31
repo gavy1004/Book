@@ -21,50 +21,37 @@
 				</div>
 			</div>
 		</div>
-					<form>
-			<div class="row featured__filter">
-				<c:forEach items="${list }" var="vo">
-				<p>${vo.bookCode }</p>
-				<input type="hidden" id ="bookCode" name="bookCode" value="${vo.bookCode }">
-				
-				
-					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" onclick="location.href='novelSelect.do'">
-						<div class="featured__item">
-							<div class="featured__item__pic" style="text-align: center;">
-								<img width="200" height="270" src="upload/${vo.bookImage }">
-								<ul class="featured__item__pic__hover">
-									<li><a href="likeIt.do"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="featured__item__text">
-								<h6>
-									<a href="#">${vo.bookName }</a>
-								</h6>
-								<h5>${vo.price}</h5>
-							</div>
+
+		<div class="row featured__filter">
+			<c:forEach items="${list }" var="vo">
+				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+					<div class="featured__item">
+						<div class="featured__item__pic" style="text-align: center;">
+							<img width="200" height="270" src="upload/${vo.bookImage }">
+							<ul class="featured__item__pic__hover">
+								<li><a onclick="likeIt('${vo.bookCode }')"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a onclick="selectNovel('${vo.bookCode }')">${vo.bookName }</a>
+							</h6>
+							<h5>${vo.price}</h5>
 						</div>
 					</div>
-				</c:forEach>
-						</form>
-			</div>
-
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 </section>
 <!-- Featured Section End -->
-
 <script>
-	// 좋아요 
-	function addCnt(itemCode) {
-		$.ajax({
-			url:'${pageContext.request.contextPath}/addCart.do',
-			data: { id : '${id}', itemCode : itemCode},
-			success: function () {
-				location.href='productList.do';
-			},
-			error:function(err) {
-			}
-		});
-	};
+	function selectNovel(bookCode) {
+		location.href = "novelSelect.do?bookCode=" + bookCode;
+	}
+	function likeIt(bookCode) {
+		location.href = "likeIt.do?bookCode=" + bookCode;
+	}
 </script>

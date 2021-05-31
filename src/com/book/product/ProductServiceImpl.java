@@ -72,6 +72,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	@Override
 	public ProductVO selectProduct(ProductVO vo) {
 		sql ="select * from novel where book_Code=?";
+		conn = DAO.getConnect();
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getBookCode());
@@ -85,6 +86,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setSale(rs.getString("sale"));
 				vo.setSalePrice(rs.getString("sale_price"));
 				vo.setWriter(rs.getString("writer"));
+				vo.setLikeIt(rs.getInt("like_it"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

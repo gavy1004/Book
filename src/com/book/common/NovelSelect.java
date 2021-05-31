@@ -13,14 +13,14 @@ public class NovelSelect implements DBCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String bookcode = request.getParameter("bookCode");
 		System.out.println(bookcode);
+		
 		ProductVO vo =new ProductVO();
 		vo.setBookCode(bookcode); 
 		
 		ProductService service = new ProductServiceImpl();
 		service.selectProduct(vo);
 		
-		
+		request.setAttribute("book", vo);
 		return "product/novelSelect.tiles";
 	}
-
 }
