@@ -10,7 +10,7 @@ public class MemberJoinForm implements DBCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		return "member/MemberJoinForm.tiles";
+		return "member/memberJoinForm.tiles";
 	}
 
 }
