@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 public class DAO {
 	static Connection conn;
 	
+	
 	public static Connection getConnect() {
 		try {
 			InitialContext ic = new InitialContext();
@@ -21,4 +22,5 @@ public class DAO {
 		return conn;
 	}
 
+	
 }

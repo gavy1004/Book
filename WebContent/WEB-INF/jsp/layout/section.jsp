@@ -24,19 +24,16 @@
 	
 		<div class="row featured__filter">
 			<c:forEach items="${list }" var="vo">
-			<img src="upload/image02.jpg">
 				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-					<div class="featured__item">
-						<div>
-							<img class="featured__item__pic set-bg"
-								src="upload/${vo.bookImage }">
-								
+					<div class="featured__item"> 
+						<div class="featured__item__pic set-bg">
+							<img width="200" height="270" src="upload/${vo.bookImage }">		
 								<ul class="featured__item__pic__hover">
 									<li><a href="#"><i class="fa fa-heart"></i></a></li>
 									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
 									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
 								</ul>
-							
+							</div>
 							<div class="featured__item__text">
 								<h6>
 									<a href="#">${vo.bookName }</a>
@@ -45,7 +42,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+			
 			
 			</c:forEach>
 		</div>

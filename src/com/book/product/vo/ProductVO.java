@@ -9,6 +9,7 @@ public class ProductVO {
 	private String salePrice;
 	private String sale;
 	private String writer;
+	private int likeIt;
 	
 	public String getBookCode() {
 		return bookCode;
