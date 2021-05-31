@@ -1,7 +1,5 @@
 package com.book.common;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,15 +7,20 @@ import com.book.product.ProductServiceImpl;
 import com.book.product.service.ProductService;
 import com.book.product.vo.ProductVO;
 
-public class NovelList implements DBCommand {
+public class NovelSelect implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		ProductService service = new ProductServiceImpl();
-		List<ProductVO> list = service.selectProductList();
+		String bookcode = request.getParameter("bookCode");
+		System.out.println(bookcode);
+		ProductVO vo =new ProductVO();
+		vo.setBookCode(bookcode); 
 		
-		request.setAttribute("list", list);
-		return "layout/section.tiles";
+		ProductService service = new ProductServiceImpl();
+		service.selectProduct(vo);
+		
+		
+		return "product/novelSelect.tiles";
 	}
 
 }

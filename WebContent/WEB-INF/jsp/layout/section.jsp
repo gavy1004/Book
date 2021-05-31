@@ -21,15 +21,19 @@
 				</div>
 			</div>
 		</div>
-	
-		<div class="row featured__filter">
-			<c:forEach items="${list }" var="vo">
-				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-					<div class="featured__item"> 
-						<div class="featured__item__pic set-bg">
-							<img width="200" height="270" src="upload/${vo.bookImage }">		
+					<form>
+			<div class="row featured__filter">
+				<c:forEach items="${list }" var="vo">
+				<p>${vo.bookCode }</p>
+				<input type="hidden" id ="bookCode" name="bookCode" value="${vo.bookCode }">
+				
+				
+					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" onclick="location.href='novelSelect.do'">
+						<div class="featured__item">
+							<div class="featured__item__pic" style="text-align: center;">
+								<img width="200" height="270" src="upload/${vo.bookImage }">
 								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
+									<li><a href="likeIt.do"><i class="fa fa-heart"></i></a></li>
 									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
 									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
 								</ul>
@@ -42,16 +46,25 @@
 							</div>
 						</div>
 					</div>
-			
-			
-			</c:forEach>
-		</div>
-
-
-
-
-
+				</c:forEach>
+						</form>
+			</div>
 
 	</div>
 </section>
 <!-- Featured Section End -->
+
+<script>
+	// 좋아요 
+	function addCnt(itemCode) {
+		$.ajax({
+			url:'${pageContext.request.contextPath}/addCart.do',
+			data: { id : '${id}', itemCode : itemCode},
+			success: function () {
+				location.href='productList.do';
+			},
+			error:function(err) {
+			}
+		});
+	};
+</script>

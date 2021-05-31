@@ -33,8 +33,9 @@ public class FrontController extends HttpServlet {
 		map.put("/memberLogOut.do", new MemberLogOut());
 		
 		//상품
-		map.put("/novelList.do", new NovelList());	//메인 리스트 조회
-		
+		map.put("/novelList.do", new NovelList());		//메인 리스트 조회
+		map.put("/novelSelect.do", new NovelSelect());	// 한건 조회 
+		map.put("/likeIt.do", new likeIt());			// 좋아요
 	}
 	
 	@Override
