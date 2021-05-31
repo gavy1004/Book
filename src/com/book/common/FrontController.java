@@ -15,6 +15,9 @@ import com.book.member.web.MemberJoinForm;
 import com.book.member.web.MemberLogOut;
 import com.book.member.web.MemberLogin;
 import com.book.member.web.MemberLoginForm;
+import com.book.product.web.NovelList;
+import com.book.product.web.NovelSelect;
+import com.book.product.web.likeIt;
 
 public class FrontController extends HttpServlet {
 	
@@ -25,17 +28,21 @@ public class FrontController extends HttpServlet {
 		map.put("/index.do", new IndexPage());
 		
 		
-		//맴버관련
+		// 맴버관련
 		map.put("/memberJoinForm.do", new MemberJoinForm());
 		map.put("/memberJoin.do", new MemberJoin());
 		map.put("/memberLoginForm.do", new MemberLoginForm());
 		map.put("/memberLogin.do", new MemberLogin());
 		map.put("/memberLogOut.do", new MemberLogOut());
 		
-		//상품
-		map.put("/novelList.do", new NovelList());		//메인 리스트 조회
-		map.put("/novelSelect.do", new NovelSelect()); //한건조회
-		map.put("/likeIt.do", new likeIt());			//좋아요
+		// 상품
+		map.put("/novelList.do", new NovelList());			//메인 리스트 조회
+		map.put("/novelSelect.do", new NovelSelect()); 		//한건조회
+		map.put("/likeIt.do", new likeIt());				//좋아요
+		
+		
+		// 장바구니
+		map.put("/cartInsert.do", new CartInsert());	// 장바구니담기
 	}
 	
 	@Override

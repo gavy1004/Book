@@ -47,6 +47,25 @@
 			<th colspan="2">후기보러가기</th>
 		</tr>
 	</table>
-	<button>장바구니</button>
+	<button onclick="addCart('${book.bookCode}','${id }')">장바구니</button>
 	<button>바로구매</button>
 </div>
+<script>
+	function addCart(bookCode,id) {
+		if(id == ""){
+			alert('로그인해 주십시오');
+		}else{
+			$.ajax({
+				url:"${pageContext.request.contextPath}/cartInsert.do",
+				data:{bookCode:bookCode},
+				success:function(bookCode,id) {
+					alert('장바구니에 상품이 추가되었습니다.');									
+				},
+				error:function(){
+				}
+			});
+		}
+	}
+
+
+</script>

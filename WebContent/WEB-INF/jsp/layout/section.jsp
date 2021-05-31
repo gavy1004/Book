@@ -13,10 +13,9 @@
 				<div class="featured__controls">
 					<ul>
 						<li class="active" data-filter="*">전체보기</li>
+						<li data-filter=".vegetables">랭킹</li>
 						<li data-filter=".oranges">소설</li>
-						<li data-filter=".fresh-meat">ㅇ</li>
-						<li data-filter=".vegetables">ㅇ</li>
-						<li data-filter=".fastfood">ㅇ</li>
+						<li data-filter=".fresh-meat">시</li>
 					</ul>
 				</div>
 			</div>
@@ -29,9 +28,11 @@
 						<div class="featured__item__pic" style="text-align: center;">
 							<img width="200" height="270" src="upload/${vo.bookImage }">
 							<ul class="featured__item__pic__hover">
-								<li><a onclick="likeIt('${vo.bookCode }')"><i class="fa fa-heart"></i></a></li>
+								<li><a onclick="likeIt('${vo.bookCode }')"><i
+										class="fa fa-heart"></i></a></li>
 								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+								<li><a onclick="addCart('${vo.bookCode}','${id }')"><i
+										class="fa fa-shopping-cart"></i></a></li>
 							</ul>
 						</div>
 						<div class="featured__item__text">
@@ -47,11 +48,39 @@
 	</div>
 </section>
 <!-- Featured Section End -->
+
 <script>
+	// 책 제목 클릭시 상세 페이지로 이동
 	function selectNovel(bookCode) {
 		location.href = "novelSelect.do?bookCode=" + bookCode;
 	}
+	// 비로그인 상태에서도 좋아요 누르기 가능
 	function likeIt(bookCode) {
-		location.href = "likeIt.do?bookCode=" + bookCode;
+		$.ajax({
+			url:"${pageContext.request.contextPath}/likeIt.do",
+			data:{bookCode:bookCode},
+			success:function() {
+				alert('좋아요가 추가되었습니다.');	
+			},
+			error:function(){
+			}
+		});
+		
+	}
+	// 로그인상태가 아닐시 장바구니에 상품 담을 수 없음
+	function addCart(bookCode,id) {
+		if(id == ""){
+			alert('로그인해 주십시오');
+		}else{
+			$.ajax({
+				url:"${pageContext.request.contextPath}/cartInsert.do",
+				data:{bookCode:bookCode},
+				success:function(bookCode,id) {
+					alert('장바구니에 상품이 추가되었습니다.');									
+				},
+				error:function(){
+				}
+			});
+		}
 	}
 </script>

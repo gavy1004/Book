@@ -17,7 +17,7 @@ public class MemberLogin implements DBCommand {
 		String id = request.getParameter("memberId"); 
 		String pwd = request.getParameter("memberPwd"); 
 		MemberVO vo = new MemberVO();
-		vo.setId(id);
+		vo.setId(id); 
 		vo.setPasswd(pwd);
 		
 		MemberServiceImpl service = new MemberServiceImpl();

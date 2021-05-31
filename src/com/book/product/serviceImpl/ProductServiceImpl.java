@@ -1,4 +1,4 @@
-package com.book.product;
+package com.book.product.serviceImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
