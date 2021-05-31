@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.book.common.DAO;
@@ -64,9 +65,29 @@ public class MemberServiceImpl extends DAO implements MemberService {
 	
 	@Override
 	public List<MemberVO> selectMemberList() {
-		// TODO Auto-generated method stub
-		return null;
+	List<MemberVO> list = new ArrayList<>();
+		
+		sql = "select * from member order by 1";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				MemberVO vo = new MemberVO();
+				vo.setId(rs.getString("id"));
+				vo.setName(rs.getString("name"));
+				vo.setEmail(rs.getString("email"));
+				vo.setPasswd(rs.getString("passwd"));
+				vo.setPhone(rs.getString("phone"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
 	}
+
 
 	@Override
 	public MemberVO selectMember() {
@@ -131,5 +152,40 @@ public class MemberServiceImpl extends DAO implements MemberService {
 				e.printStackTrace();
 			}
 	}
-
+	
+	
+	public List<MemberVO> bulletinListPaging(int page) {
+		String sql = "select b.*\r\n"
+				+ "from(select rownum rn, a.* \r\n"
+				+ "      from (select * from member n order by n.id)a\r\n"
+				+ "      )b\r\n"
+				+ "   where b.rn between ? and ?;";
+		List<MemberVO> list = new ArrayList<>();
+		
+		int firstCnt = 0,  lastCnt = 0;
+		firstCnt = (page -1) * 10 + 1;	//1, 11
+		lastCnt = (page * 10);
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1,  firstCnt);
+			psmt.setInt(2, lastCnt);
+			
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				MemberVO vo  = new MemberVO();
+				vo.setId(rs.getString("id"));
+				vo.setName(rs.getString("name"));
+				vo.setEmail(rs.getString("email"));
+				vo.setPasswd(rs.getString("passwd"));
+				vo.setPhone(rs.getString("phone"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
 }

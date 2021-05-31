@@ -2,7 +2,37 @@
 	pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-
+$(function() {
+	$('#idCheck').click(function() {
+		if ($('#memberId').val() == "") {
+			alert('아이디를 입력하세요!');
+			$('#memberId').focus();
+			return;
+		}
+		$.ajax({
+			url : 'ajaxMemberIdCheck',
+			data : {
+				id : $('#memberId').val()
+			},
+			type : 'post',
+			success : function(data) {
+				console.log(data);
+				if (data > 0) {
+					alert('아이디가 존재합니다. 다른아이디를 입력하세요');
+					$('#memberId').val("");
+					$('#memberId').focus();
+				} else {
+					alert('사용가능한 아이디입니다.');
+					$('#idCheck').val('checked');
+					$('#memberPwd').focus();
+				}
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+	});
+});
 
 function formCheck(){
 	if(frm.memberId == ""){

@@ -35,5 +35,4 @@ public class MemberJoin implements DBCommand {
 		session.setAttribute("member", vo);
 		return "main/main.tiles";
 	}
-
 }

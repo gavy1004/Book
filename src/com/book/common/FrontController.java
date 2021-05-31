@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.book.admin.web.AdminPage;
+import com.book.admin.web.ProductInsert;
+import com.book.admin.web.ProductInsertForm;
 import com.book.member.web.MemberJoin;
 import com.book.member.web.MemberJoinForm;
+import com.book.member.web.MemberList;
 import com.book.member.web.MemberLogOut;
 import com.book.member.web.MemberLogin;
 import com.book.member.web.MemberLoginForm;
@@ -34,6 +38,12 @@ public class FrontController extends HttpServlet {
 		map.put("/memberLoginForm.do", new MemberLoginForm());
 		map.put("/memberLogin.do", new MemberLogin());
 		map.put("/memberLogOut.do", new MemberLogOut());
+		map.put("/memberList.do", new MemberList());
+		
+		//관리자
+		map.put("/adminPage.do", new AdminPage());
+		map.put("/productInsertForm.do", new ProductInsertForm());
+		map.put("/productInsert.do", new ProductInsert());
 		
 		// 상품
 		map.put("/novelList.do", new NovelList());			//메인 리스트 조회
