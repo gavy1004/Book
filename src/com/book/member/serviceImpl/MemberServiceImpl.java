@@ -15,7 +15,7 @@ public class MemberServiceImpl extends DAO implements MemberService {
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
-	//id, passwd를 체크해주는 메소드
+	//id, passwd 체크
 	public MemberVO loginCheck(MemberVO vo) {
 		String sql="select * from member where id=? and passwd=?";
 		MemberVO rvo = null;

@@ -79,7 +79,7 @@ function formCheck(){
 					</tr>
 					<tr>
 						<th width="150">핸드폰</th>
-						<td width="300"><input type="text" id="tel" name="tel"></td>
+						<td width="300"><input type="text" id="phone" name="phone"></td>
 					</tr>
 					<tr>
 						<th width="150">이메일</th>

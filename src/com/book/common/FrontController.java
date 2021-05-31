@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.book.member.web.memberJoinForm;
+import com.book.member.web.MemberJoin;
+import com.book.member.web.MemberJoinForm;
+import com.book.member.web.MemberLogOut;
+import com.book.member.web.MemberLogin;
+import com.book.member.web.MemberLoginForm;
 
 public class FrontController extends HttpServlet {
 	
@@ -22,7 +26,11 @@ public class FrontController extends HttpServlet {
 		
 		
 		//맴버관련
-		map.put("/memberJoinForm.do", new memberJoinForm());
+		map.put("/memberJoinForm.do", new MemberJoinForm());
+		map.put("/memberJoin.do", new MemberJoin());
+		map.put("/memberLoginFrom.do", new MemberLoginForm());
+		map.put("/memberLoign.do", new MemberLogin());
+		map.put("/memberLogOut.do", new MemberLogOut());
 		
 		//상품
 		map.put("/novelList.do", new NovelList());	//메인 리스트 조회

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.book.common.DBCommand;
 
-public class memberJoinForm implements DBCommand {
+public class MemberJoinForm implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
