@@ -18,6 +18,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	ResultSet rs;
 	String sql;
 	
+	// 좋아요 추가
 	@Override
 	public int insertLikeIt(ProductVO vo) {
 		sql = "update book set like_it= like_it +1 where book_code=? ";
@@ -36,7 +37,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		return r;
 	}
 
-	 
+	// 전체 상품 조회
 	@Override
 	public List<ProductVO> selectProductList() {
 		conn = DAO.getConnect();
@@ -56,7 +57,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setSalePrice(rs.getString("sale_Price"));
 				vo.setSale(rs.getString("sale"));
 				vo.setWriter(rs.getString("writer"));
-				
+				vo.setCategory(rs.getString("category"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {

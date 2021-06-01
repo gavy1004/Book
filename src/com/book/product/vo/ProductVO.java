@@ -10,7 +10,14 @@ public class ProductVO {
 	private String sale;
 	private String writer;
 	private int likeIt;
-	
+	private String Category;
+		
+	public String getCategory() {
+		return Category;
+	}
+	public void setCategory(String category) {
+		Category = category;
+	}
 	public int getLikeIt() {
 		return likeIt;
 	}

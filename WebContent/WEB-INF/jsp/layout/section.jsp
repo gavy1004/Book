@@ -14,37 +14,42 @@
 					<ul>
 						<li class="active" data-filter="*">전체보기</li>
 						<li data-filter=".vegetables">베스트셀러</li>
-						<li data-filter=".oranges">소설</li>
-						<li data-filter=".fresh-meat">시</li>
+						<li data-filter=".fresh-meat">소설</li>
+						<li data-filter=".fastfood">시</li>
 					</ul>
 				</div>
 			</div>
 		</div>
+		<!-- 시 -->
 
 		<div class="row featured__filter">
 			<c:forEach items="${list }" var="vo">
-				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-					<div class="featured__item">
-						<div class="featured__item__pic" style="text-align: center;">
-							<img width="200" height="270" src="upload/${vo.bookImage }">
-							<ul class="featured__item__pic__hover">
-								<li><a onclick="likeIt('${vo.bookCode }')"><i
-										class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a onclick="addCart('${vo.bookCode}','${id }')"><i
-										class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6>
-								<a onclick="selectNovel('${vo.bookCode }')">${vo.bookName }</a>
-							</h6>
-							<h5>${vo.price}</h5>
+
+					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+						<div class="featured__item">
+							<div class="featured__item__pic" style="text-align: center;">
+								<img width="200" height="270" src="upload/${vo.bookImage }">
+								<ul class="featured__item__pic__hover">
+									<li><a onclick="likeIt('${vo.bookCode }')"><i
+											class="fa fa-heart"></i></a></li>
+									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+									<li><a onclick="addCart('${vo.bookCode}','${id }')"><i
+											class="fa fa-shopping-cart"></i></a></li>
+								</ul>
+							</div>
+							<div class="featured__item__text">
+								<h6>
+									<a onclick="selectNovel('${vo.bookCode }')">${vo.bookName }</a>
+								</h6>
+								<h5>${vo.price}</h5>
+							</div>
 						</div>
 					</div>
-				</div>
+
+
 			</c:forEach>
 		</div>
+
 	</div>
 </section>
 <!-- Featured Section End -->
@@ -57,28 +62,32 @@
 	// 비로그인 상태에서도 좋아요 누르기 가능
 	function likeIt(bookCode) {
 		$.ajax({
-			url:"${pageContext.request.contextPath}/likeIt.do",
-			data:{bookCode:bookCode},
-			success:function() {
-				alert('좋아요가 추가되었습니다.');	
+			url : "${pageContext.request.contextPath}/likeIt.do",
+			data : {
+				bookCode : bookCode
 			},
-			error:function(){
+			success : function() {
+				alert('좋아요가 추가되었습니다.');
+			},
+			error : function() {
 			}
 		});
-		
+
 	}
 	// 로그인상태가 아닐시 장바구니에 상품 담을 수 없음
-	function addCart(bookCode,id) {
-		if(id == ""){
+	function addCart(bookCode, id) {
+		if (id == "") {
 			alert('로그인해 주십시오');
-		}else{
+		} else {
 			$.ajax({
-				url:"${pageContext.request.contextPath}/cartInsert.do",
-				data:{bookCode:bookCode},
-				success:function(bookCode,id) {
-					alert('장바구니에 상품이 추가되었습니다.');									
+				url : "${pageContext.request.contextPath}/cartInsert.do",
+				data : {
+					bookCode : bookCode
 				},
-				error:function(){
+				success : function(bookCode, id) {
+					alert('장바구니에 상품이 추가되었습니다.');
+				},
+				error : function() {
 				}
 			});
 		}
