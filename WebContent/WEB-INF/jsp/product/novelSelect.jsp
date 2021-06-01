@@ -13,14 +13,15 @@
 	rel="stylesheet" />
 <div align="center">
 	<h3>상세 내용보기</h3>
+
 	<table border="1" width="500" height="500">
 		<tr>
 			<th colspan="2" align="center">${book.contents }</th>
 		</tr>
-		<th rowspan="6"><img width="" height=""
-			src="upload/${book.bookImage }"></i></th>
+		<tr>
+			<th rowspan="6"><img width="" height=""
+				src="upload/${book.bookImage }"></th>
 		</tr>
-
 		<tr>
 			<th><h3>${book.bookName}</h3></th>
 		</tr>
@@ -35,14 +36,18 @@
 				<th>세일가 : ${book.salePrice }</th>
 			</tr>
 		</c:if>
-		<tr>
-			<th>가격 : ${book.price }</th>
-		</tr>
+		<c:if test="${book.sale eq 'N' }">
+			<tr>
+				<th rowspan="1">가격 : ${book.price }</th>
+			</tr>
+		</c:if>
+		
 		<tr>
 			<th colspan="2"><c:forEach begin="1" end="${book.likeIt }">
 					<div class="bi-star-fill"></div>
 				</c:forEach></th>
 		</tr>
+
 		<tr>
 			<th colspan="2">후기보러가기</th>
 		</tr>
@@ -53,17 +58,19 @@
 </div>
 
 <script>
-	function addCart(bookCode,id) {
-		if(id == ""){
+	function addCart(bookCode, id) {
+		if (id == "") {
 			alert('로그인해 주십시오');
-		}else{
+		} else {
 			$.ajax({
-				url:"${pageContext.request.contextPath}/cartInsert.do",
-				data:{bookCode:bookCode},
-				success:function(bookCode,id) {
-					alert('장바구니에 상품이 추가되었습니다.');									
+				url : "${pageContext.request.contextPath}/cartInsert.do",
+				data : {
+					bookCode : bookCode
 				},
-				error:function(){
+				success : function(bookCode, id) {
+					alert('장바구니에 상품이 추가되었습니다.');
+				},
+				error : function() {
 				}
 			});
 		}

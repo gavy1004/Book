@@ -19,9 +19,14 @@ public class NovelList implements DBCommand {
 		String id = (String) session.getAttribute("id");
 		
 		ProductService service = new ProductServiceImpl();
-		List<ProductVO> list = service.selectProductList();
+		List<ProductVO> list = service.selectProductList();	// 전체 조회
+		List<ProductVO> nlist = service.selectNovelList();	// 소설 조회
+		List<ProductVO> plist = service.selectPoemList();	// 시 조회
+		
 		
 		request.setAttribute("list", list);
+		request.setAttribute("nlist", nlist);
+		request.setAttribute("plist", plist);
 		session.setAttribute("id", id);
 		return "layout/section.tiles";
 	}

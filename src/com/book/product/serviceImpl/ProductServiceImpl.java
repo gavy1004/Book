@@ -67,6 +67,66 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		}
 		return list;
 	}
+	
+	// 소설조회
+	@Override
+	public List<ProductVO> selectNovelList() {
+		conn = DAO.getConnect();
+		sql ="select * from book where category='n'";
+		List<ProductVO> list = new ArrayList<>();
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs= psmt.executeQuery();
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setBookCode(rs.getString("book_code"));
+				vo.setBookName(rs.getString("book_Name"));
+				vo.setBookImage(rs.getString("book_Image"));
+				vo.setContents(rs.getString("contents"));
+				vo.setPrice(rs.getString("price"));
+				vo.setSalePrice(rs.getString("sale_Price"));
+				vo.setSale(rs.getString("sale"));
+				vo.setWriter(rs.getString("writer"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+	
+	// 시조회
+	@Override
+	public List<ProductVO> selectPoemList() {
+		conn = DAO.getConnect();
+		sql ="select * from book where category='p'";
+		List<ProductVO> list = new ArrayList<>();
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs= psmt.executeQuery();
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setBookCode(rs.getString("book_code"));
+				vo.setBookName(rs.getString("book_Name"));
+				vo.setBookImage(rs.getString("book_Image"));
+				vo.setContents(rs.getString("contents"));
+				vo.setPrice(rs.getString("price"));
+				vo.setSalePrice(rs.getString("sale_Price"));
+				vo.setSale(rs.getString("sale"));
+				vo.setWriter(rs.getString("writer"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
 
 	@Override
 	public ProductVO selectProduct(ProductVO vo) {
@@ -133,6 +193,8 @@ public class ProductServiceImpl extends DAO implements ProductService {
 			}
 		}
 	}
+
+
 
 
 

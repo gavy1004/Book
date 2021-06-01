@@ -9,10 +9,17 @@ public class CartVO {
 	private String price;
 	private String sale;
 	private String salePrice;
+	private int ssum;
 	private int sum;
 	private int cnt;
 	
 	
+	public int getSsum() {
+		return ssum;
+	}
+	public void setSsum(int ssum) {
+		this.ssum = ssum;
+	}
 	public int getSum() {
 		return sum;
 	}

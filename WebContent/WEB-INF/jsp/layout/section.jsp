@@ -23,30 +23,50 @@
 		<!-- 시 -->
 
 		<div class="row featured__filter">
-			<c:forEach items="${list }" var="vo">
-
-					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-						<div class="featured__item">
-							<div class="featured__item__pic" style="text-align: center;">
-								<img width="200" height="270" src="upload/${vo.bookImage }">
-								<ul class="featured__item__pic__hover">
-									<li><a onclick="likeIt('${vo.bookCode }')"><i
-											class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a onclick="addCart('${vo.bookCode}','${id }')"><i
-											class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="featured__item__text">
-								<h6>
-									<a onclick="selectNovel('${vo.bookCode }')">${vo.bookName }</a>
-								</h6>
-								<h5>${vo.price}</h5>
-							</div>
+			<c:forEach items="${nlist }" var="vo">
+				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+					<div class="featured__item">
+						<div class="featured__item__pic" style="text-align: center;">
+							<img width="200" height="270" src="upload/${vo.bookImage }">
+							<ul class="featured__item__pic__hover">
+								<li><a onclick="likeIt('${vo.bookCode }')"><i
+										class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a onclick="addCart('${vo.bookCode}','${id }')"><i
+										class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a onclick="selectNovel('${vo.bookCode }')">${vo.bookName }</a>
+							</h6>
+							<h5>${vo.price}</h5>
 						</div>
 					</div>
-
-
+				</div>
+			</c:forEach>
+			
+			<c:forEach items="${plist }" var="vo">
+				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
+					<div class="featured__item">
+						<div class="featured__item__pic" style="text-align: center;">
+							<img width="200" height="270" src="upload/${vo.bookImage }">
+							<ul class="featured__item__pic__hover">
+								<li><a onclick="likeIt('${vo.bookCode }')"><i
+										class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a onclick="addCart('${vo.bookCode}','${id }')"><i
+										class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a onclick="selectNovel('${vo.bookCode }')">${vo.bookName }</a>
+							</h6>
+							<h5>${vo.price}</h5>
+						</div>
+					</div>
+				</div>
 			</c:forEach>
 		</div>
 
