@@ -9,8 +9,22 @@ public class CartVO {
 	private String price;
 	private String sale;
 	private String salePrice;
+	private int sum;
+	private int cnt;
 	
 	
+	public int getSum() {
+		return sum;
+	}
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public String getUserId() {
 		return userId;
 	}

@@ -21,10 +21,11 @@ public class CartServiceImpl extends DAO implements CartService {
 	@Override
 	public List<CartVO> selectCartList(String id) {
 		conn = DAO.getConnect();
-		sql ="select n.BOOK_IMAGE,n.BOOK_NAME,n.PRICE,n.SALE_PRICE, c.BOOK_QTY \r\n"
-				+ "from cart c , novel n \r\n"
-				+ "where c.BOOK_CODE= n.BOOK_CODE\r\n"
-				+ "and c.USER_ID = ?";
+		sql ="select n.book_image,c.BOOK_CODE, n.book_name, n.price, n.sale, n.sale_price,count(c.book_code) cnt, n.sale_price*count(c.book_code) sum\r\n"
+				+ "from cart c ,book n \r\n"
+				+ "where c.BOOK_CODE= n.BOOK_CODE \r\n"
+				+ "and user_id= ? \r\n"
+				+ "group by n.book_image,c.BOOK_CODE, n.book_name, n.price, n.sale, n.sale_price ";
 		List<CartVO> list = new ArrayList<>();
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -38,7 +39,8 @@ public class CartServiceImpl extends DAO implements CartService {
 				vo.setPrice(rs.getString("price"));
 				vo.setSalePrice(rs.getString("sale_price"));
 				vo.setBookQty(rs.getInt("book_Qty"));
-				
+				vo.setSum(rs.getInt("sum"));
+				vo.setCnt(rs.getInt("cnt"));
 				list.add(vo);				
 			}
 		} catch (SQLException e) {

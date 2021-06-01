@@ -20,7 +20,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	
 	@Override
 	public int insertLikeIt(ProductVO vo) {
-		sql = "update novel set like_it= like_it +1 where book_code=? ";
+		sql = "update book set like_it= like_it +1 where book_code=? ";
 		conn = DAO.getConnect();
 		int r = 0;
 		try {
@@ -40,7 +40,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	@Override
 	public List<ProductVO> selectProductList() {
 		conn = DAO.getConnect();
-		sql ="select * from novel";
+		sql ="select * from book";
 		List<ProductVO> list = new ArrayList<>();
 		
 		try {
@@ -69,7 +69,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 
 	@Override
 	public ProductVO selectProduct(ProductVO vo) {
-		sql ="select * from novel where book_Code=?";
+		sql ="select * from book where book_Code=?";
 		conn = DAO.getConnect();
 		try {
 			psmt = conn.prepareStatement(sql);
