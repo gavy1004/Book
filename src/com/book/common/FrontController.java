@@ -10,8 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.book.admin.web.AdminPage;
+import com.book.admin.web.ProductInsert;
+import com.book.admin.web.ProductInsertForm;
+import com.book.admin.web.ProductList;
 import com.book.member.web.MemberJoin;
 import com.book.member.web.MemberJoinForm;
+import com.book.member.web.MemberList;
 import com.book.member.web.MemberLogOut;
 import com.book.member.web.MemberLogin;
 import com.book.member.web.MemberLoginForm;
@@ -25,7 +30,7 @@ public class FrontController extends HttpServlet {
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		map.put("/index.do", new IndexPage());			// 메인페이지 (사용하지 않음)
+		map.put("/index.do", new IndexPage());
 		
 		
 		// 맴버관련
@@ -34,16 +39,22 @@ public class FrontController extends HttpServlet {
 		map.put("/memberLoginForm.do", new MemberLoginForm());
 		map.put("/memberLogin.do", new MemberLogin());
 		map.put("/memberLogOut.do", new MemberLogOut());
+		map.put("/memberList.do", new MemberList());
+		
+		//관리자
+		map.put("/adminPage.do", new AdminPage());
+		map.put("/productInsertForm.do", new ProductInsertForm());
+		map.put("/productInsert.do", new ProductInsert());
+		map.put("/productList.do", new ProductList());
 		
 		// 상품
-		map.put("/novelList.do", new NovelList());			// 메인 리스트 조회 (실제 메인페이지)
-		map.put("/novelSelect.do", new NovelSelect()); 		// 한건조회
-		map.put("/likeIt.do", new likeIt());				// 좋아요
+		map.put("/novelList.do", new NovelList());			//메인 리스트 조회
+		map.put("/novelSelect.do", new NovelSelect()); 		//한건조회
+		map.put("/likeIt.do", new likeIt());				//좋아요
 		
 		
 		// 장바구니
 		map.put("/cartInsert.do", new CartInsert());	// 장바구니담기
-		map.put("/cartList.do", new CartList());		// 장바구니 조회
 	}
 	
 	@Override

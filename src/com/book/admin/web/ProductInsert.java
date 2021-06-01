@@ -15,6 +15,7 @@ public class ProductInsert implements DBCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		
+		String category = request.getParameter("category");
 		String code = request.getParameter("bookCode");
 		String name = request.getParameter("bookName");
 		String image = request.getParameter("bookImage");
@@ -23,26 +24,28 @@ public class ProductInsert implements DBCommand {
 		String sprice = request.getParameter("salePrice");
 		String sale = request.getParameter("sale");
 		String writer = request.getParameter("writer");
-		String like = request.getParameter("likeIt");
 		
 		ProductVO vo = new ProductVO();
 		vo.setBookCode(code);
 		vo.setBookName(name);
 		vo.setBookImage(image);
 		vo.setContents(content);
-		vo.setLikeIt(0);
-		vo.setPrice(sprice);
+		vo.setPrice(price);
 		vo.setSale(sale);
 		vo.setSalePrice(sprice);
 		vo.setWriter(writer);
+		vo.setCategory(category);
 		
 		ProductService service = new ProductServiceImpl();
 		service.insertProduct(vo);
 		
-		session.setAttribute("bookCode", code);
+		DBCommand command = new ProductList();
+		command.execute(request, response);
+		
+		session.setAttribute("category", category);
 		session.setAttribute("product", vo);
 				
-		return "admin/productInsertForm.tiles";
+		return "admin/productList.tiles";
 		
 	}
 

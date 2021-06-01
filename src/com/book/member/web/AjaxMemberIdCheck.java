@@ -18,9 +18,9 @@ public class AjaxMemberIdCheck extends HttpServlet {
 		
 		String id = req.getParameter("id");
 		MemberServiceImpl service = new MemberServiceImpl();
-		int cnt = 0;			//존재하지 않으면 0 
+		int cnt = 0;			
 		if(service.idCheck(id)) {
-			cnt = 1;			//존재하면 1
+			cnt = 1;			
 		}
 		resp.getWriter().print(cnt);
 		

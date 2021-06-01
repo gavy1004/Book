@@ -14,21 +14,22 @@ import com.book.member.vo.MemberVO;
 public class MemberServiceImpl extends DAO implements MemberService {
 	Connection conn;
 	PreparedStatement psmt;
-	ResultSet rs; 
+	ResultSet rs;
 	String sql;
-	//id, passwd 체크
+
+	// id, passwd 체크
 	public MemberVO loginCheck(MemberVO vo) {
 
-		conn=DAO.getConnect(); 
-		
-		String sql="select * from member where id=? and passwd=?";
+		conn = DAO.getConnect();
+
+		String sql = "select * from member where id=? and passwd=?";
 		MemberVO rvo = null;
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getId()); 
+			psmt.setString(1, vo.getId());
 			psmt.setString(2, vo.getPasswd());
 			rs = psmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				rvo = new MemberVO();
 				rvo.setId(rs.getString("id"));
 				rvo.setEmail(rs.getString("email"));
@@ -38,40 +39,41 @@ public class MemberServiceImpl extends DAO implements MemberService {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
 		return rvo;
 	}
-	
-	//id중복체크
+
+	// id중복체크
 	public boolean idCheck(String id) {
+		conn = DAO.getConnect();
 		boolean exist = false;
 		String sql = "select id from member where id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				exist = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			close(); 
+		} finally {
+			close();
 		}
 		return exist;
 	}
-	
+
 	@Override
 	public List<MemberVO> selectMemberList() {
-	List<MemberVO> list = new ArrayList<>();
-		
+		List<MemberVO> list = new ArrayList<>();
+		conn = DAO.getConnect();
 		sql = "select * from member order by 1";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				MemberVO vo = new MemberVO();
 				vo.setId(rs.getString("id"));
 				vo.setName(rs.getString("name"));
@@ -82,12 +84,11 @@ public class MemberServiceImpl extends DAO implements MemberService {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
 		return list;
 	}
-
 
 	@Override
 	public MemberVO selectMember() {
@@ -97,11 +98,10 @@ public class MemberServiceImpl extends DAO implements MemberService {
 
 	@Override
 	public int insertMember(MemberVO vo) {
-		
-		DAO.getConnect();
-		conn=DAO.getConnect();
-		
-		sql="insert into member values(?,?,?,?,?,?);";
+
+		conn = DAO.getConnect();
+
+		sql = "insert into member values(?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getId());
@@ -109,12 +109,11 @@ public class MemberServiceImpl extends DAO implements MemberService {
 			psmt.setString(3, vo.getName());
 			psmt.setString(4, vo.getPhone());
 			psmt.setString(5, vo.getEmail());
-			psmt.setString(6, vo.getId());
-			
+
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
 		return 0;
@@ -131,49 +130,47 @@ public class MemberServiceImpl extends DAO implements MemberService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 	private void close() {
-		if(rs!=null)
+		if (rs != null)
 			try {
 				rs.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		if(psmt!=null)
+		if (psmt != null)
 			try {
 				psmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		if(conn!=null)
+		if (conn != null)
 			try {
 				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	}
-	
-	
+
 	public List<MemberVO> memberListPaging(int page) {
-		String sql = "select b.*\r\n"
-				+ "from(select rownum rn, a.* \r\n"
-				+ "      from (select * from member n order by n.id)a\r\n"
-				+ "      )b\r\n"
+		conn=DAO.getConnect();
+		String sql = "select b.*\r\n" + "from(select rownum rn, a.* \r\n"
+				+ "      from (select * from member n order by n.id)a\r\n" + "      )b\r\n"
 				+ "   where b.rn between ? and ?;";
 		List<MemberVO> list = new ArrayList<>();
-		
-		int firstCnt = 0,  lastCnt = 0;
-		firstCnt = (page -1) * 10 + 1;	//1, 11
+
+		int firstCnt = 0, lastCnt = 0;
+		firstCnt = (page - 1) * 10 + 1; // 1, 11
 		lastCnt = (page * 10);
-		
+
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1,  firstCnt);
+			psmt.setInt(1, firstCnt);
 			psmt.setInt(2, lastCnt);
-			
+
 			rs = psmt.executeQuery();
-			while(rs.next()) {
-				MemberVO vo  = new MemberVO();
+			while (rs.next()) {
+				MemberVO vo = new MemberVO();
 				vo.setId(rs.getString("id"));
 				vo.setName(rs.getString("name"));
 				vo.setEmail(rs.getString("email"));
@@ -183,7 +180,7 @@ public class MemberServiceImpl extends DAO implements MemberService {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
 		return list;

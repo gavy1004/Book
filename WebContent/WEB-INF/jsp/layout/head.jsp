@@ -54,7 +54,12 @@
 								<li><a href="./blog-details.html">Blog Details</a></li>
 							</ul></li>
 						<li><a href="./blog.html">후기게시판</a></li>
+						<c:if test="${not empty id }">
 						<li><a href="./contact.html">주문내역</a></li>
+						</c:if>
+						<c:if test="${id eq 'admin' }">
+						<li><a href="adminPage.do">관리자페이지</a></li>
+						</c:if>
 					</ul>
 				</nav>
 			</div>
