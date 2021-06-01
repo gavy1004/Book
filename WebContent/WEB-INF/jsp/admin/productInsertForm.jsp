@@ -34,8 +34,7 @@
 				</tr>
 				<tr>
 					<td>이미지</td>
-					<td><img name="bookImage" src="../images/product/noimage.jpg"
-						style="width: 100%"><br /> <input type="file" name="image"
+					<td> <input type="file" name="bookImage"
 						size="30" onchange=""></td>
 				</tr>
 				<tr>

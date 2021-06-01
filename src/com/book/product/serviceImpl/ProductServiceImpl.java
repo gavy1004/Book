@@ -158,7 +158,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	@Override
 	public int insertProduct(ProductVO vo) {
 		conn = DAO.getConnect();
-		sql = "insert into book(category,BOOK_CODE,book_name,book_image,contents,price,sale,sale_price,writer) values(?,'p'|| po_seq.nextval,?,?,?,?,?,?,?)";
+		sql = "insert into book(category,BOOK_CODE,book_name,book_image,contents,price,sale,sale_price,writer,like_it) values(?,'p'|| po_seq.nextval,?,?,?,?,?,?,?,0)";
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -170,6 +170,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 			psmt.setString(6, vo.getSale());
 			psmt.setString(7, vo.getSalePrice());
 			psmt.setString(8, vo.getWriter());
+			
 			
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건입력");
@@ -184,11 +185,47 @@ public class ProductServiceImpl extends DAO implements ProductService {
 
 	@Override
 	public int updateProduct(ProductVO vo) {
+		conn = DAO.getConnect();
+		System.out.println(vo);
+		sql = "update book set category=?,book_name=?,book_image=?,contents=?,price=?,sale=?,sale_price=?,writer=?,like_it=? where BOOK_CODE=?";
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, vo.getCategory());
+			psmt.setString(2, vo.getBookName());
+			psmt.setString(3, vo.getBookImage());
+			psmt.setString(4, vo.getContents());
+			psmt.setString(5, vo.getPrice());
+			psmt.setString(6, vo.getSale());
+			psmt.setString(7, vo.getSalePrice());
+			psmt.setString(8, vo.getWriter());
+			psmt.setInt(9, vo.getLikeIt());
+			psmt.setString(10, vo.getBookCode());
+			
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 수정");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
 		return 0;
 	}
 
 	@Override
 	public int deleteProduct(ProductVO vo) {
+		conn = DAO.getConnect();
+		sql = "delete from book where book_code=?;";
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, vo.getBookCode());
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 삭제");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
 		return 0;
 	}
 	

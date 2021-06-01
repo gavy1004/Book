@@ -72,6 +72,12 @@ public class ProductVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
+	@Override
+	public String toString() {
+		return "ProductVO [bookCode=" + bookCode + ", bookName=" + bookName + ", bookImage=" + bookImage + ", contents="
+				+ contents + ", price=" + price + ", salePrice=" + salePrice + ", sale=" + sale + ", writer=" + writer
+				+ ", likeIt=" + likeIt + ", Category=" + Category + "]";
+	}
 	
 	
 	
