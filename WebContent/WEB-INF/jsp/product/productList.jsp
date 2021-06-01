@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+    /*
+    사용 하지 않는 페이지 
+    */
     
     <section class="featured spad">
         <div class="container">

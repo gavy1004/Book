@@ -13,7 +13,7 @@
 				<div class="featured__controls">
 					<ul>
 						<li class="active" data-filter="*">전체보기</li>
-						<li data-filter=".vegetables">랭킹</li>
+						<li data-filter=".vegetables">베스트셀러</li>
 						<li data-filter=".oranges">소설</li>
 						<li data-filter=".fresh-meat">시</li>
 					</ul>

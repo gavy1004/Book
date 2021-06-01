@@ -39,10 +39,9 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	 
 	@Override
 	public List<ProductVO> selectProductList() {
+		conn = DAO.getConnect();
 		sql ="select * from novel";
 		List<ProductVO> list = new ArrayList<>();
-		
-		conn = DAO.getConnect();
 		
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -60,7 +59,6 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				
 				list.add(vo);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -98,23 +96,6 @@ public class ProductServiceImpl extends DAO implements ProductService {
 
 	@Override
 	public int insertProduct(ProductVO vo) {
-		conn = DAO.getConnect();
-		sql = "insert into novel values(?,?,?,?,?,?,?,?,?)";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getBookCode());
-			psmt.setString(2, vo.getBookName());
-			psmt.setString(3, vo.getBookImage());
-			psmt.setString(4, vo.getContents());
-			psmt.setString(5, vo.getPrice());
-			psmt.setString(6, vo.getSalePrice());
-			psmt.setString(7, vo.getSale());
-			psmt.setString(8, vo.getWriter());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		return 0;
 	}
 

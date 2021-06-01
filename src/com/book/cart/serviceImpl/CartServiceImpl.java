@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.book.cart.service.CartService;
@@ -16,18 +17,45 @@ public class CartServiceImpl extends DAO implements CartService {
 	ResultSet rs;
 	String sql;
 
+	// 아이디에 일치하는 장바구니 상품 리스트 조회
 	@Override
-	public List<CartVO> selectCartList() {
+	public List<CartVO> selectCartList(String id) {
 		conn = DAO.getConnect();
-		return null;
+		sql ="select n.BOOK_IMAGE,n.BOOK_NAME,n.PRICE,n.SALE_PRICE, c.BOOK_QTY \r\n"
+				+ "from cart c , novel n \r\n"
+				+ "where c.BOOK_CODE= n.BOOK_CODE\r\n"
+				+ "and c.USER_ID = ?";
+		List<CartVO> list = new ArrayList<>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs= psmt.executeQuery();
+			
+			while(rs.next()) {
+				CartVO vo = new CartVO();
+				vo.setBookImage(rs.getString("book_image"));
+				vo.setBookName(rs.getString("book_name"));
+				vo.setPrice(rs.getString("price"));
+				vo.setSalePrice(rs.getString("sale_price"));
+				vo.setBookQty(rs.getInt("book_Qty"));
+				
+				list.add(vo);				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
 	}
-
+ 
 	@Override
 	public CartVO selectCart(CartVO vo) {
 		conn = DAO.getConnect();
 		return null;
 	}
 
+	// 장바구니 담기
 	@Override
 	public int insertCart(CartVO vo) {
 		conn = DAO.getConnect();

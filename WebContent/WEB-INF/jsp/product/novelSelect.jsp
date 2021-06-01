@@ -17,7 +17,7 @@
 		<tr>
 			<th colspan="2" align="center">${book.contents }</th>
 		</tr>
-		<th rowspan="5"><img width="" height=""
+		<th rowspan="6"><img width="" height=""
 			src="upload/${book.bookImage }"></i></th>
 		</tr>
 
@@ -48,8 +48,10 @@
 		</tr>
 	</table>
 	<button onclick="addCart('${book.bookCode}','${id }')">장바구니</button>
+	<button onclick="location.href='novelList.do'">홈</button>
 	<button>바로구매</button>
 </div>
+
 <script>
 	function addCart(bookCode,id) {
 		if(id == ""){
@@ -66,6 +68,4 @@
 			});
 		}
 	}
-
-
 </script>
