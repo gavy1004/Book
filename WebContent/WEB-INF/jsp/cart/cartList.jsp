@@ -8,8 +8,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="shoping__cart__table">
-					<form>
-
+						<form id="frm" action="cartUpdate.do" method="POST">
 						<table>
 							<thead>
 								<tr>
@@ -21,6 +20,7 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:set var = "sum" value = "0" />
 								<c:forEach items="${cartList }" var="vo">
 									<tr>
 										<td class="shoping__cart__item"
@@ -38,42 +38,45 @@
 										<td class="shoping__cart__quantity">
 											<div class="quantity">
 												<div class="pro-qty">
-													<input type="text" value="${vo.cnt }">
+													<input type="text" name="cartQty" value="${vo.cnt }">
 												</div>
 											</div>
 										</td>
 										<c:if test="${vo.sale eq 'Y'}">
+										<c:set var= "sum" value="${sum + vo.ssum}"/>
 											<td class="shoping__cart__total"><fmt:formatNumber
 													type="currency" value="${vo.ssum }"></fmt:formatNumber></td>
 										</c:if>
 										<c:if test="${vo.sale eq 'N'}">
+										<c:set var= "sum" value="${sum + vo.sum}"/>
 											<td class="shoping__cart__total"><fmt:formatNumber
 													type="currency" value="${vo.sum }"></fmt:formatNumber></td>
 										</c:if>
 										<td class="shoping__cart__item__close"><span
-											class="icon_close" onclick="deleteCart('${vo.bookCode }')"></span></td>
+											class="icon_close" onclick="cartDelete('${vo.bookCode }')"></span></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-					</form>
+				
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="shoping__cart__btns">
-					<a href="novelList.do" class="primary-btn cart-btn">쇼핑 더하기</a> <a
-						href="#" class="primary-btn cart-btn cart-btn-right"><span
-						class="icon_loading"></span> 카트 수정</a>
+					<a href="novelList.do" class="primary-btn cart-btn">쇼핑 더하기</a> 
+					<a href="cartUpdate.do" class="primary-btn cart-btn cart-btn-right">
+					<span class="icon_loading" ></span> <input type="submit" value="카트수정" style="border:0;color: #6f6f6f;background: #f5f5f5;"></a>
 				</div>
+				</form>
 			</div>
 			<div class="col-lg-6"></div>
 			<div class="col-lg-6">
 				<div class="shoping__checkout">
 					<h5>총 금액</h5>
 					<ul>
-						<li>Total <span></span></li>
+						<li>Total <span><c:out value="${sum}"/> </span></li>
 					</ul>
 					<a href="#" class="primary-btn">결제하기</a>
 				</div>
@@ -88,18 +91,8 @@
 	function selectNovel(bookCode) {
 		location.href = "novelSelect.do?bookCode=" + bookCode;
 	}
-	function deleteCart(bookCode) {
-		$.ajax({
-			url : '${pageContext.request.contextPath}/deleteCart.do',
-			data : {
-				bookCode : bookCode
-			},
-			success : function() {
-				alert('삭제 되었습니다.');
-			},
-			error : function() {
-
-			}
-		})
+	function cartDelete(bookCode) {
+		location.href = "cartDelete.do?bookCode=" + bookCode;
 	}
+
 </script>

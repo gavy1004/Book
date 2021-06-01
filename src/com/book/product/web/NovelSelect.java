@@ -2,6 +2,8 @@ package com.book.product.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.book.common.DBCommand;
 import com.book.product.service.ProductService;
@@ -11,7 +13,7 @@ import com.book.product.vo.ProductVO;
 public class NovelSelect implements DBCommand {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {		
 		String bookcode = request.getParameter("bookCode");
 		
 		ProductVO vo =new ProductVO();
@@ -20,6 +22,7 @@ public class NovelSelect implements DBCommand {
 		ProductService service = new ProductServiceImpl();
 		service.selectProduct(vo);
 		
+	
 		request.setAttribute("book", vo);
 		return "product/novelSelect.tiles";
 	}

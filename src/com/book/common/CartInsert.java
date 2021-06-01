@@ -23,7 +23,14 @@ public class CartInsert implements DBCommand {
 		vo.setUserId(id);
 		
 		CartService service = new CartServiceImpl();
-		service.insertCart(vo);
+		if(	service.selectCart(vo)) {
+			service.updateCart(vo);
+			System.out.println("조회 결과가 있습니다 수정합니다");
+		} else{
+			service.insertCart(vo);
+			System.out.println("조회 결과가 없습니다 입력합니다");
+		}
+		
 		
 		request.setAttribute("cart", vo);
 		
