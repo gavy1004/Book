@@ -31,10 +31,12 @@ public class CartInsert implements DBCommand {
 			System.out.println("조회 결과가 없습니다 입력합니다");
 		}
 		
+		int cartCnt = service.getCountCart(id);
 		
+		session.setAttribute("cartCnt", cartCnt);
 		request.setAttribute("cart", vo);
 		
-		return "/novelSelect.do";
+		return "/novelList.do";
 	}
 
 }

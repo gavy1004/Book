@@ -66,7 +66,18 @@
 			<div class="col-lg-3">
 				<div class="header__cart">
 					<ul>
-						<li><a href="cartList.do"><i class="fa fa-shopping-bag"></i> <span>${cartCnt }</span></a></li>
+						<li>
+							<a href="cartList.do"><i class="fa fa-shopping-bag"></i> 
+								<span>
+									<c:if test="${empty id }">
+										0
+									</c:if>
+									<c:if test="${not empty id }">
+										${cartCnt }
+									</c:if>
+								</span>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>

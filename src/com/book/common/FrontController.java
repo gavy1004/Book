@@ -57,6 +57,7 @@ public class FrontController extends HttpServlet {
 		map.put("/productUpdate.do", new ProductUpdate());			//상품업데이트
 		map.put("/productSelect.do", new ProductSelect());			//상품한건조회
 			
+		
 		// 상품
 		map.put("/novelList.do", new NovelList());			//메인 리스트 조회
 		map.put("/novelSelect.do", new NovelSelect()); 		//한건조회
