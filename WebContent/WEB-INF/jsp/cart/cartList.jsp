@@ -66,8 +66,8 @@
 			<div class="col-lg-12">
 				<div class="shoping__cart__btns">
 					<a href="novelList.do" class="primary-btn cart-btn">쇼핑 더하기</a> 
-					<a href="cartUpdate.do" class="primary-btn cart-btn cart-btn-right">
-					<span class="icon_loading" ></span> <input type="submit" value="카트수정" style="border:0;color: #6f6f6f;background: #f5f5f5;"></a>
+					<a href="CartUpload.do" class="primary-btn cart-btn cart-btn-right">
+					<span class="icon_loading" ></span>카트수정</a>
 				</div>
 				</form>
 			</div>

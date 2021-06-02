@@ -1,4 +1,6 @@
-package com.book.common;
+package com.book.cart.web;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,25 +9,23 @@ import javax.servlet.http.HttpSession;
 import com.book.cart.service.CartService;
 import com.book.cart.serviceImpl.CartServiceImpl;
 import com.book.cart.vo.CartVO;
+import com.book.common.DBCommand;
 
-public class CartUpdate implements DBCommand {
+public class CartDelete implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		
 		String bookCode = request.getParameter("bookCode");
-		String id = (String) session.getAttribute("id");
-		String qty = request.getParameter("cartQty");
-		
-		CartVO vo =new CartVO();
+		CartVO vo = new CartVO();
 		vo.setBookCode(bookCode);
 		vo.setUserId(id);
-		vo.setBookQty(Integer.parseInt(qty));
-		
+
 		CartService service = new CartServiceImpl();
-		service.CartQtyUpdate(vo);
-		
+		service.deleteCart(vo);
+
 		return "/cartList.do";
 	}
 

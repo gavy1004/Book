@@ -17,6 +17,7 @@ public class NovelList implements DBCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		int cartCnt = (int) session.getAttribute("cartCnt");
 		
 		ProductService service = new ProductServiceImpl();
 		List<ProductVO> list = service.selectProductList();	// 전체 조회
@@ -27,7 +28,10 @@ public class NovelList implements DBCommand {
 		request.setAttribute("list", list);
 		request.setAttribute("nlist", nlist);
 		request.setAttribute("plist", plist);
+		
+		session.setAttribute("cartCnt",cartCnt);
 		session.setAttribute("id", id);
+		
 		return "layout/section.tiles";
 	}
 
