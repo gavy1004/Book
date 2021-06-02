@@ -23,6 +23,7 @@ import com.book.member.web.MemberLoginForm;
 import com.book.product.web.NovelList;
 import com.book.product.web.NovelSelect;
 import com.book.product.web.ProductDelete;
+import com.book.product.web.ProductSelect;
 import com.book.product.web.ProductUpdate;
 import com.book.product.web.likeIt;
 
@@ -36,22 +37,22 @@ public class FrontController extends HttpServlet {
 		
 		
 		// 맴버관련
-		map.put("/memberJoinForm.do", new MemberJoinForm());
-		map.put("/memberJoin.do", new MemberJoin());
-		map.put("/memberLoginForm.do", new MemberLoginForm());
-		map.put("/memberLogin.do", new MemberLogin());
-		map.put("/memberLogOut.do", new MemberLogOut());
-		map.put("/memberList.do", new MemberList());
+		map.put("/memberJoinForm.do", new MemberJoinForm());	//회원가입폼
+		map.put("/memberJoin.do", new MemberJoin());			//회원가입
+		map.put("/memberLoginForm.do", new MemberLoginForm());	//로그인폼
+		map.put("/memberLogin.do", new MemberLogin());			//로그인
+		map.put("/memberLogOut.do", new MemberLogOut());		//로그아웃
+		map.put("/memberList.do", new MemberList());			//회원리스트
 		
 		//관리자
-		map.put("/adminPage.do", new AdminPage());			//관리자페이지 
+		map.put("/adminPage.do", new AdminPage());					//관리자페이지 
 		map.put("/productInsertForm.do", new ProductInsertForm());	//상품입력폼
-		map.put("/productInsert.do", new ProductInsert());	//상품입력
-		map.put("/productList.do", new ProductList());		//상품리스트조회
-		map.put("/productDelete.do", new ProductDelete());	//상품삭제
-		map.put("/productUpdate.do", new ProductUpdate());	//상품업데이트
-		map.put("/productSelect.do", new ProductSelect());	//상품한건조회
-		
+		map.put("/productInsert.do", new ProductInsert());			//상품입력
+		map.put("/productList.do", new ProductList());				//상품리스트조회
+		map.put("/productDelete.do", new ProductDelete());			//상품삭제
+		map.put("/productUpdate.do", new ProductUpdate());			//상품업데이트
+		map.put("/productSelect.do", new ProductSelect());			//상품한건조회
+			
 		// 상품
 		map.put("/novelList.do", new NovelList());			//메인 리스트 조회
 		map.put("/novelSelect.do", new NovelSelect()); 		//한건조회

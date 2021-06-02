@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,12 @@ textarea {
 }
 </style>
 <body>
-
+<script>
+	// 책 제목 클릭시 상세 페이지로 이동
+	function selectNovel(bookCode) {
+		location.href = "novelSelect.do?bookCode=" + bookCode;
+	}
+</script>
 	<div align="right" style="width: 90%">
 		<button type="button" onclick="location.href='adminPage.do'">홈</button>
 		<button type="button" onclick="location.href='productInsertForm.do'">등록</button>
@@ -50,16 +56,11 @@ textarea {
 						<td>${vo.likeIt }</td>
 						<td>
 							<button type="button" onclick="location.href='productDelete.do?code=${vo.bookCode }'">삭제</button>
+							<button type="button" onclick="selectNovel('${vo.bookCode }')">상세보기</button>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<div>
-				<button type="button" onclick="location.href=''">홈</button>
-				<button type="button"
-					onclick="location.href='producdtInsertForm.do'">등록</button>
-				<button type="button" onclick="location.href=''">삭제</button>
-			</div>
 		</div>
 	</div>
 </body>

@@ -13,7 +13,7 @@ public class ProductDelete implements DBCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String code = request.getParameter("bookCode");
 		
-		ProductService service = ProductService.
+		ProductService service ;
 		return null;
 	}
 
