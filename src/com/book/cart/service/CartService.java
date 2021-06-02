@@ -12,7 +12,8 @@ public interface CartService {
 	public int insertCart(CartVO vo);
 	public int updateCart(CartVO vo);
 	public int deleteCart(CartVO vo);
+	public int deleteAllCart(CartVO vo);
 	
-	public int CartQtyUpdate(CartVO vo);	// 장바구니 상세 페이지 수량 업데이트
 	public int getCountCart(String id);		// 장바구니 물품 개수
+	
 }

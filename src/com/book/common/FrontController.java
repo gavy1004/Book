@@ -39,7 +39,6 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/index.do", new IndexPage());
 		
-		
 		// 맴버관련
 		map.put("/memberJoinForm.do", new MemberJoinForm());	//회원가입폼
 		map.put("/memberJoin.do", new MemberJoin());			//회원가입
@@ -56,19 +55,18 @@ public class FrontController extends HttpServlet {
 		map.put("/productDelete.do", new ProductDelete());			//상품삭제
 		map.put("/productUpdate.do", new ProductUpdate());			//상품업데이트
 		map.put("/productSelect.do", new ProductSelect());			//상품한건조회
-			
 		
 		// 상품
 		map.put("/novelList.do", new NovelList());			//메인 리스트 조회
 		map.put("/novelSelect.do", new NovelSelect()); 		//한건조회
 		map.put("/likeIt.do", new likeIt());				//좋아요
 		
-		
 		// 장바구니
-		map.put("/cartInsert.do", new CartInsert());	// 장바구니담기
-		map.put("/cartList.do", new CartList());		// 장바구니조회
-		map.put("/cartDelete.do", new CartDelete());	// 장바구니삭제
-		map.put("/cartUpdate.do", new CartUpdate());	// 장바구니수정
+		map.put("/cartInsert.do", new CartInsert());		// 장바구니담기
+		map.put("/cartList.do", new CartList());			// 장바구니조회
+		map.put("/cartDelete.do", new CartDelete());		// 장바구니삭제
+		map.put("/cartAllDelete.do", new CartAllDelete());	// 장바구니전체삭제
+		map.put("/cartUpdate.do", new CartUpdate());		// 장바구니수정
 		
 	}
 	

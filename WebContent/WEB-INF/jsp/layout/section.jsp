@@ -32,6 +32,7 @@
 								<li><a onclick="likeIt('${vo.bookCode }')"><i
 										class="fa fa-heart"></i></a></li>
 								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								
 								<li><a onclick="addCart('${vo.bookCode}','${id }')"><i
 										class="fa fa-shopping-cart"></i></a></li>
 							</ul>
@@ -45,7 +46,7 @@
 					</div>
 				</div>
 			</c:forEach>
-			
+
 			<c:forEach items="${plist }" var="vo">
 				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
 					<div class="featured__item">
@@ -55,6 +56,7 @@
 								<li><a onclick="likeIt('${vo.bookCode }')"><i
 										class="fa fa-heart"></i></a></li>
 								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								
 								<li><a onclick="addCart('${vo.bookCode}','${id }')"><i
 										class="fa fa-shopping-cart"></i></a></li>
 							</ul>
@@ -95,21 +97,13 @@
 
 	}
 	// 로그인상태가 아닐시 장바구니에 상품 담을 수 없음
-	function addCart(bookCode, id) {
+	function addCart(bookCode,id) {
 		if (id == "") {
 			alert('로그인해 주십시오');
 		} else {
-			$.ajax({
-				url : "${pageContext.request.contextPath}/cartInsert.do",
-				data : {
-					bookCode : bookCode
-				},
-				success : function(bookCode, id) {
-					alert('장바구니에 상품이 추가되었습니다.');
-				},
-				error : function() {
-				}
-			});
+			location.href = "cartInsert.do?bookCode=" + bookCode;
+			alert('장바구니에 상품이 추가되었습니다.');
 		}
+
 	}
 </script>

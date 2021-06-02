@@ -135,26 +135,23 @@ public class CartServiceImpl extends DAO implements CartService {
 	}
 	
 	
-	// 장바구니 조회 페이지에서 수정
-	@Override
-	public int CartQtyUpdate(CartVO vo) {
-		conn = DAO.getConnect();
-		sql = "UPDATE cart set book_qty=? where user_id = ? and book_code=?";
-		
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, vo.getBookQty());
-			psmt.setString(2, vo.getUserId());
-			psmt.setString(3, vo.getBookCode());
-			psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return 0;
-	}
+	/*
+	 * // 장바구니 조회 페이지에서 수량감소
+	 * 
+	 * @Override public int DecQtyUpdate(CartVO vo) { conn = DAO.getConnect(); sql =
+	 * "UPDATE cart set book_qty=book_qty-1 where user_id = ? and book_code=?"; int
+	 * r = 0; try { psmt = conn.prepareStatement(sql); psmt.setString(1,
+	 * vo.getUserId()); psmt.setString(2, vo.getBookCode());
+	 * 
+	 * r =psmt.executeUpdate(); System.out.println(r+"건이 업데이트 되었습니다");
+	 * System.out.println(vo.getBookCode()); System.out.println(vo.getUserId());
+	 * System.out.println(vo.getBookQty()); } catch (SQLException e) {
+	 * e.printStackTrace(); } finally { close(); } return r; }
+	 */
 
+
+	
+	
 	@Override
 	public int deleteCart(CartVO vo) {
 		conn = DAO.getConnect();
@@ -165,6 +162,22 @@ public class CartServiceImpl extends DAO implements CartService {
 			psmt.setString(2, vo.getBookCode());
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건이 카트에서 삭제되었습니다.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return 0;
+	}
+	
+	@Override
+	public int deleteAllCart(CartVO vo) {
+		conn = DAO.getConnect();
+		sql = "DELETE FROM cart WHERE user_id = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getUserId());
+			int r = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -196,6 +209,7 @@ public class CartServiceImpl extends DAO implements CartService {
 			}
 		}
 	}
+
 
 
 
