@@ -59,8 +59,8 @@
 
 				<tr>
 					<td colspan="2"><br />
-						<button type="button" onclick="formCheck()">등록</button> <input
-						type="reset" value="새로입력" onclick=""></td>
+						<button type="button" onclick="formCheck()">등록</button> 
+						<input type="reset" value="새로입력"></td>
 				</tr>
 			</table>
 		</form>

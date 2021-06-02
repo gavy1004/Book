@@ -22,6 +22,7 @@ public class ProductUpdate implements DBCommand {
 		String sale = request.getParameter("sale");
 		String sprice = request.getParameter("salePrice");
 		String writer = request.getParameter("writer");
+		String like = request.getParameter("likeIt");
 		
 		ProductVO vo = new ProductVO();
 		vo.setCategory(cat);
@@ -42,6 +43,7 @@ public class ProductUpdate implements DBCommand {
 		command.execute(request, response);
 		
 		request.setAttribute("product", vo);
+		
 		System.out.println(name);
 		return "admin/productList.tiles";
 	}
