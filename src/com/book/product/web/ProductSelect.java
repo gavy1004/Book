@@ -12,16 +12,16 @@ public class ProductSelect implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-	String cd = request.getParameter("bookCode");
-	
-	ProductVO vo = new ProductVO();
-	vo.setBookCode(cd);
-	
-	ProductService service =  new ProductServiceImpl();
-	service.selectProduct(vo);
-	
-	request.setAttribute("product", vo);
-		
+		String cd = request.getParameter("bookCode");
+
+		ProductVO vo = new ProductVO();
+		vo.setBookCode(cd);
+
+		ProductService service = new ProductServiceImpl();
+		service.selectProduct(vo);
+
+		request.setAttribute("product", vo);
+
 		return "product/productSelect.tiles";
 	}
 

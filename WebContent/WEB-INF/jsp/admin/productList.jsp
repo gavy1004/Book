@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -13,22 +13,50 @@ textarea {
 	width: 200px;
 	height: 100px;
 }
+
+.hero__search__form {
+	align: center;
+	
+}
+th{
+	background-color: #7fad39;
+}
 </style>
 <body>
-<script>
-	// 책 제목 클릭시 상세 페이지로 이동
-	function selectNovel(bookCode) {
-		location.href = "novelSelect.do?bookCode=" + bookCode;
-	}
-</script>
+	<script>
+		// 책 제목 클릭시 상세 페이지로 이동
+		function selectNovel(bookCode) {
+			location.href = "productSelect.do?bookCode=" + bookCode;
+		}
+		//한건삭제
+		function deleteCheck(bookCode) {
+			if (confirm("삭제하시겠습니까?") == true) {
+				location.href = "productDelete.do?bookCode=" + bookCode;
+			} else {
+				return false;
+			}
+
+		}
+	</script>
 	<div align="right" style="width: 90%">
 		<button type="button" onclick="location.href='adminPage.do'">홈</button>
 		<button type="button" onclick="location.href='productInsertForm.do'">등록</button>
-		<button type="button" onclick="location.href=''">삭제</button>
 	</div>
-	<form id="frm" action="" method="post">
-		<input type="hidden" id="id" name="id">
-	</form>
+	<div align="center">
+	<div class="col-lg-9" >
+		<div class="hero__search">
+			<div class="hero__search__form">
+				<form action="#">
+					<div class="hero__search__categories">
+						카테고리 <span class="arrow_carrot-down"></span>
+					</div>
+					<input type="text" placeholder="">
+					<button type="submit" class="site-btn">검색</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
 	<div align="center">
 		<h3>도서 리스트 관리</h3>
 		<div style="width: 80%">
@@ -36,8 +64,6 @@ textarea {
 				<tr>
 					<th width="100">카테고리</th>
 					<th width="100">상품명</th>
-					<th width="200">이미지</th>
-
 					<th width="50">정가</th>
 					<th width="50">세일여부</th>
 					<th width="100">저자</th>
@@ -45,17 +71,15 @@ textarea {
 					<th width="140">기능</th>
 				</tr>
 				<c:forEach items="${productList }" var="vo">
-					<tr onclick="formSubmit(${vo.bookCode })">
+					<tr ${vo.bookCode }>
 						<td>${vo.category }</td>
 						<td>${vo.bookName }</td>
-						<td><input id="image" type="image"
-							src="upload/${vo.bookImage }"></td>
 						<td>${vo.price }</td>
 						<td>${vo.sale }</td>
 						<td>${vo.writer }</td>
 						<td>${vo.likeIt }</td>
 						<td>
-							<button type="button" onclick="location.href='productDelete.do?code=${vo.bookCode }'">삭제</button>
+							<button type="button" onclick="deleteCheck('${vo.bookCode }')">삭제</button>
 							<button type="button" onclick="selectNovel('${vo.bookCode }')">상세보기</button>
 						</td>
 					</tr>

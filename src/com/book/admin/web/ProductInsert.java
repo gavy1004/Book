@@ -33,7 +33,6 @@ public class ProductInsert implements DBCommand {
 					"UTF-8", // 인코딩
 					new DefaultFileRenamePolicy());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -79,7 +78,7 @@ public class ProductInsert implements DBCommand {
 		DBCommand command = new ProductList();
 		command.execute(request, response);
 
-		session.setAttribute("category", category);
+		
 		session.setAttribute("product", vo);
 
 		return "admin/productList.tiles";

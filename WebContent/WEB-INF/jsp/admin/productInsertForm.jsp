@@ -34,8 +34,7 @@
 				</tr>
 				<tr>
 					<td>이미지</td>
-					<td> <input type="file" name="bookImage"
-						size="30" onchange=""></td>
+					<td><input type="file" name="bookImage" size="30" onchange=""></td>
 				</tr>
 				<tr>
 					<td>설 명</td>
@@ -60,8 +59,8 @@
 
 				<tr>
 					<td colspan="2"><br />
-						<button type="button" onclick="formCheck()">등록</button> 
-						<input type="reset" value="새로입력" onclick="resetInsertData()"></td>
+						<button type="button" onclick="formCheck()">등록</button> <input
+						type="reset" value="새로입력" onclick=""></td>
 				</tr>
 			</table>
 		</form>

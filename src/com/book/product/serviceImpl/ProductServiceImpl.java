@@ -215,7 +215,8 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	@Override
 	public int deleteProduct(ProductVO vo) {
 		conn = DAO.getConnect();
-		sql = "delete from book where book_code=?;";
+		
+		sql = "delete from book where book_code=?";
 		try {
 			psmt=conn.prepareStatement(sql);
 			psmt.setString(1, vo.getBookCode());
