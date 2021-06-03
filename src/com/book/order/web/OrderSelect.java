@@ -1,5 +1,7 @@
 package com.book.order.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,17 +16,17 @@ public class OrderSelect implements DBCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String od = request.getParameter("code");
 		
-		System.out.println(od);
-		
 		OrderVO vo = new OrderVO();
 		vo.setCode(od);
 		
 		OrderService service = new OrderServiceImpl();
-		service.selectOrder(vo);
+		List<OrderVO> list = service.selectOrderListOne(vo);
 		
-		request.setAttribute("order", vo);
 		
-		return "order/orderSelect.tiles";
+		
+		request.setAttribute("order", list);
+		
+		return "order/orderSelectList.tiles";
 	}
 
 }
