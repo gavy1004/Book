@@ -57,7 +57,7 @@
 			<th>작성일자</th>
 			<td>${notice.regDate}</td>
 			<th>조회수</th>
-			<td>${notice.hit}</td>
+			<td>${notice.hit + 1}</td>
 		</tr>
 		<tr>
 			<th>제목</th>

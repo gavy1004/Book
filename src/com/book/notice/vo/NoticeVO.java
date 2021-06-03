@@ -3,16 +3,17 @@ package com.book.notice.vo;
 import java.util.Date;
 
 public class NoticeVO {
-	private String id;
+	private int id;
 	private String title;
 	private String contents;
 	private Date regDate;
 	private int hit;
 	
-	public String getId() {
+
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getTitle() {

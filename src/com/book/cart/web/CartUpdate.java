@@ -19,10 +19,12 @@ public class CartUpdate implements DBCommand {
 		
 		String bookCode = request.getParameter("bookCode");
 		String id = (String) session.getAttribute("id");
-		String bookQty = request.getParameter("cartQty");
+		String bookQty = request.getParameter("cnt");
 				
 		System.out.println(bookCode);
 		System.out.println(bookQty);
+		System.out.println(id);
+		
 		CartVO vo =new CartVO();
 		vo.setBookCode(bookCode);
 		vo.setUserId(id);

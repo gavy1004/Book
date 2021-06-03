@@ -14,14 +14,11 @@ public class NoticeUpdate implements DBCommand {
 		String title = request.getParameter("title");
 		String contents = request.getParameter("content");
 		String id = request.getParameter("id");
-		
-		System.out.println(title);
-		System.out.println(id);
-		System.out.println(contents);
+
 		NoticeVO vo = new NoticeVO();
 		vo.setTitle(title);
 		vo.setContents(contents);
-		vo.setId(id);
+		vo.setId(Integer.parseInt(id));
 		
 		NoticeService service = new NoticeserviceImpl();
 		service.updateNotice(vo);

@@ -18,7 +18,7 @@ public class NoticeSelect implements DBCommand {
 			id="0";
 		
 		NoticeVO vo = new NoticeVO();
-		vo.setId(id);
+		vo.setId(Integer.parseInt(id));
 		
 		NoticeService service = new NoticeserviceImpl();
 		service.selectNotice(vo);

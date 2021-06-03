@@ -83,7 +83,8 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeSelect.do", new NoticeSelect());	//공지사항선택
 		map.put("/noticeDelete.do", new NoticeDelete());	//공지사항삭제
 		map.put("/noticeUpdate.do", new NoticeUpdate());	//공지사항수정
-		map.put("/noticeForm", new NoticeForm());			//공지사항입력폼 구현 안되었음....
+		map.put("/noticeForm.do", new NoticeForm());			//공지사항입력폼 구현 안되었음....
+		map.put("/noticeInsert.do", new NoticeInsert());		//공지사항입력
 		
 		
 	

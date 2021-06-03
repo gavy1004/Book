@@ -28,7 +28,7 @@ public class NoticeserviceImpl extends DAO implements NoticeService {
 			rs=psmt.executeQuery();
 			while(rs.next()) {
 				NoticeVO vo = new NoticeVO();
-				vo.setId(rs.getString("id"));
+				vo.setId(rs.getInt("id"));
 				vo.setTitle(rs.getString("title"));
 				vo.setContents(rs.getString("contents"));
 				vo.setRegDate(rs.getDate("reg_date"));
@@ -50,14 +50,15 @@ public class NoticeserviceImpl extends DAO implements NoticeService {
 		sql = "select * from notice where id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getId());
+			psmt.setInt(1, vo.getId());
 			rs = psmt.executeQuery();
 			while(rs.next()) {
-				vo.setId(rs.getString("id"));
+				vo.setId(rs.getInt("id"));
 				vo.setHit(rs.getInt("hit"));
 				vo.setContents(rs.getString("contents"));
 				vo.setRegDate(rs.getDate("reg_date"));
 				vo.setTitle(rs.getString("title"));
+				hitCount(vo.getId());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -67,6 +68,7 @@ public class NoticeserviceImpl extends DAO implements NoticeService {
 		
 		return vo;
 	}
+
 
 	@Override
 	public int insertNotice(NoticeVO vo) {
@@ -82,7 +84,7 @@ public class NoticeserviceImpl extends DAO implements NoticeService {
 			psmt=conn.prepareStatement(sql);
 			psmt.setString(1, vo.getTitle());
 			psmt.setString(2, vo.getContents());
-			psmt.setString(3, vo.getId());
+			psmt.setInt(3, vo.getId());
 			
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 수정");
@@ -100,7 +102,7 @@ public class NoticeserviceImpl extends DAO implements NoticeService {
 		sql ="delete from notice where id = ?";
 		try {
 			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, vo.getId());
+			psmt.setInt(1, vo.getId());
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 삭제");
 		} catch (SQLException e) {
@@ -110,6 +112,22 @@ public class NoticeserviceImpl extends DAO implements NoticeService {
 		}
 		return 0;
 	}
+	
+	// Hit 조회수
+	public void hitCount(int id) {
+		String sql = "update notice set hit = hit + 1 where id = ? ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, id);
+			psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
 	
 	private void close() {
 		if (rs != null)

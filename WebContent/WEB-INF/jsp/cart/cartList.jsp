@@ -5,7 +5,6 @@
 <!-- Shoping Cart Section Begin -->
 <section class="shoping-cart spad">
 	<div class="container">
-		<form id="frm" action="cartUpdate.do" method="post">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="shoping__cart__table">
@@ -64,6 +63,9 @@
 												class="shoping__cart__total"><fmt:formatNumber
 													type="currency" value="${vo.sum }"></fmt:formatNumber></td>
 										</c:if>
+										<td class="shoping__cart__item__close">
+										<span class="icon_loading" onclick="cartUpdate('${vo.bookCode }')"></span>
+										</td>
 										<td class="shoping__cart__item__close"><span
 											class="icon_close" onclick="cartDelete('${vo.bookCode }')"></span>
 										</td>
@@ -79,13 +81,9 @@
 					<div class="shoping__cart__btns">
 						<a href="novelList.do" class="primary-btn cart-btn">CONTINUE
 							SHOPPING</a> <a href="cartAllDelete.do"
-							class="primary-btn cart-btn cart-btn-right"> Delete Cart</a> <a
-							href="cartUpdate.do" class="primary-btn cart-btn"><span
-							class="icon_loading"></span>
-							<button type="submit" value="Update Cart"></button></a>
+							class="primary-btn cart-btn cart-btn-right"> Delete Cart</a>
 					</div>
 				</div>
-
 				<div class="col-lg-12">
 					<div class="shoping__cart__btns"></div>
 				</div>
@@ -102,7 +100,6 @@
 					</div>
 				</div>
 			</div>
-		</form>
 	</div>
 </section>
 <!-- Shoping Cart Section End -->
@@ -116,6 +113,11 @@
 	function cartDelete(bookCode) {
 		location.href = "cartDelete.do?bookCode=" + bookCode;
 	}
+	function cartUpdate(bookCode) {
+		let qty = $('#qty_' + bookCode).val();
+		
+		location.href = "cartUpdate.do?bookCode=" + bookCode+"&cnt=" + qty;
+	}
 
 	function qtyChange(bookCode) {
 		console.log($('#qty_' + bookCode).val(), $('#price_' + bookCode).attr(
@@ -123,7 +125,7 @@
 		let qty = $('#qty_' + bookCode).val();
 		let price = $('#price_' + bookCode).attr('val');
 		let sum = price * qty;
-		console.log(sum);
+		/* console.log(sum); */
 		$('#sum_' + bookCode).html(new Intl.NumberFormat('ko-KR', {
 			style : 'currency',
 			currency : 'KRW'
@@ -181,7 +183,7 @@
 		let rowTotal = $(".shoping__cart__total");
 		let sum = 0;
 		for (let i = 0; i < rowTotal.length; i++) {
-			console.log(rowTotal[i].innerHTML)
+		 console.log(rowTotal[i].innerHTML)
 			sum += parseInt(rowTotal[i].getAttribute('val'));
 		}
 		$('#totalSum').html(new Intl.NumberFormat('ko-KR', {
