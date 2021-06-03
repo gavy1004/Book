@@ -30,41 +30,36 @@
 											<h5>${vo.bookName }</h5></td>
 
 										<c:if test="${vo.sale eq 'Y'}">
-											<td class="shoping__cart__price"><fmt:formatNumber
-													type="currency" value="${vo.salePrice }"></fmt:formatNumber></td>
+											<td id="price_${vo.bookCode }" class="shoping__cart__price">${vo.salePrice }</td>
 										</c:if>
 										<c:if test="${vo.sale eq 'N'}">
-											<td class="shoping__cart__price"><fmt:formatNumber
-													type="currency" value="${vo.price }"></fmt:formatNumber></td>
+											<td id="price_${vo.bookCode }" class="shoping__cart__price">${vo.price }</td>
 										</c:if>
 
 										<td class="shoping__cart__quantity">
 											<div class="quantity">
-											<form>
 												<div class="pro-qty">
-													<input type="button" value="-" onClick="javascript:this.form.cartQty.value--;">
-													<input type="text" name ="cartQty" value="${vo.cnt }">
-													<input type="button"  value="+" onClick="javascript:this.form.cartQty.value++;">
+													<input type="button" value="-" onclick="minus(event)">
+													<input type="text" id="qty_${vo.bookCode }" name ="cartQty" value="${vo.cnt }" onchange="qtyChange('${vo.bookCode }')">
+													<input type="button"  value="+" onclick="plus(event)">
 												</div>
-											</form>
 											</div>
 										</td>
 										
 										<c:if test="${vo.sale eq 'Y'}">
 											<c:set var="sum" value="${sum + vo.ssum}" />
-											<td class="shoping__cart__total"><fmt:formatNumber
-													type="currency" value="${vo.ssum }"></fmt:formatNumber></td>
+											<td id="sum_${vo.bookCode }" class="shoping__cart__total">${vo.ssum }</td>
 										</c:if>
 										<c:if test="${vo.sale eq 'N'}">
 											<c:set var="sum" value="${sum + vo.sum}" />
-											<td class="shoping__cart__total"><fmt:formatNumber
-													type="currency" value="${vo.sum }"></fmt:formatNumber></td>
+											<td id="sum_${vo.bookCode }" class="shoping__cart__total">${vo.sum }</td>
 										</c:if>
 										<td class="shoping__cart__item__close"><span
 											class="icon_close" onclick="cartDelete('${vo.bookCode }')"></span></td>
 									</tr>
 								</c:forEach>
 							</tbody>
+							
 						</table>
 					</div>
 				</div>
@@ -86,7 +81,7 @@
 					<div class="shoping__checkout">
 						<h5>총 금액</h5>
 						<ul>
-							<li>Total<span><fmt:formatNumber type="currency"
+							<li>Total<span id="totalSum"><fmt:formatNumber type="currency"
 										value="${sum }"></fmt:formatNumber></span></li>
 						</ul>
 						<a href="cartOrder.do" class="primary-btn">결제하기</a>
@@ -107,7 +102,39 @@
 		function cartDelete(bookCode) {
 			location.href = "cartDelete.do?bookCode=" + bookCode;
 		}
-		function del(cartQty) {
-			javascript:this.form.cartQty.value--;
+		function qtyChange (bookCode) {
+			console.log($('#qty_'+bookCode).val(), $('#price_'+bookCode).html(), $('#sum_'+bookCode).html());
+			let qty = $('#qty_'+bookCode).val();
+			let price = $('#price_'+bookCode).html();
+			let sum = price * qty;
+			console.log(sum);
+			$('#sum_'+bookCode).html(sum);
+		}
+		function plus(e) {
+			console.log(e.target.parentNode.childNodes[3].value++)
+			let qty = e.target.parentNode.childNodes[3].value;
+			let price = e.target.parentNode.parentNode.parentNode.parentNode.childNodes[3].innerHTML;
+			let sum = price * qty;
+			console.log(qty+","+price+","+sum);
+			e.target.parentNode.parentNode.parentNode.parentNode.childNodes[7].innerHTML = sum;
+			totalSum();
+			
+		}
+		function minus(e) {
+			console.log(e.target.parentNode.childNodes[3].value--)
+			let qty = e.target.parentNode.childNodes[3].value;
+			let price = e.target.parentNode.parentNode.parentNode.parentNode.childNodes[3].innerHTML;
+			let sum = price * qty;
+			console.log(qty+","+price+","+sum);
+			e.target.parentNode.parentNode.parentNode.parentNode.childNodes[7].innerHTML = sum;
+		}
+		function totalSum() {
+			let rowTotal = $(".shoping__cart__total");
+			let sum = 0;
+			for(let i=0; i<rowTotal.length; i++) {
+				console.log(rowTotal[i].innerHTML)
+				sum += parseInt(rowTotal[i].innerHTML);
+			}
+			$('#totalSum').html(sum);
 		}
 	</script>

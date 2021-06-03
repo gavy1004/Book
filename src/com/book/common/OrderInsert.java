@@ -8,10 +8,6 @@ public class OrderInsert implements DBCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		
-		
-		
-		
 		return null;
 	}
 
