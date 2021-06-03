@@ -14,6 +14,11 @@ import com.book.admin.web.AdminPage;
 import com.book.admin.web.ProductInsert;
 import com.book.admin.web.ProductInsertForm;
 import com.book.admin.web.ProductList;
+import com.book.bulletin.web.BulletinDelete;
+import com.book.bulletin.web.BulletinForm;
+import com.book.bulletin.web.BulletinList;
+import com.book.bulletin.web.BulletinSelect;
+import com.book.bulletin.web.BulletinUpdate;
 import com.book.cart.web.CartDelete;
 import com.book.cart.web.CartInsert;
 import com.book.cart.web.CartList;
@@ -86,7 +91,12 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeForm.do", new NoticeForm());			//공지사항입력폼
 		map.put("/noticeInsert.do", new NoticeInsert());		//공지사항입력
 		
-		
+		// 구매후기 게시판
+		map.put("/bulletinForm.do", new BulletinForm());		//후기게시판 폼
+		map.put("/bulletinList.do", new BulletinList());		//후기게시판 리스트
+		map.put("/bulletinSelect.do", new BulletinSelect());	//후기게시판 선택
+		map.put("/bulletinUpdate.do", new BulletinUpdate());	//후기게시판 수정
+		map.put("/bulletinDelte.do", new BulletinDelete()); 	//후기게시판 삭제
 	
 	}
 	
