@@ -23,7 +23,6 @@
 								<c:set var="sum" value="0" />
 								<c:set var="cnt" value="1" />
 								<c:forEach items="${cartList }" var="vo" varStatus="status">
-									<c:set var="listCnt" value="${listCnt+1 }" />
 									<tr>
 										<td class="shoping__cart__item"
 											onclick="selectNovel('${vo.bookCode }')"><img
@@ -90,7 +89,7 @@
 							<li>Total<span><fmt:formatNumber type="currency"
 										value="${sum }"></fmt:formatNumber></span></li>
 						</ul>
-						<a href="#" class="primary-btn">결제하기</a>
+						<a href="cartOrder.do" class="primary-btn">결제하기</a>
 					</div>
 				</div>
 			</div>

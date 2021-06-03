@@ -24,6 +24,7 @@ public class NovelList implements DBCommand {
 		List<ProductVO> list = service.selectProductList();	// 전체 조회
 		List<ProductVO> nlist = service.selectNovelList();	// 소설 조회
 		List<ProductVO> plist = service.selectPoemList();	// 시 조회
+		List<ProductVO> blist = service.selectBestList();	// 베스트 셀러 조회
 		
 		CartService service1 = new CartServiceImpl();
 		int cartCnt = service1.getCountCart(id);
@@ -31,6 +32,7 @@ public class NovelList implements DBCommand {
 		request.setAttribute("list", list);
 		request.setAttribute("nlist", nlist);
 		request.setAttribute("plist", plist);
+		request.setAttribute("blist", blist);
 		
 		session.setAttribute("cartCnt", cartCnt);
 		session.setAttribute("id", id);

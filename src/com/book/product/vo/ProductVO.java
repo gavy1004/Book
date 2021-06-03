@@ -11,7 +11,15 @@ public class ProductVO {
 	private String writer;
 	private int likeIt;
 	private String Category;
-		
+	private int rank;
+	
+	
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
 	public String getCategory() {
 		return Category;
 	}

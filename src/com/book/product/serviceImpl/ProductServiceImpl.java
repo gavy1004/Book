@@ -128,6 +128,42 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		}
 		return list;
 	}
+	
+	// 베스트 조회
+	@Override
+	public List<ProductVO> selectBestList() {
+		conn = DAO.getConnect();
+		sql ="select BOOK_CODE,BOOK_IMAGE,BOOK_NAME,contents,writer,LIKE_IT,PRICE,SALE,SALE_PRICE \r\n"
+				+ ",rank() over(order by LIKE_IT desc) rank\r\n"
+				+ "from book";
+		List<ProductVO> list = new ArrayList<>();
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs= psmt.executeQuery();
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setBookCode(rs.getString("book_code"));
+				vo.setBookName(rs.getString("book_Name"));
+				vo.setBookImage(rs.getString("book_Image"));
+				vo.setContents(rs.getString("contents"));
+				vo.setPrice(rs.getString("price"));
+				vo.setSalePrice(rs.getString("sale_Price"));
+				vo.setSale(rs.getString("sale"));
+				vo.setWriter(rs.getString("writer"));
+				vo.setRank(rs.getInt("rank"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+
+
+
 
 	@Override
 	public ProductVO selectProduct(ProductVO vo) {
@@ -255,8 +291,6 @@ public class ProductServiceImpl extends DAO implements ProductService {
 			}
 		}
 	}
-
-
 
 
 

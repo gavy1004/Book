@@ -28,7 +28,7 @@ public class CartList implements DBCommand {
 		int cartCnt = service.getCountCart(id);
 		
 		session.setAttribute("cartCnt",cartCnt);
-		request.setAttribute("cartList", list );
+		session.setAttribute("cartList", list );
 		return "cart/cartList.tiles";
 	}
 
