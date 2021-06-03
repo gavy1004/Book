@@ -17,21 +17,21 @@ public class CartUpdate implements DBCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		
-		String dec = request.getParameter("dec");
-		String inc = request.getParameter("inc");
-
 		String bookCode = request.getParameter("bookCode");
 		String id = (String) session.getAttribute("id");
-		String bookQty = request.getParameter("bookQty");
+		String bookQty = request.getParameter("cartQty");
 				
+		System.out.println(bookCode);
+		System.out.println(bookQty);
 		CartVO vo =new CartVO();
 		vo.setBookCode(bookCode);
 		vo.setUserId(id);
 		vo.setBookQty(Integer.parseInt(bookQty));
+	
 
 
 		CartService service = new CartServiceImpl();
-
+		service.updateCartPage(vo);
 		
 		request.setAttribute("cart", vo);
 		

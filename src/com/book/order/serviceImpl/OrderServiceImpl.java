@@ -107,6 +107,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 	private void close() {
 		if (rs != null)
 			try {

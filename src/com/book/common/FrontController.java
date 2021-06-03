@@ -68,7 +68,7 @@ public class FrontController extends HttpServlet {
 		map.put("/cartInsert.do", new CartInsert());		// 장바구니담기
 		map.put("/cartList.do", new CartList());			// 장바구니조회
 		map.put("/cartDelete.do", new CartDelete());		// 장바구니삭제
-		map.put("/cartAllDelete.do", new CartAllDelete());	// 장바구니전체삭제
+		map.put("/cartAllDelete.do", new CartAllDelete());	// 장바구니전체삭제(사용안함)
 		map.put("/cartUpdate.do", new CartUpdate());		// 장바구니수정
 		map.put("/cartOrder.do", new CartOrderForm());		// 결제페이지
 		
@@ -79,6 +79,12 @@ public class FrontController extends HttpServlet {
 	
 	
 		// 공지사항 게시판
+		map.put("/noticeList.do", new NoticeList());		//공지사항리스트
+		map.put("/noticeSelect.do", new NoticeSelect());	//공지사항선택
+		map.put("/noticeDelete.do", new NoticeDelete());	//공지사항삭제
+		map.put("/noticeUpdate.do", new NoticeUpdate());	//공지사항수정
+		map.put("/noticeForm", new NoticeForm());			//공지사항입력폼 구현 안되었음....
+		
 		
 	
 	}

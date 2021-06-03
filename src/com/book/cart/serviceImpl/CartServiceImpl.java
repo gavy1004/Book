@@ -134,6 +134,25 @@ public class CartServiceImpl extends DAO implements CartService {
 		return 0;
 	}
 	
+	@Override
+	public int updateCartPage(CartVO vo) {
+		conn = DAO.getConnect();
+		sql="update cart set book_qty=? where user_id=? and book_code=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getBookQty());
+			psmt.setString(2, vo.getUserId());
+			psmt.setString(3, vo.getBookCode());
+			
+			int r =psmt.executeUpdate();
+			System.out.println(r+"건이 수정되었습니다");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return 0;
+	}
 	
 	/*
 	 * // 장바구니 조회 페이지에서 수량감소
@@ -209,6 +228,8 @@ public class CartServiceImpl extends DAO implements CartService {
 			}
 		}
 	}
+
+
 
 
 

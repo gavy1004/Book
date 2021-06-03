@@ -1,78 +1,61 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- notice.jsp -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="//cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+    pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>noticeListPaging.jsp</title>
 <script>
-	$(function() {
-		CKEDITOR.replace('ccontent', {
-			filebrowserUploadUrl: '${pageContext.request.contextPath }/fileUpload',
-			height: '600px',
-			width: '800px'
-		});
-	})
-
-	function noticeUpdate() {
-		let id = document.getElementById("cid").innerHTML;
-		let title = document.getElementById("ctitle").value;
-		let content = document.getElementById("ccontent").value;
-
+	function formSubmit(id) {
 		frm.id.value = id;
-		frm.title.value = title;
-		frm.content.value = content;
-
 		frm.submit();
-
 	}
 	
-	function noticeDelete() {
-		let id = document.getElementById("cid").innerHTML;
-		
-		frmDel.id.value = id;
-		frmDel.submit();
+	function goPage(page) {
+		location.href= 'noticeListPaging.do?page='+page;
 	}
-	
 </script>
-<div align="center">
-	<h3>공지사항 내용보기</h3>
-	<form id="frm" action="#" method="post">
-		<input type="hidden" name="id">
-		 <input type="hidden"name="title"> 
-		 <input type="hidden" name="content">
+</head>
+<body>
+	<form id ='frm' action="noticeSelect.do" method="post">
+		<input type='hidden' id='id' name='id'>
 	</form>
-	<form id="frmDel" action="#" method="post">
-		<input type="hidden" name="id">
-	</form>
-	
-	<table border='1'>
-		<tr>
-			<th>순번</th>
-			<td id="cid">${notice.id}</td>
-			<th>작성일자</th>
-			<td>${notice.regDate}</td>
-			<th>조회수</th>
-			<td>${notice.hit}</td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td colspan="5"><input type="text" id="ctitle"
-				value="${notice.title }"></td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td colspan="5"><textarea id="ccontent" rows="6" cols="90">${notice.content }</textarea></td>
-		</tr>
-	</table>
-	<div>
-		<button type="button" onclick="location.href='noticeListPaging.do'">목록보기</button>
-		<c:if test="${id eq 'admin' }">
-			<button type="button" onclick="noticeUpdate()">수정</button>
-			<button type="button" onclick="noticeDelete()">삭제</button>
-		</c:if>
+	<div align="center">
+	<h3>Notice List</h3>
+		<div style="width:90%">
+			<table class="table" border="1">
+				<tr>
+					<th>NO</th>
+					<th>TITLE</th>
+					<th>DATE</th>
+					<th>HIT</th>
+				</tr> 	<!-- 해당되는 걸렉션 items 한건한건 담아올떄 var -->
+				<c:forEach	items="${noticeList }" var="vo">
+					<tr onclick="formSubmit(${vo.id})">
+						<td width="100">${vo.id }</td>
+						<td width="200">${vo.title }</td>
+						<td width="150">${vo.regDate }</td>
+						<td width="100">${vo.hit }</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+		<div>
+			<button type="button" onclick="location.href='novelList.do'">홈</button>
+			<c:if test="${id eq 'admin' }">
+				<button type="button" onclick="location.href='#'">등록</button>
+			</c:if>
+		</div>
+<%-- 		<jsp:include page="../common/paging.jsp" flush="true">
+		    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+		    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+		    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
+		    <jsp:param name="pageNo" value="${paging.pageNo}" />
+		    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
+		    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+		    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+		</jsp:include> --%>
 	</div>
-</div>
-
 </body>
 </html>

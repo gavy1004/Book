@@ -13,7 +13,6 @@
 				<div class="featured__controls">
 					<ul>
 						<li class="active" data-filter="*">전체보기</li>
-						<li data-filter=".vegetables">베스트셀러</li>
 						<li data-filter=".fresh-meat">소설</li>
 						<li data-filter=".fastfood">시</li>
 					</ul>
@@ -21,7 +20,6 @@
 			</div>
 		</div>
 		<!-- 시 -->
-
 		<div class="row featured__filter">
 			<c:forEach items="${nlist }" var="vo">
 				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
@@ -70,8 +68,7 @@
 					</div>
 				</div>
 			</c:forEach>
-
-			<div class="row featured__filter">
+			<%-- 			<div class="row featured__filter">
 				<c:forEach items="${blist }" var="vo">
 					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges vegetables">
 						<div class="featured__item">
@@ -95,8 +92,7 @@
 						</div>
 					</div>
 				</c:forEach>
-			</div>
-
+			</div> --%>
 		</div>
 </section>
 <!-- Featured Section End -->
