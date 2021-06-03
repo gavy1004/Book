@@ -15,4 +15,5 @@ public interface ProductService {
 	public int updateProduct(ProductVO vo);
 	public int deleteProduct(ProductVO vo);
 	public int insertLikeIt(ProductVO vo);		// 좋아요 추가
+	public ProductVO productSearch(ProductVO vo);
 }

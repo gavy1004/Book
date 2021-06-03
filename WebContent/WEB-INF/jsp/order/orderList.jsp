@@ -1,17 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문내역 리스트</title>
+<script>
+	function formSubmit(code) {
+		frm.id.value = code;
+		frm.submit();
+	}
+</script>
 </head>
 <body>
-<h3>주문내역 리스트</h3>
-	<form id="frm" action="" method="post">
-		<input type="hidden" id="id" name="id">
-	</form>
+	<h3>주문내역 리스트</h3>
+	<form id="frm" action="orderSelect.do" method="post">
+		<input type="hidden" id="code" name="id">
 	<div align="center">
 		<div style="width: 80%">
 			<table class="table" border="1">
@@ -22,8 +27,8 @@
 					<th width="100">이메일</th>
 				</tr>
 				<c:forEach items="${orderList }" var="vo">
-					<tr onclick="formSubmit(${vo.ordercode })">
-						<td>${vo.ordercode }</td>
+					<tr onclick="formSubmit(${vo.code })">
+						<td>${vo.code }</td>
 						<td>${vo.name }</td>
 						<td>${vo.phone }</td>
 						<td>${vo.email }</td>
@@ -33,9 +38,9 @@
 		</div>
 		<div>
 			<button type="button" onclick="location.href='novelList.do'">홈</button>
-				<button type="button" onclick="location.href=''">삭제</button>
+			<button type="button" onclick="location.href=''">삭제</button>
 		</div>
-
-	</div>
+	</div>	
+	</form>
 </body>
 </html>

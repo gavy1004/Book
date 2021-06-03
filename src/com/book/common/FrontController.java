@@ -24,6 +24,8 @@ import com.book.member.web.MemberList;
 import com.book.member.web.MemberLogOut;
 import com.book.member.web.MemberLogin;
 import com.book.member.web.MemberLoginForm;
+import com.book.order.web.OrderList;
+import com.book.order.web.OrderSelect;
 import com.book.product.web.NovelList;
 import com.book.product.web.NovelSelect;
 import com.book.product.web.ProductDelete;
@@ -55,6 +57,7 @@ public class FrontController extends HttpServlet {
 		map.put("/productDelete.do", new ProductDelete());			//상품삭제
 		map.put("/productUpdate.do", new ProductUpdate());			//상품업데이트
 		map.put("/productSelect.do", new ProductSelect());			//상품한건조회
+		map.put("/productSearch.do", new ProductSearch());
 		
 		// 상품
 		map.put("/novelList.do", new NovelList());			//메인 리스트 조회
@@ -71,7 +74,8 @@ public class FrontController extends HttpServlet {
 		
 		// 해야하는 거~~~!
 		map.put("/orderInsert.do", new OrderInsert());		// 쥬뮨정보입력
-
+		map.put("/orderList.do", new OrderList());			//주문내역리스트
+		map.put("/orderSelect.do", new OrderSelect());		//주문내역한건조회
 	}
 	
 	@Override

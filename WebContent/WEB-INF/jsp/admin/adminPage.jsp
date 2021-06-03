@@ -17,7 +17,7 @@
 	<tr>
 		<td><a href="memberList.do">전체회원조회</a></td>
 		<td><a href="productList.do">전체상품조회</a></td>
-		<td><a href="">주문조회</a></td>
+		<td><a href="orderList.do">주문조회</a></td>
 	</tr>
 		<tr>
 		<td><a href=""></a></td>
