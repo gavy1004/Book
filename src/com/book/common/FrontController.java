@@ -60,9 +60,9 @@ public class FrontController extends HttpServlet {
 		map.put("/productSearch.do", new ProductSearch());
 		
 		// 상품
-		map.put("/novelList.do", new NovelList());			//메인 리스트 조회
-		map.put("/novelSelect.do", new NovelSelect()); 		//한건조회
-		map.put("/likeIt.do", new likeIt());				//좋아요
+		map.put("/novelList.do", new NovelList());			// 메인리스트 조회
+		map.put("/novelSelect.do", new NovelSelect()); 		// 한건조회
+		map.put("/likeIt.do", new likeIt());				// 좋아요
 		
 		// 장바구니
 		map.put("/cartInsert.do", new CartInsert());		// 장바구니담기
@@ -72,10 +72,15 @@ public class FrontController extends HttpServlet {
 		map.put("/cartUpdate.do", new CartUpdate());		// 장바구니수정
 		map.put("/cartOrder.do", new CartOrderForm());		// 결제페이지
 		
-		// 해야하는 거~~~!
-		map.put("/orderInsert.do", new OrderInsert());		// 주문정보입력
+		// 주문
+		map.put("/orderInsert.do", new OrderInsert());		//주문정보입력
 		map.put("/orderList.do", new OrderList());			//주문내역리스트
 		map.put("/orderSelect.do", new OrderSelect());		//주문내역한건조회
+	
+	
+		// 공지사항 게시판
+		
+	
 	}
 	
 	@Override
