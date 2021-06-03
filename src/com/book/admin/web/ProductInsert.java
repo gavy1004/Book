@@ -77,7 +77,6 @@ public class ProductInsert implements DBCommand {
 
 		DBCommand command = new ProductList();
 		command.execute(request, response);
-
 		
 		session.setAttribute("product", vo);
 

@@ -58,6 +58,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setSale(rs.getString("sale"));
 				vo.setWriter(rs.getString("writer"));
 				vo.setCategory(rs.getString("category"));
+				vo.setLikeIt(rs.getInt("like_it"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -146,6 +147,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setSalePrice(rs.getString("sale_price"));
 				vo.setWriter(rs.getString("writer"));
 				vo.setLikeIt(rs.getInt("like_it"));
+				vo.setCategory(rs.getString("category"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

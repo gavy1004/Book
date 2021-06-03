@@ -35,7 +35,7 @@ public class ProductUpdate implements DBCommand {
 		vo.setSale(sale);
 		vo.setSalePrice(sprice);
 		vo.setWriter(writer);
-		
+
 		ProductService service = new ProductServiceImpl();
 		service.updateProduct(vo);
 		
@@ -44,7 +44,6 @@ public class ProductUpdate implements DBCommand {
 		
 		request.setAttribute("product", vo);
 		
-		System.out.println(name);
 		return "admin/productList.tiles";
 	}
 

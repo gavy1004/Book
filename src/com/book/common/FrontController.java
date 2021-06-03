@@ -24,6 +24,7 @@ import com.book.member.web.MemberList;
 import com.book.member.web.MemberLogOut;
 import com.book.member.web.MemberLogin;
 import com.book.member.web.MemberLoginForm;
+import com.book.order.web.OrderList;
 import com.book.product.web.NovelList;
 import com.book.product.web.NovelSelect;
 import com.book.product.web.ProductDelete;
@@ -68,6 +69,8 @@ public class FrontController extends HttpServlet {
 		map.put("/cartAllDelete.do", new CartAllDelete());	// 장바구니전체삭제
 		map.put("/cartUpdate.do", new CartUpdate());		// 장바구니수정
 		
+		//주문내역
+		map.put("/orderList.do", new OrderList());			//주문내역조회
 	}
 	
 	@Override
