@@ -7,19 +7,24 @@ import com.book.notice.service.NoticeService;
 import com.book.notice.serviceImpl.NoticeserviceImpl;
 import com.book.notice.vo.NoticeVO;
 
-public class NoticeDelete implements DBCommand {
+
+public class NoticeInsert implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
 		
 		NoticeVO vo = new NoticeVO();
-		vo.setId(Integer.parseInt(id));
+		vo.setTitle(title);
+		vo.setContents(content);
 		
 		NoticeService service = new NoticeserviceImpl();
-		service.deleteNotice(vo);
+		service.insertNotice(vo);
+		service.selectNoticeList();
 		
-		return "/noticelist.do";
+		request.setAttribute("notice", vo);
+		return "/noticeList.do";
 	}
 
 }

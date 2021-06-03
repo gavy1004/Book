@@ -44,7 +44,7 @@
 		<div>
 			<button type="button" onclick="location.href='novelList.do'">홈</button>
 			<c:if test="${id eq 'admin' }">
-				<button type="button" onclick="location.href='#'">등록</button>
+				<button type="button" onclick="location.href='noticeForm.do'">등록</button>
 			</c:if>
 		</div>
 <%-- 		<jsp:include page="../common/paging.jsp" flush="true">
