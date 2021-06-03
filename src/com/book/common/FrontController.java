@@ -73,7 +73,7 @@ public class FrontController extends HttpServlet {
 		map.put("/cartOrder.do", new CartOrderForm());		// 결제페이지
 		
 		// 해야하는 거~~~!
-		map.put("/orderInsert.do", new OrderInsert());		// 쥬뮨정보입력
+		map.put("/orderInsert.do", new OrderInsert());		// 주문정보입력
 		map.put("/orderList.do", new OrderList());			//주문내역리스트
 		map.put("/orderSelect.do", new OrderSelect());		//주문내역한건조회
 	}

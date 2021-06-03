@@ -5,36 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문내역 리스트</title>
-<script>
-/* 	function formSubmit(code) {
-		frm.id.value = code;
-		frm.submit();
-	} */
-	
-	function select (code){
-		location.href = "orderSelect.do?Code=" + code;
-	}
-</script>
+<title>Insert title here</title>
+</head>
 </head>
 <body>
-	<h3>주문내역 리스트</h3>
-	<form id="frm" action="orderSelect.do" method="post">
+	<h3>전체회원리스트</h3>
+	<form id="frm" action="" method="post">
 		<input type="hidden" id="id" name="id">
 	</form>
 	<div align="center">
 		<div style="width: 80%">
 			<table class="table" border="1">
 				<tr>
-					<th width="100">오더코드</th>
+					<th width="100">아이디</th>
 					<th width="200">이름</th>
+					<th width="150">비밀번호</th>
 					<th width="150">핸드폰번호</th>
 					<th width="100">이메일</th>
 				</tr>
-				<c:forEach items="${orderList }" var="vo">
-					<tr onclick="select('${vo.code }')">
-						<td>${vo.code }</td>
+				<c:forEach items="${memberList }" var="vo">
+					<tr onclick="formSubmit(${vo.id })">
+						<td>${vo.id }</td>
 						<td>${vo.name }</td>
+						<td>${vo.passwd }</td>
 						<td>${vo.phone }</td>
 						<td>${vo.email }</td>
 					</tr>
@@ -42,9 +35,12 @@
 			</table>
 		</div>
 		<div>
-			<button type="button" onclick="location.href='novelList.do'">홈</button>
-			<button type="button" onclick="location.href=''">삭제</button>
+			<button type="button" onclick="location.href='main.do'">홈</button>
+			<button type="button" onclick="location.href='adminPage.do'">홈</button>
+				<button type="button" onclick="location.href=''">삭제</button>
 		</div>
-	</div>	
+
+	</div>
+	<p>${paging }</p>
 </body>
 </html>

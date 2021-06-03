@@ -14,6 +14,8 @@ public class OrderSelect implements DBCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String od = request.getParameter("code");
 		
+		System.out.println(od);
+		
 		OrderVO vo = new OrderVO();
 		vo.setCode(od);
 		
