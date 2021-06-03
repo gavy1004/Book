@@ -16,7 +16,7 @@
 <body>
 	<h3>주문내역 리스트</h3>
 	<form id="frm" action="orderSelect.do" method="post">
-		<input type="hidden" id="code" name="id">
+		<input type="hidden" id="code" name="code">
 	<div align="center">
 		<div style="width: 80%">
 			<table class="table" border="1">
