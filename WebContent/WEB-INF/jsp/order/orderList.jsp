@@ -12,6 +12,7 @@
 		frm.submit();
 	} */
 	
+
 	function select (code){
 		location.href = "orderSelect.do?code=" + code;
 	}
@@ -32,6 +33,7 @@
 					<th width="200">이름</th>
 					<th width="150">핸드폰번호</th>
 					<th width="100">이메일</th>
+					
 				</tr>
 				<c:if test="${name eq admin }">
 				<c:forEach items="${orderList }" var="vo">
@@ -43,7 +45,7 @@
 					</tr>
 				</c:forEach>
 				</c:if>
-				<c:if test="${name eq vo.name }">
+		<%-- 		<c:if test="${name eq vo.name }">
 				<c:forEach items="${orderList }" var="vo">
 					<tr onclick="select('${vo.code }')">
 						<td>${vo.code }</td>
@@ -52,7 +54,7 @@
 						<td>${vo.email }</td>
 					</tr>
 				</c:forEach>
-				</c:if>
+				</c:if> --%>
 			</table>
 		</div>
 		<div>

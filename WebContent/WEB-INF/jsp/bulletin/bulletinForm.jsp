@@ -29,7 +29,7 @@
 		<form id="frm" action="bulletinInsert.do"method="post">
 			<input type="hidden" name="id" value="${id }">				<!-- 로그인한 id값 -->
 			<div>
-				<table border="1" width="400" >
+				<table border="1" width="500" >
 					<tr>
 						<th width="100">작성일</th>
 						<td width="100">
@@ -45,8 +45,8 @@
 					</tr>
 					<tr>
 						<th width="100">작성자</th>
-						<td width="100">
-							${bulletinList.writer }
+						<td width="400">
+							<input type="text" id="writer" name="writer">
 						</td>
 					</tr>
 					<tr>
@@ -58,7 +58,7 @@
 					<tr>
 						<th width="100">도서코드</th>
 						<td width="100">
-							<input type="text" id="bookCode" name="book_code">
+							${order.bookCode }
 						</td>
 					</tr>
 					<tr>

@@ -23,7 +23,6 @@ public class OrderSelect implements DBCommand {
 		List<OrderVO> list = service.selectOrderListOne(vo);
 		
 		
-		
 		request.setAttribute("order", list);
 		
 		return "order/orderSelectList.tiles";

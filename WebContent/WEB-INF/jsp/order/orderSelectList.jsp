@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>주문내역</title>
+<script>
+function bulletinForm(code){
+	location.href= "bulletinForm.do?code=" + code;
+}
+</script>
 </head>
 <body>
 	<div align="center">
@@ -22,6 +27,7 @@
 					<th width="100">수  량</th>
 					<th width="100">가  격</th>
 					<th width="100">요구사항</th>
+					<th width="100">후기작성</th>
 				</tr>
 					<c:forEach items="${order }" var="vo">
 						<tr onclick="select('${vo.code }')">
@@ -34,6 +40,8 @@
 							<td>${vo.qty }</td>
 							<td>${vo.price }</td>
 							<td>${vo.coments }</td>
+							<td onclick="event.cancelBubble=true"><button type="button" onclick="bulletinForm('${vo.code}')">후기작성</button> </td>
+							
 						</tr>
 					</c:forEach>
 			</table>
