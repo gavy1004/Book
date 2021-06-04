@@ -16,6 +16,35 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
+	//상세내용보기에서 후기조회
+	public  List<BulletinVO> reviewSelect(BulletinVO vo) {
+		List<BulletinVO> list = new ArrayList<>();
+		conn = DAO.getConnect();
+		sql = "select * from bulletin where book_code=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getBookCode());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				hitCount(vo.getId());
+				
+				vo.setBookCode(rs.getString("book_code"));
+				vo.setContent(rs.getString("content"));
+				vo.setHit(rs.getInt("hit"));
+				vo.setId(rs.getString("id"));
+				vo.setRegDate(rs.getDate("reg_date"));
+				vo.setTitle(rs.getString("title"));
+				vo.setWriter(rs.getString("writer"));
+				
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
 	
 	@Override
 	public List<BulletinVO> bulletinSelectList() {

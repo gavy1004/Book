@@ -43,36 +43,22 @@ th{
 		<button type="button" onclick="location.href='productInsertForm.do'">등록</button>
 	</div>
 	<div align="center">
-	<div class="col-lg-9" >
-		<div class="hero__search">
-			<div class="hero__search__form">
-				<form action="#">
-					<div class="hero__search__categories">
-						카테고리 <span class="arrow_carrot-down"></span>
-					</div>
-					<input type="text" placeholder="">
-					<button type="submit" class="site-btn">검색</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	</div>
-	<div align="center">
 		<h3>도서 리스트 관리</h3>
 		<div style="width: 80%">
 			<table class="table" border="1">
 				<tr>
-					<th width="100">카테고리</th>
+					<th width="100">북코드</th>
 					<th width="100">상품명</th>
 					<th width="50">정가</th>
 					<th width="50">세일여부</th>
 					<th width="100">저자</th>
 					<th width="80">좋아요</th>
-					<th width="140">기능</th>
+					<th width="50">삭제</th>
+					<th width="50">상세보기</th>
 				</tr>
 				<c:forEach items="${productList }" var="vo">
 					<tr ${vo.bookCode }>
-						<td>${vo.category }</td>
+						<td>${vo.bookCode }</td>
 						<td>${vo.bookName }</td>
 						<td>${vo.price }</td>
 						<td>${vo.sale }</td>
@@ -80,6 +66,8 @@ th{
 						<td>${vo.likeIt }</td>
 						<td>
 							<button type="button" onclick="deleteCheck('${vo.bookCode }')">삭제</button>
+						</td>
+						<td>	
 							<button type="button" onclick="selectNovel('${vo.bookCode }')">상세보기</button>
 						</td>
 					</tr>

@@ -40,7 +40,7 @@
 					</tr>
 				</c:forEach>
 				</c:if>
-				<c:if test="${name eq id }">
+				<c:if test="${name eq vo.name }">
 				<c:forEach items="${orderList }" var="vo">
 					<tr onclick="select('${vo.code }')">
 						<td>${vo.code }</td>

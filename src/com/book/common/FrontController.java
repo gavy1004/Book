@@ -16,9 +16,11 @@ import com.book.admin.web.ProductInsertForm;
 import com.book.admin.web.ProductList;
 import com.book.bulletin.web.BulletinDelete;
 import com.book.bulletin.web.BulletinForm;
+import com.book.bulletin.web.BulletinInsert;
 import com.book.bulletin.web.BulletinList;
 import com.book.bulletin.web.BulletinSelect;
 import com.book.bulletin.web.BulletinUpdate;
+import com.book.bulletin.web.ReviewSelect;
 import com.book.cart.web.CartDelete;
 import com.book.cart.web.CartInsert;
 import com.book.cart.web.CartList;
@@ -105,7 +107,8 @@ public class FrontController extends HttpServlet {
 		map.put("/bulletinSelect.do", new BulletinSelect());	//후기게시판 선택
 		map.put("/bulletinUpdate.do", new BulletinUpdate());	//후기게시판 수정
 		map.put("/bulletinDelte.do", new BulletinDelete()); 	//후기게시판 삭제
-	
+		map.put("/bulletinInsert.do", new BulletinInsert());
+		map.put("/reviewSelect.do", new ReviewSelect());
 	}
 	
 	@Override

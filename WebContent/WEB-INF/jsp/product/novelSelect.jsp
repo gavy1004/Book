@@ -49,7 +49,7 @@
 		</tr>
 
 		<tr>
-			<th colspan="2">후기보러가기</th>
+			<th colspan="2"><button onclick="reviewPage('${book.bookCode }')">후기조회</button> </th>
 		</tr>
 	</table>
 	<button onclick="addCart('${book.bookCode}','${id }')">장바구니</button>
@@ -57,6 +57,10 @@
 </div>
 
 <script>
+	function reviewPage(bookCode){
+		location.href ="reviewSelect.do?bookCode=" + bookCode ;
+	}
+
 	function addCart(bookCode, id) {
 		if (id == "") {
 			alert('로그인해 주십시오');

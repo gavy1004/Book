@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>후기게시판 리스트</title>
+<title>후기 리스트</title>
 <script>	
 	function select(id){
 	location.href = "bulletinSelect.do?id=" + id;
@@ -13,9 +13,9 @@
 	</script>
 </head>
 <body>
-	<div align="center">
-	<h3>후기게시판 리스트</h3><br>
-		<div style="width: 80%">
+<div align="center">
+	<h3>후기</h3>
+		<div style= "width: 80%">
 			<table class="table" border="1">
 			<tr>
 				<th width="100">순번</th>
@@ -24,7 +24,7 @@
 				<th width="150">작성일자</th>
 				<th width="100">조회수</th>
 			</tr>
-			<c:forEach items="${bulletinList }" var="vo">
+			<c:forEach items="${bulletin }" var="vo">
 				<tr onclick="select(${vo.id })">
 					<td>${vo.id }</td>
 					<td>${vo.title }</td>

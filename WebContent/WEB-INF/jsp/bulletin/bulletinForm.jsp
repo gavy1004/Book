@@ -8,14 +8,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
 <script>
-	$(function(){
-		CKEDITOR.replace('content', {
-			filebrowserUploadUrl: '${pageContext.request.contextPath}/fileUpload',
-			height: '600px',
-			width: '800px'
-		}); 
-	})
-	
 	function formCheck() {
 		if(frm.title.value == ""){
 			alert("제목을 입력하세요.");
@@ -37,7 +29,7 @@
 		<form id="frm" action="bulletinInsert.do"method="post">
 			<input type="hidden" name="id" value="${id }">				<!-- 로그인한 id값 -->
 			<div>
-				<table border="1">
+				<table border="1" width="400" >
 					<tr>
 						<th width="100">작성일</th>
 						<td width="100">
@@ -48,13 +40,13 @@
 						var result = document.getElementById("time-result"); 
 						result.innerHTML =  currentDate ;
 						</script>
-							<input  type="text" id="title" name="title">
+							
 						</td>
 					</tr>
 					<tr>
 						<th width="100">작성자</th>
 						<td width="100">
-							<input type="text" id="title" name="title">
+							<input type="text" id="writer" name="writer">
 						</td>
 					</tr>
 					<tr>
@@ -66,7 +58,7 @@
 					<tr>
 						<th width="100">도서코드</th>
 						<td width="100">
-							<input type="text" id="title" name="title">
+							<input type="text" id="bookCode" name="bookcode">
 						</td>
 					</tr>
 					<tr>
