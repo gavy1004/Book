@@ -14,7 +14,9 @@ public class NoticeUpdate implements DBCommand {
 		String title = request.getParameter("title");
 		String contents = request.getParameter("content");
 		String id = request.getParameter("id");
-
+		System.out.println(title);
+		System.out.println(contents);
+		System.out.println(id);
 		NoticeVO vo = new NoticeVO();
 		vo.setTitle(title);
 		vo.setContents(contents);
@@ -23,7 +25,7 @@ public class NoticeUpdate implements DBCommand {
 		NoticeService service = new NoticeServiceImpl();
 		service.updateNotice(vo);
 		
-		return "noticeList.do";
+		return "/noticeListPaging.do";
 	}
 
 }

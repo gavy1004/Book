@@ -14,7 +14,7 @@ pagination {
 }
 
 .pagination a.active {
-	background-color: #4CAF50;
+	background-color: lightblue;
 	color: white;
 	border-radius: 5px;
 }
@@ -25,9 +25,9 @@ pagination {
 }
 </style>
 <div class="pagination">
-	<a href="javascript:goPage(${param.firstPageNo})" class="first">처음
-		페이지</a> <a href="javascript:goPage(${param.prevPageNo})" class="prev">이전
-		페이지</a> <span> <c:forEach var="i" begin="${param.startPageNo}"
+	<a href="javascript:goPage(${param.firstPageNo})" class="first"><<
+	</a> <a href="javascript:goPage(${param.prevPageNo})" class="prev"><
+	</a> <span> <c:forEach var="i" begin="${param.startPageNo}"
 			end="${param.endPageNo}" step="1">
 			<c:choose>
 				<c:when test="${i eq param.pageNo}">
@@ -38,7 +38,6 @@ pagination {
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-	</span> <a href="javascript:goPage(${param.nextPageNo})" class="next">다음
-		페이지</a> <a href="javascript:goPage(${param.finalPageNo})" class="last">마지막
-		페이지</a>
+	</span> <a href="javascript:goPage(${param.nextPageNo})" class="next">>
+	</a> <a href="javascript:goPage(${param.finalPageNo})" class="last">>>
 </div>

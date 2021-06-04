@@ -13,7 +13,7 @@ public class NoticeSelect implements DBCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String id =request.getParameter("id");
-		System.out.println(id);
+
 		if(id== null)
 			id="0";
 		
