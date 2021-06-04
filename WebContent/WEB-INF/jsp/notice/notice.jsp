@@ -2,94 +2,83 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- notice.jsp -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+<style>
+.table{
+	margin-top: 2%;
+	border:1;
+}
+</style>
 <script>
 	$(function() {
-		CKEDITOR.replace('ccontent', {
-			filebrowserUploadUrl: '${pageContext.request.contextPath }/fileUpload',
-			height: '600px',
-			width: '800px'
-		});
+		CKEDITOR
+				.replace(
+						'content',
+						{
+							filebrowserUploadUrl : '${pageContext.request.contextPath }/fileUpload',
+							height : '600px',
+							width : '800px'
+						});
 	})
-	
+
 	function noticeUpdate() {
 		let id = document.getElementById("cid").innerHTML;
 		let title = document.getElementById("ctitle").value;
-		/* let content= ${'#cccontent'}.value; */
-		let content= document.getElementById("ccontent").value;
-		
-		console.log(title);
-		console.log(content);
-		
+		let content = document.getElementById("ccontent").value;
+
 		frm.id.value = id;
 		frm.title.value = title;
 		frm.content.value = content;
-		
 
+		frm.submit();
 	}
-	
-	function noticeDelete() {
-		let id = document.getElementById("cid").innerHTML;
-		
-		frmDel.id.value = id;
-		frmDel.submit();
+
+	function noticeDelete(id) {
+		location.href = "noticeDelete.do?id=" + id;
 	}
-	
 </script>
 <div align="center">
-	<h3>공지사항 내용보기</h3>
-	
+	<h3>Notice</h3>
 	<form id="frm" action="noticeUpdate.do" method="post">
-		<input type="hidden" name="id">
-		 <input type="hidden" name="title"> 
-		 <input type="hidden" name="content">
-	</form>
-	
-	<form id="frmDel" action="noticeDelete.do" method="post">
-		<input type="hidden" name="id">
-	</form>
-	
-	<table border='1'>
-		<tr>
-			<th>순번</th>
-			<td id="cid">${notice.id}</td>
-			<th>작성일자</th>
-			<td>${notice.regDate}</td>
-			<th>조회수</th>
-			<td>${notice.hit + 1}</td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td colspan="5">
-			<c:if test="${id ne 'admin' }">
-			${notice.title }
-			</c:if>
+		<input type="hidden" name="id" id="id" value="${notice.id}">
+		<div style="width:800px">
+		<table class="table">
+		<caption> 
+			<button type="button" onclick="location.href='noticeListPaging.do'">Back</button>
 			<c:if test="${id eq 'admin' }">
-			<input type="text" id="ctitle" value="${notice.title }">
+				<button type="submit">Update</button>
+				<button type="button" onclick="noticeDelete('${notice.id}')">Delete</button>
 			</c:if>
-			</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td colspan="5">
-			<c:if test="${id ne 'admin' }">
-			<textarea rows="6" cols="90" readonly="readonly">${notice.contents }</textarea>
-			</c:if>
-			<c:if test="${id eq 'admin' }">
-			<textarea id="ccontent" rows="6" cols="90">${notice.contents }</textarea>
-			</c:if>
-			</td>
-		</tr>
-	</table>
-	<div>
-		<button type="button" onclick="location.href='noticeListPaging.do'">목록보기</button>
-		<c:if test="${id eq 'admin' }">
-			<button type="button" onclick="noticeUpdate()">수정</button>
-			<button type="button" onclick="noticeDelete()">삭제</button>
-		</c:if>
-	</div>
+		</caption>
+			<tr>
+				<th>No</th>
+				<td id="id">${notice.id}</td>
+				<th>Date</th>
+				<td>${notice.regDate}</td>
+				<th>Hit</th>
+				<td>${notice.hit + 1}</td>
+			</tr>
+			<tr>
+				<th>Title</th>
+				<td colspan="5"><c:if test="${id ne 'admin' }">
+				${notice.title }
+			</c:if> <c:if test="${id eq 'admin' }">
+						<input type="text" name ="title" id="title" value="${notice.title }">
+					</c:if></td>
+			</tr>
+			<tr>
+				<th>Contents</th>
+				<td colspan="5"><c:if test="${id ne 'admin' }">
+						<textarea name="content" rows="6" cols="90" readonly="readonly">${notice.contents }</textarea>
+					</c:if> <c:if test="${id eq 'admin' }">
+						<textarea name="content" id="content" rows="6" cols="90">${notice.contents }</textarea>
+					</c:if></td>
+			</tr>
+		</table>
+		</div>
+	</form>
 </div>
-
 </body>
 </html>

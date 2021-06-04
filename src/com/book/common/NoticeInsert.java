@@ -24,7 +24,7 @@ public class NoticeInsert implements DBCommand {
 		service.selectNoticeList();
 
 		request.setAttribute("notice", vo);
-		return "/noticeList.do";
+		return "/noticeListPaging.do";
 	}
 
 }

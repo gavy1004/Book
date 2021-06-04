@@ -102,6 +102,9 @@ public class FrontController extends HttpServlet {
 		map.put("/bulletinDelte.do", new BulletinDelete()); 	//후기게시판 삭제
 		map.put("/bulletinInsert.do", new BulletinInsert());
 		map.put("/reviewSelect.do", new ReviewSelect());
+		
+		// 카테고리
+		map.put("/bestSeller.do", new BestSellerList());		//베스트셀러메뉴
 	}
 	
 	@Override

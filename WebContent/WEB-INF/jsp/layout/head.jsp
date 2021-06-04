@@ -3,7 +3,6 @@
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Header Section Begin -->
-<
 <style>
 #user {
 	display: inline-block;
@@ -54,11 +53,17 @@
 			</div>
 			<div class="col-lg-6">
 				<nav class="header__menu">
-					<ul>
-						<li class="active"><a href="novelList.do">홈</a></li>
-						<li><a href="noticeListPaging.do">공지사항</a></li>
-						<li><a href="bulletinList.do">후기게시판</a></li>
-						<li><a href="#">마이페이지</a>
+					<ul style="display: flex;">
+						<li class="active"><a href="novelList.do">Home</a></li>
+						<li><a href="noticeListPaging.do">Notice</a></li>
+						<li><a href="#">Menu</a>
+							<ul class="header__menu__dropdown">
+								<li><a href="bestSeller.do">Best Seller</a></li>
+								<li><a href="#">Novel</a></li>
+								<li><a href="#">Poem</a></li>
+							</ul></li>
+						<li><a href="bulletinList.do">Review</a></li>
+						<li><a href="#">MyPage</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="cartList.do">정보수정</a></li>
 								<c:if test="${not empty id }">
@@ -68,7 +73,7 @@
 							</ul></li>
 
 						<c:if test="${id eq 'admin' }">
-							<li><a href="adminPage.do">관리자페이지</a>
+							<li><a href="adminPage.do">Admin</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="memberList.do">전체회원조회</a></li>
 									<li><a href="productList.do">전체상품조회</a></li>

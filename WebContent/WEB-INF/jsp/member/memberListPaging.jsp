@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.table {
+	margin-top: 2%;
+	border: 1;
+}
+</style>
 <script type="text/javascript">
 function goPage(page) {
 	location.href= 'memberList.do?page='+page;
@@ -17,9 +23,16 @@ function goPage(page) {
 		<input type="hidden" id="id" name="id">
 	</form>
 	<div align="center">
-		<h3>전체회원리스트</h3>
+		<h3>Member List</h3>
 		<div style="width: 80%">
-			<table class="table" border="1">
+			<table class="table">
+				<caption>
+					<div>
+						<button type="button" onclick="location.href='novelList.do'">Home</button>
+						<button type="button" onclick="location.href='adminPage.do'">Back</button>
+						<button type="button" onclick="location.href=''">Delete</button>
+					</div>
+				</caption>
 				<tr>
 					<th width="100">아이디</th>
 					<th width="200">이름</th>
@@ -37,11 +50,6 @@ function goPage(page) {
 					</tr>
 				</c:forEach>
 			</table>
-		</div>
-		<div>
-			<button type="button" onclick="location.href='novelList.do'">홈</button>
-			<button type="button" onclick="location.href='adminPage.do'">뒤로가기</button>
-			<button type="button" onclick="location.href=''">삭제</button>
 		</div>
 		<jsp:include page="../common/paging.jsp" flush="true">
 			<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
