@@ -7,8 +7,10 @@
 <meta charset="UTF-8">
 <title>주문내역</title>
 <script>
-function bulletinForm(code){
-	location.href= "bulletinForm.do?code=" + code;
+function bulletinForm(code, bookCode){
+	console.log(code, bookCode);
+	
+	location.href= "bulletinForm.do?code="+code+"&bookCode="+bookCode ;
 }
 </script>
 </head>
@@ -40,7 +42,7 @@ function bulletinForm(code){
 							<td>${vo.qty }</td>
 							<td>${vo.price }</td>
 							<td>${vo.coments }</td>
-							<td onclick="event.cancelBubble=true"><button type="button" onclick="bulletinForm('${vo.code}')">후기작성</button> </td>
+							<td onclick="event.cancelBubble=true"><button type="button" onclick="bulletinForm('${vo.code}','${vo.bookCode }')">후기작성</button> </td>
 							
 						</tr>
 					</c:forEach>

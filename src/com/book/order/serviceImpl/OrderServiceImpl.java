@@ -17,13 +17,12 @@ public class OrderServiceImpl extends DAO implements OrderService {
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
-	
-	
-	//페이징
-	public List<OrderVO> orderListPaging(int page) {
-		conn=DAO.getConnect();
+
+	// 페이징
+	public List<OrderVO> orderListPaging(int page, String id) {
+		conn = DAO.getConnect();
 		String sql = "select b.* from(select rownum rn, a.* \r\n"
-				+ "from (select * from ORDERCODE n order by n.code)a)b\r\n"
+				+ "from (select n.* from ORDERCODE n, member m where n.name = m.name and m.id = ? order by n.code)a)b\r\n"
 				+ "where b.rn between ? and ?";
 		List<OrderVO> list = new ArrayList<>();
 
@@ -33,8 +32,9 @@ public class OrderServiceImpl extends DAO implements OrderService {
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, firstCnt);
-			psmt.setInt(2, lastCnt);
+			psmt.setInt(2, firstCnt);
+			psmt.setInt(3, lastCnt);
+			psmt.setString(1, id);
 
 			rs = psmt.executeQuery();
 			while (rs.next()) {
@@ -52,27 +52,27 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		}
 		return list;
 	}
-	
+
 	@Override
-	public List<OrderVO> selectOrderList() {
+	public List<OrderVO> selectOrderList(String id) {
 		List<OrderVO> list = new ArrayList<OrderVO>();
 		conn = DAO.getConnect();
-		sql = "select * from ordercode";
+		sql = "select * from ordercode o, member m where o.name = m.name and m.id = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
-			rs=psmt.executeQuery();
-			while(rs.next()) {
+			rs = psmt.executeQuery();
+			while (rs.next()) {
 				OrderVO vo = new OrderVO();
 				vo.setEmail(rs.getString("email"));
 				vo.setName(rs.getString("name"));
 				vo.setCode(rs.getString("code"));
 				vo.setPhone(rs.getString("phone"));
-				
+
 				list.add(vo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
 		return list;
@@ -82,14 +82,12 @@ public class OrderServiceImpl extends DAO implements OrderService {
 	public OrderVO selectOrder(OrderVO vo) {
 		conn = DAO.getConnect();
 		sql = "select c.code, c.name, c.adress, c.phone, c.email, c.coments,\r\n"
-				+ "      l.book_code, l.price, l.qty\r\n"
-				+ "from ordercode c, orderlist l\r\n"
-				+ "where c.code =?";
+				+ "      l.book_code, l.price, l.qty\r\n" + "from ordercode c, orderlist l\r\n" + "where c.code =?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getCode());
 			rs = psmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				vo.setCode(rs.getString("code"));
 				vo.setAdress(rs.getString("adress"));
 				vo.setComents(rs.getString("coments"));
@@ -102,33 +100,32 @@ public class OrderServiceImpl extends DAO implements OrderService {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
-		
+
 		return vo;
 	}
-
 
 	@Override
 	public int insertOrder(OrderVO vo) {
 		conn = DAO.getConnect();
-		sql="insert into ordercode values('od'||or_seq.nextval,?,?,?,?,?)";
+		sql = "insert into ordercode values('od'||or_seq.nextval,?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getName());
 			psmt.setString(2, vo.getAdress());
 			psmt.setString(3, vo.getAdress());
 			psmt.setString(4, vo.getComents());
-			
+
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 입력");
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
-		
+
 		return 0;
 	}
 
@@ -143,6 +140,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 	private void close() {
 		if (rs != null)
 			try {
@@ -168,16 +166,14 @@ public class OrderServiceImpl extends DAO implements OrderService {
 	public List<OrderVO> selectOrderListOne(OrderVO vo) {
 		List<OrderVO> list = new ArrayList<OrderVO>();
 		conn = DAO.getConnect();
-		sql = "select * from orderlist\r\n"
-				+ "inner join ordercode\r\n"
-				+ "on orderlist.ordercode = ordercode.code\r\n"
-				+ "where orderlist.ordercode= ? ";
+		sql = "select * from orderlist\r\n" + "inner join ordercode\r\n" + "on orderlist.ordercode = ordercode.code\r\n"
+				+ "where orderlist.ordercode= ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getCode());
 			rs = psmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				OrderVO rvo = new OrderVO();
 				rvo.setCode(rs.getString("code"));
 				rvo.setOrderCode(rs.getString("ordercode"));
@@ -193,10 +189,39 @@ public class OrderServiceImpl extends DAO implements OrderService {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
 		return list;
+	}
+
+	public OrderVO selectBookCodeCheck(OrderVO rvo) {
+		conn = DAO.getConnect();
+		boolean chk = false;
+		sql = "select * from orderlist o, ordercode c where c.code = o.ordercode and c.code = ? and o.book_code = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, rvo.getCode());
+			psmt.setString(2, rvo.getBookCode());
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				rvo.setCode(rs.getString("code"));
+				rvo.setOrderCode(rs.getString("ordercode"));
+				rvo.setComents(rs.getString("coments"));
+				rvo.setEmail(rs.getString("email"));
+				rvo.setName(rs.getString("name"));
+				rvo.setPhone(rs.getString("phone"));
+				rvo.setBookCode(rs.getString("book_code"));
+				rvo.setPrice(rs.getString("price"));
+				rvo.setAdress(rs.getString("adress"));
+				rvo.setQty(rs.getString("qty"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return rvo;
 	}
 
 }

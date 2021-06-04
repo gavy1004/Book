@@ -60,7 +60,7 @@
 						<li><a href="bulletinList.do">후기게시판</a></li>
 						<li><a href="#">마이페이지</a>
 							<ul class="header__menu__dropdown">
-								<li><a href="cartList.do">정보수정</a></li>
+								<li><a href="memberUpdate.do">정보수정</a></li>
 								<c:if test="${not empty id }">
 									<li><a href="orderList.do">주문내역</a></li>
 								</c:if>
