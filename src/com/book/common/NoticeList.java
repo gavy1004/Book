@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.book.notice.service.NoticeService;
-import com.book.notice.serviceImpl.NoticeserviceImpl;
+import com.book.notice.serviceImpl.NoticeServiceImpl;
 import com.book.notice.vo.NoticeVO;
 
 public class NoticeList implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		NoticeService service = new NoticeserviceImpl();
+		NoticeService service = new NoticeServiceImpl();
 		List<NoticeVO> list =  service.selectNoticeList();
 		
 		request.setAttribute("noticeList", list);

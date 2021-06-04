@@ -45,22 +45,22 @@ public class OrderServiceImpl extends DAO implements OrderService {
 	@Override
 	public OrderVO selectOrder(OrderVO vo) {
 		conn = DAO.getConnect();
-		sql="select c.code, c.name, c.adress, c.phone, c.email, c.coments,\r\n"
+		sql = "select c.code, c.name, c.adress, c.phone, c.email, c.coments,\r\n"
 				+ "      l.book_code, l.price, l.qty\r\n"
 				+ "from ordercode c, orderlist l\r\n"
-				+ "where c.code =? ";
+				+ "where c.code =?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getCode());
 			rs = psmt.executeQuery();
 			while(rs.next()) {
+				vo.setCode(rs.getString("code"));
 				vo.setAdress(rs.getString("adress"));
 				vo.setComents(rs.getString("coments"));
 				vo.setEmail(rs.getString("email"));
 				vo.setName(rs.getString("name"));
-				vo.setCode(rs.getString("code"));
 				vo.setPhone(rs.getString("phone"));
-				vo.setBookCode(rs.getString("bookcode"));
+				vo.setBookCode(rs.getString("book_code"));
 				vo.setPrice(rs.getString("price"));
 				vo.setQty(rs.getString("qty"));
 			}
@@ -107,7 +107,6 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
 	private void close() {
 		if (rs != null)
 			try {
@@ -128,4 +127,40 @@ public class OrderServiceImpl extends DAO implements OrderService {
 				e.printStackTrace();
 			}
 	}
+
+	@Override
+	public List<OrderVO> selectOrderListOne(OrderVO vo) {
+		List<OrderVO> list = new ArrayList<OrderVO>();
+		conn = DAO.getConnect();
+		sql = "select * from orderlist\r\n"
+				+ "inner join ordercode\r\n"
+				+ "on orderlist.ordercode = ordercode.code\r\n"
+				+ "where orderlist.ordercode= ? ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getCode());
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				OrderVO rvo = new OrderVO();
+				rvo.setCode(rs.getString("code"));
+				rvo.setOrderCode(rs.getString("ordercode"));
+				rvo.setComents(rs.getString("coments"));
+				rvo.setEmail(rs.getString("email"));
+				rvo.setName(rs.getString("name"));
+				rvo.setPhone(rs.getString("phone"));
+				rvo.setBookCode(rs.getString("book_code"));
+				rvo.setPrice(rs.getString("price"));
+				rvo.setAdress(rs.getString("adress"));
+				rvo.setQty(rs.getString("qty"));
+				list.add(rvo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+
 }

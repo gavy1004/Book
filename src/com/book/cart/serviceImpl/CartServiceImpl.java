@@ -167,9 +167,6 @@ public class CartServiceImpl extends DAO implements CartService {
 	 * System.out.println(vo.getBookQty()); } catch (SQLException e) {
 	 * e.printStackTrace(); } finally { close(); } return r; }
 	 */
-
-
-	
 	
 	@Override
 	public int deleteCart(CartVO vo) {
@@ -228,10 +225,5 @@ public class CartServiceImpl extends DAO implements CartService {
 			}
 		}
 	}
-
-
-
-
-
 
 }

@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.book.notice.service.NoticeService;
-import com.book.notice.serviceImpl.NoticeserviceImpl;
+import com.book.notice.serviceImpl.NoticeServiceImpl;
 import com.book.notice.vo.NoticeVO;
 
 public class NoticeUpdate implements DBCommand {
@@ -20,7 +20,7 @@ public class NoticeUpdate implements DBCommand {
 		vo.setContents(contents);
 		vo.setId(Integer.parseInt(id));
 		
-		NoticeService service = new NoticeserviceImpl();
+		NoticeService service = new NoticeServiceImpl();
 		service.updateNotice(vo);
 		
 		return "noticeList.do";

@@ -15,7 +15,7 @@ import com.book.member.serviceImpl.MemberServiceImpl;
 public class AjaxMemberIdCheck extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		String id = req.getParameter("id");
 		MemberServiceImpl service = new MemberServiceImpl();
 		int cnt = 0;			
@@ -23,7 +23,6 @@ public class AjaxMemberIdCheck extends HttpServlet {
 			cnt = 1;			
 		}
 		resp.getWriter().print(cnt);
-		
 		
 	}
 } 

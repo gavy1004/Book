@@ -1,6 +1,7 @@
 package com.book.order.vo;
 
 public class OrderVO {
+	String orderCode;
 	String code;
 	String name;
 	String adress;
@@ -13,6 +14,12 @@ public class OrderVO {
 
 	
 	
+	public String getOrderCode() {
+		return orderCode;
+	}
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
+	}
 	public String getCode() {
 		return code;
 	}

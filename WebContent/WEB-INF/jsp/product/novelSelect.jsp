@@ -54,7 +54,6 @@
 	</table>
 	<button onclick="addCart('${book.bookCode}','${id }')">장바구니</button>
 	<button onclick="location.href='novelList.do'">홈</button>
-	<button>바로구매</button>
 </div>
 
 <script>

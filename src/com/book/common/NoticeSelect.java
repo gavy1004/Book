@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.book.notice.service.NoticeService;
-import com.book.notice.serviceImpl.NoticeserviceImpl;
+import com.book.notice.serviceImpl.NoticeServiceImpl;
 import com.book.notice.vo.NoticeVO;
 
 
@@ -20,7 +20,7 @@ public class NoticeSelect implements DBCommand {
 		NoticeVO vo = new NoticeVO();
 		vo.setId(Integer.parseInt(id));
 		
-		NoticeService service = new NoticeserviceImpl();
+		NoticeService service = new NoticeServiceImpl();
 		service.selectNotice(vo);
 		
 		request.setAttribute("notice", vo);

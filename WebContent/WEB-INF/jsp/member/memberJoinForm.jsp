@@ -2,7 +2,30 @@
 	pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-
+$(function() {
+	$('#idCheck').click(function() {
+		$.ajax({
+			url: 'ajaxMemberIdCheck',
+			data: {id : $('#memberId').val()},
+			type:'post',
+			success : function(data) {
+				console.log(data);
+				if(data > 0) {
+					alert('아이디가 존재합니다. 다른 아이디를 입력하세요 !')
+					$('#memberId').val(" ");
+					$('#memberId').focus();
+				} else {
+					alert('사용가능한 아이디 입니다')
+					$('#idCheck').val('checked');
+					$('#memberPwd').focus();	
+				}
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+	});
+});
 
 function formCheck(){
 	if(frm.memberId == ""){
@@ -12,6 +35,7 @@ function formCheck(){
 	}
 	if(frm.idCheck.value == 'unChecked'){
 		alert("중복체크를 하세요.");
+		frm.idCheck.focus();
 		return false;
 	}
 	if(frm.memberPwd.value == ""){
@@ -34,8 +58,7 @@ function formCheck(){
 				<table border="1">
 					<tr>
 						<th width="150">아이디</th>
-						<td width="300"><input type="text" id="memberId"
-							name="memberId">
+						<td width="300"><input type="text" id="memberId" name="memberId">
 							<button type="button" id="idCheck" value="unChecked">중복체크</button>
 						</td>
 					</tr>

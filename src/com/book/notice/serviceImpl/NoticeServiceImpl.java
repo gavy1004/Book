@@ -12,11 +12,46 @@ import com.book.notice.service.NoticeService;
 import com.book.notice.vo.NoticeVO;
 import com.book.order.vo.OrderVO;
 
-public class NoticeserviceImpl extends DAO implements NoticeService {
+public class NoticeServiceImpl extends DAO implements NoticeService {
 	Connection conn;
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
+	
+	public List<NoticeVO> noticeListPaging(int page) {
+		String sql = "select b.*\r\n" + "from (select rownum rn,a.*\r\n"
+				+ "      from (select * from notice order by id) a\r\n" + "      ) b \r\n"
+				+ "      where b.rn between ? and ?";
+		List<NoticeVO> list = new ArrayList<>();
+		
+		int firstCnt = 0, lastCnt = 0;
+		firstCnt = (page - 1) * 10 + 1; // 1page 1~11
+		lastCnt = (page * 10); // 2page 11~20
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, firstCnt);
+			psmt.setInt(2, lastCnt);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				NoticeVO vo = new NoticeVO();
+				vo.setId(rs.getInt("id"));
+				vo.setTitle(rs.getString("title"));
+				vo.setContents(rs.getString("content"));
+				vo.setRegDate(rs.getDate("reg_date"));
+				vo.setHit(rs.getInt("hit"));
+				
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
 	
 	@Override
 	public List<NoticeVO> selectNoticeList() {
@@ -72,6 +107,20 @@ public class NoticeserviceImpl extends DAO implements NoticeService {
 
 	@Override
 	public int insertNotice(NoticeVO vo) {
+		conn = DAO.getConnect();
+		sql ="insert into notice values(notice_seq.nextval,?,?,sysdate,0)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getTitle());
+			psmt.setString(2, vo.getContents());
+			
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건이 입력되었습니다");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
 		return 0;
 	}
 

@@ -29,7 +29,7 @@ textarea {
 	<form id="frm" action="productUpdate.do" method="post">
 	<input type="hidden" name = "bookImage" value="${product.bookImage }">		
 	<input type="hidden" name="likeIt" value="${product.likeIt }">				
-	<table border="1" width="900" height="1000">
+	<table border="1" width="900" heigth="1000">
 		<tr>
 			<td rowspan="10"><img width="" height="" src="upload/${product.bookImage }"></td>
 			<th width="100">카테고리</th>

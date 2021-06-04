@@ -33,6 +33,7 @@ public class MemberJoin implements DBCommand {
 		
 		session.setAttribute("id", id);
 		session.setAttribute("member", vo);
-		return "main/main.tiles";
+		
+		return "member/memberLoginSuccess.tiles";
 	}
 }
