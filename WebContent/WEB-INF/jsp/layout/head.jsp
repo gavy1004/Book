@@ -45,7 +45,7 @@
 				<nav class="header__menu">
 					<ul>
 						<li class="active"><a href="novelList.do">홈</a></li>
-						<li><a href="noticeList.do">공지사항</a></li>
+						<li><a href="noticeListPaging.do">공지사항</a></li>
 						<li><a href="#">카테고리</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="./shop-details.html">Shop Details</a></li>

@@ -15,11 +15,13 @@ public class NoticeListPaging implements DBCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = request.getParameter("page");	// 페이지번호
+		
 		if(page == null) 
 			page= "1";
 		
 		int pageCnt = Integer.parseInt(page);
-		
+		System.out.println(pageCnt);
+
 		NoticeServiceImpl service = new NoticeServiceImpl();
 		List<NoticeVO> total =  service.selectNoticeList();	//	 전체 카운트
 		

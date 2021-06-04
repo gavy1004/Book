@@ -82,20 +82,12 @@ public class FrontController extends HttpServlet {
 		map.put("/orderList.do", new OrderList());			//주문내역리스트
 		map.put("/orderSelect.do", new OrderSelect());		//주문내역한건조회
 	 
-	
 		// 공지사항 게시판
-
 		map.put("/noticeList.do", new NoticeList());			//공지사항리스트
 		map.put("/noticeListPaging.do", new NoticeListPaging());
 		map.put("/noticeSelect.do", new NoticeSelect());		//공지사항선택
 		map.put("/noticeDelete.do", new NoticeDelete());		//공지사항삭제
 		map.put("/noticeUpdate.do", new NoticeUpdate());		//공지사항수정
-
-		map.put("/noticeList.do", new NoticeList());		//공지사항리스트
-		map.put("/noticeSelect.do", new NoticeSelect());	//공지사항선택
-		map.put("/noticeDelete.do", new NoticeDelete());	//공지사항삭제
-		map.put("/noticeUpdate.do", new NoticeUpdate());	//공지사항수정
-
 		map.put("/noticeForm.do", new NoticeForm());			//공지사항입력폼
 		map.put("/noticeInsert.do", new NoticeInsert());		//공지사항입력
 		
