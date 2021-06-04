@@ -8,8 +8,8 @@
 <title>주문내역</title>
 </head>
 <body>
-	<h3>주문내역</h3>
 	<div align="center">
+	<h3>주문내역</h3><br>
 		<div style="width: 80%">
 			<table class="table" border="1">
 				<tr>
@@ -23,7 +23,6 @@
 					<th width="100">가  격</th>
 					<th width="100">요구사항</th>
 				</tr>
-				<tr>
 					<c:forEach items="${order }" var="vo">
 						<tr onclick="select('${vo.code }')">
 							<td>${vo.code }</td>

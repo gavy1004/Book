@@ -13,9 +13,8 @@
 	</script>
 </head>
 <body>
-	<h3>후기게시판 리스트</h3>
-	
 	<div align="center">
+	<h3>후기게시판 리스트</h3>
 		<div style="width: 80%">
 			<table class="table" border="1">
 			<tr>
@@ -36,10 +35,9 @@
 			</c:forEach>
 		</table>
 		<div>
-			<button type="button" onclick="location.href='main.do'">홈</button>
+			<button type="button" onclick="location.href='novelList.do'">홈</button>
 			<c:if test="${!empty id }">
 			<button type="button" onclick="location.href='bulletinForm.do'">등록</button>
-			<button type="button" onclick="location.href=''">삭제</button>
 			</c:if>
 		</div>
 	</div>

@@ -20,6 +20,9 @@ String id = request.getParameter("id");
 		BulletinService service = new BulletinServiceImpl();
 		service.bulletinSelect(vo);
 		
+		DBCommand command = new BulletinList();
+		String path = command.execute(request, response);
+		
 		request.setAttribute("bulletin", vo);
 		return "bulletin/bulletin.tiles";
 	}

@@ -41,7 +41,14 @@
 					<tr>
 						<th width="100">작성일</th>
 						<td width="100">
-							<input type="text" id="title" name="title">
+						<p id="time-result"></p>
+						<script type="text/javascript"> 
+						var d = new Date(); 
+						var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일";
+						var result = document.getElementById("time-result"); 
+						result.innerHTML =  currentDate ;
+						</script>
+							<input  type="text" id="title" name="title">
 						</td>
 					</tr>
 					<tr>

@@ -54,6 +54,8 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 			
 			rs = psmt.executeQuery();
 			if(rs.next()) {
+				hitCount(vo.getId());
+				
 				vo.setBookCode(rs.getString("book_code"));
 				vo.setContent(rs.getString("content"));
 				vo.setHit(rs.getInt("hit"));
@@ -74,19 +76,61 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 	@Override
 	public int insertBulletin(BulletinVO vo) {
 		conn = DAO.getConnect();
-		return 0;
+		sql ="insert into bulletin values(bu_seq.nextval,?,?,?,sysdate,0,?)";
+		int r=0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getTitle());
+			psmt.setString(2, vo.getContent());
+			psmt.setString(3, vo.getWriter());
+			psmt.setInt(4, vo.getHit());
+			
+			r = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		return r;
 	}
+
 
 	@Override
 	public int updateBulletin(BulletinVO vo) {
 		conn = DAO.getConnect();
+		String sql = "update bulletin set title=?,content=? where id=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getTitle());
+			psmt.setString(2, vo.getContent());
+			psmt.setString(3, vo.getId());
+			int r = psmt.executeUpdate();
+			System.out.println(r+ "건 수정");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
 		return 0;
 	}
 
 	@Override
 	public int deleteBulletin(BulletinVO vo) {
 		conn = DAO.getConnect();
+		String sql = "delete from bulletin where id=?";
+		try { 
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getId());
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 삭제");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
 		return 0;
+
 	}
 	
 	private void close() {
@@ -109,4 +153,17 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 				e.printStackTrace();
 			}
 	}
+	public void hitCount(String id) {
+		String sql = "update bulletin set hit = hit + 1 where id=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

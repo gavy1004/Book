@@ -18,17 +18,19 @@
 </script>
 </head>
 <body>
-	<h3>주문내역 리스트</h3>
-	
 	<div align="center">
+	<h3>주문내역 리스트</h3><br>
+	
 		<div style="width: 80%">
 			<table class="table" border="1">
+			</form>
 				<tr>
 					<th width="100">오더코드</th>
 					<th width="200">이름</th>
 					<th width="150">핸드폰번호</th>
 					<th width="100">이메일</th>
 				</tr>
+				<c:if test="${name eq admin }">
 				<c:forEach items="${orderList }" var="vo">
 					<tr onclick="select('${vo.code }')">
 						<td>${vo.code }</td>
@@ -37,6 +39,17 @@
 						<td>${vo.email }</td>
 					</tr>
 				</c:forEach>
+				</c:if>
+				<c:if test="${name eq id }">
+				<c:forEach items="${orderList }" var="vo">
+					<tr onclick="select('${vo.code }')">
+						<td>${vo.code }</td>
+						<td>${vo.name }</td>
+						<td>${vo.phone }</td>
+						<td>${vo.email }</td>
+					</tr>
+				</c:forEach>
+				</c:if>
 			</table>
 		</div>
 		<div>
