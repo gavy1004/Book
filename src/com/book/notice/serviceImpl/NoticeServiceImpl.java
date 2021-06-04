@@ -19,9 +19,9 @@ public class NoticeServiceImpl extends DAO implements NoticeService {
 	String sql;
 	
 	public List<NoticeVO> noticeListPaging(int page) {
-		String sql = "select b.*\r\n" + "from (select rownum rn,a.*\r\n"
-				+ "      from (select * from notice order by id) a\r\n" + "      ) b \r\n"
-				+ "      where b.rn between ? and ?";
+		conn = DAO.getConnect();
+		sql = "select b.* from (select rownum rn,a.* from (select * from notice order by id) a ) b \r\n"
+				+ "where b.rn between ? and ?";
 		List<NoticeVO> list = new ArrayList<>();
 		
 		int firstCnt = 0, lastCnt = 0;
@@ -32,14 +32,12 @@ public class NoticeServiceImpl extends DAO implements NoticeService {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, firstCnt);
 			psmt.setInt(2, lastCnt);
-			
 			rs = psmt.executeQuery();
-			
 			while(rs.next()) {
 				NoticeVO vo = new NoticeVO();
 				vo.setId(rs.getInt("id"));
 				vo.setTitle(rs.getString("title"));
-				vo.setContents(rs.getString("content"));
+				vo.setContents(rs.getString("contents"));
 				vo.setRegDate(rs.getDate("reg_date"));
 				vo.setHit(rs.getInt("hit"));
 				
@@ -87,7 +85,7 @@ public class NoticeServiceImpl extends DAO implements NoticeService {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, vo.getId());
 			rs = psmt.executeQuery();
-			while(rs.next()) {
+			if(rs.next()) {
 				vo.setId(rs.getInt("id"));
 				vo.setHit(rs.getInt("hit"));
 				vo.setContents(rs.getString("contents"));

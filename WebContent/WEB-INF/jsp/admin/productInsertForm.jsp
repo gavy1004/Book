@@ -61,6 +61,7 @@
 					<td colspan="2"><br />
 						<button type="button" onclick="formCheck()">등록</button> 
 						<input type="reset" value="새로입력"></td>
+						<button type="button" onclick="history.back();">뒤로가기</button>
 				</tr>
 			</table>
 		</form>

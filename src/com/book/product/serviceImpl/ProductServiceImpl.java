@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.book.common.DAO;
+import com.book.member.vo.MemberVO;
 import com.book.product.service.ProductService;
 import com.book.product.vo.ProductVO;
 
@@ -17,6 +18,47 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	PreparedStatement psmt ;
 	ResultSet rs;
 	String sql;
+	
+	
+	//페이징
+	public List<ProductVO> memberListPaging(int page) {
+		conn=DAO.getConnect();
+		String sql = "select b.* from(select rownum rn, a.*\r\n"
+				+ "from (select * from book n order by n.BOOK_CODE)a) b\r\n"
+				+ "where b.rn between ? and ?";
+		List<ProductVO> list = new ArrayList<>();
+
+		int firstCnt = 0, lastCnt = 0;
+		firstCnt = (page - 1) * 10 + 1; // 1, 11
+		lastCnt = (page * 10);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, firstCnt);
+			psmt.setInt(2, lastCnt);
+
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setBookCode(rs.getString("book_code"));
+				vo.setBookName(rs.getString("book_Name"));
+				vo.setBookImage(rs.getString("book_Image"));
+				vo.setContents(rs.getString("contents"));
+				vo.setPrice(rs.getString("price"));
+				vo.setSalePrice(rs.getString("sale_Price"));
+				vo.setSale(rs.getString("sale"));
+				vo.setWriter(rs.getString("writer"));
+				vo.setCategory(rs.getString("category"));
+				vo.setLikeIt(rs.getInt("like_it"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
 	
 	// 좋아요 추가
 	@Override

@@ -152,11 +152,12 @@ public class MemberServiceImpl extends DAO implements MemberService {
 			}
 	}
 
+	//페이징
 	public List<MemberVO> memberListPaging(int page) {
 		conn=DAO.getConnect();
 		String sql = "select b.*\r\n" + "from(select rownum rn, a.* \r\n"
 				+ "      from (select * from member n order by n.id)a\r\n" + "      )b\r\n"
-				+ "   where b.rn between ? and ?;";
+				+ "   where b.rn between ? and ?";
 		List<MemberVO> list = new ArrayList<>();
 
 		int firstCnt = 0, lastCnt = 0;

@@ -24,7 +24,7 @@ th{
 </style>
 <body>
 	<script>
-		// 책 제목 클릭시 상세 페이지로 이동
+		//책제목클릭시상세페이지이동
 		function selectNovel(bookCode) {
 			location.href = "productSelect.do?bookCode=" + bookCode;
 		}
@@ -37,10 +37,15 @@ th{
 			}
 
 		}
+		//페이징
+		function goPage(page) {
+			location.href= 'productList.do?page='+page;
+		}
 	</script>
 	<div align="right" style="width: 90%">
 		<button type="button" onclick="location.href='adminPage.do'">홈</button>
 		<button type="button" onclick="location.href='productInsertForm.do'">등록</button>
+		<button type="button" onclick="history.back();">뒤로가기</button>
 	</div>
 	<div align="center">
 		<h3>도서 리스트 관리</h3>
@@ -74,6 +79,17 @@ th{
 				</c:forEach>
 			</table>
 		</div>
+	</div>
+			</div>
+ 		<jsp:include page="../common/paging.jsp" flush="true">
+		    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+		    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+		    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
+		    <jsp:param name="pageNo" value="${paging.pageNo}" />
+		    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
+		    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+		    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+		</jsp:include>
 	</div>
 </body>
 </html>

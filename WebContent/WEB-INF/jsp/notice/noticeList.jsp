@@ -13,7 +13,7 @@
 	}
 	
 	function goPage(page) {
-		location.href= 'noticeList.do?page='+page;
+		location.href= 'noticeListPaging.do?page='+page;
 	}
 </script>
 </head>
