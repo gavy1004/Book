@@ -46,7 +46,7 @@
 					<tr>
 						<th width="100">작성자</th>
 						<td width="100">
-							<input type="text" id="writer" name="writer">
+							${bulletinList.writer }
 						</td>
 					</tr>
 					<tr>
@@ -58,7 +58,7 @@
 					<tr>
 						<th width="100">도서코드</th>
 						<td width="100">
-							<input type="text" id="bookCode" name="bookcode">
+							<input type="text" id="bookCode" name="book_code">
 						</td>
 					</tr>
 					<tr>
