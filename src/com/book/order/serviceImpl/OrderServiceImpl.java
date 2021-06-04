@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.book.common.DAO;
+import com.book.member.vo.MemberVO;
 import com.book.order.service.OrderService;
 import com.book.order.vo.OrderVO;
 
@@ -16,6 +17,41 @@ public class OrderServiceImpl extends DAO implements OrderService {
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
+	
+	
+	//페이징
+	public List<OrderVO> orderListPaging(int page) {
+		conn=DAO.getConnect();
+		String sql = "select b.* from(select rownum rn, a.* \r\n"
+				+ "from (select * from ORDERCODE n order by n.code)a)b\r\n"
+				+ "where b.rn between ? and ?";
+		List<OrderVO> list = new ArrayList<>();
+
+		int firstCnt = 0, lastCnt = 0;
+		firstCnt = (page - 1) * 10 + 1; // 1, 11
+		lastCnt = (page * 10);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, firstCnt);
+			psmt.setInt(2, lastCnt);
+
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				OrderVO vo = new OrderVO();
+				vo.setCode(rs.getString("code"));
+				vo.setEmail(rs.getString("email"));
+				vo.setName(rs.getString("name"));
+				vo.setPhone(rs.getString("phone"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
 	
 	@Override
 	public List<OrderVO> selectOrderList() {

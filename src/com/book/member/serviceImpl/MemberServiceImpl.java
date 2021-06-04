@@ -16,8 +16,43 @@ public class MemberServiceImpl extends DAO implements MemberService {
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
+	
+	//페이징
+		public List<MemberVO> memberListPaging(int page) {
+			conn=DAO.getConnect();
+			String sql = "select b.*\r\n" + "from(select rownum rn, a.* \r\n"
+					+ "      from (select * from member n order by n.id)a\r\n" + "      )b\r\n"
+					+ "   where b.rn between ? and ?";
+			List<MemberVO> list = new ArrayList<>();
 
-	// id, passwd 체크
+			int firstCnt = 0, lastCnt = 0;
+			firstCnt = (page - 1) * 10 + 1; // 1, 11
+			lastCnt = (page * 10);
+
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, firstCnt);
+				psmt.setInt(2, lastCnt);
+
+				rs = psmt.executeQuery();
+				while (rs.next()) {
+					MemberVO vo = new MemberVO();
+					vo.setId(rs.getString("id"));
+					vo.setName(rs.getString("name"));
+					vo.setEmail(rs.getString("email"));
+					vo.setPasswd(rs.getString("passwd"));
+					vo.setPhone(rs.getString("phone"));
+					list.add(vo);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close();
+			}
+			return list;
+		}
+
+	//id, passwd 체크
 	public MemberVO loginCheck(MemberVO vo) {
 
 		conn = DAO.getConnect();
@@ -45,7 +80,7 @@ public class MemberServiceImpl extends DAO implements MemberService {
 		return rvo;
 	}
 
-	// id중복체크
+	//id중복체크
 	public boolean idCheck(String id) {
 		conn = DAO.getConnect();
 		boolean exist = false;
@@ -65,6 +100,7 @@ public class MemberServiceImpl extends DAO implements MemberService {
 		return exist;
 	}
 
+	//전체조회
 	@Override
 	public List<MemberVO> selectMemberList() {
 		List<MemberVO> list = new ArrayList<>();
@@ -92,7 +128,6 @@ public class MemberServiceImpl extends DAO implements MemberService {
 
 	@Override
 	public MemberVO selectMember() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -121,13 +156,11 @@ public class MemberServiceImpl extends DAO implements MemberService {
 
 	@Override
 	public int updateMember(MemberVO vo) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int deleteMember(MemberVO vo) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -152,38 +185,5 @@ public class MemberServiceImpl extends DAO implements MemberService {
 			}
 	}
 
-	//페이징
-	public List<MemberVO> memberListPaging(int page) {
-		conn=DAO.getConnect();
-		String sql = "select b.*\r\n" + "from(select rownum rn, a.* \r\n"
-				+ "      from (select * from member n order by n.id)a\r\n" + "      )b\r\n"
-				+ "   where b.rn between ? and ?";
-		List<MemberVO> list = new ArrayList<>();
-
-		int firstCnt = 0, lastCnt = 0;
-		firstCnt = (page - 1) * 10 + 1; // 1, 11
-		lastCnt = (page * 10);
-
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, firstCnt);
-			psmt.setInt(2, lastCnt);
-
-			rs = psmt.executeQuery();
-			while (rs.next()) {
-				MemberVO vo = new MemberVO();
-				vo.setId(rs.getString("id"));
-				vo.setName(rs.getString("name"));
-				vo.setEmail(rs.getString("email"));
-				vo.setPasswd(rs.getString("passwd"));
-				vo.setPhone(rs.getString("phone"));
-				list.add(vo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return list;
-	}
+	
 }

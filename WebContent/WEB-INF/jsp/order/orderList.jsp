@@ -15,6 +15,9 @@
 	function select (code){
 		location.href = "orderSelect.do?code=" + code;
 	}
+	function goPage(page) {
+		location.href= 'orderList.do?page='+page;
+	}
 </script>
 </head>
 <body>
@@ -57,5 +60,16 @@
 			<button type="button" onclick="location.href=''">삭제</button>
 		</div>
 	</div>	
+			</div>
+ 		<jsp:include page="../common/paging.jsp" flush="true">
+		    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+		    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+		    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
+		    <jsp:param name="pageNo" value="${paging.pageNo}" />
+		    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
+		    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+		    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+		</jsp:include>
+	</div>
 </body>
 </html>

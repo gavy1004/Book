@@ -70,6 +70,7 @@ public class FrontController extends HttpServlet {
 		map.put("/novelList.do", new NovelList());			// 메인리스트 조회
 		map.put("/novelSelect.do", new NovelSelect()); 		// 한건조회
 		map.put("/likeIt.do", new likeIt());				// 좋아요
+		map.put("/bestSeller.do", new BestSellsrList());	// 베스트셀러조회
 		
 		// 장바구니
 		map.put("/cartInsert.do", new CartInsert());		// 장바구니담기

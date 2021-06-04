@@ -1,20 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Header Section Begin -->
+<
+<style>
+#user {
+	display: inline-block;
+}
+</style>
 <header class="header">
-	<div class="header__top"> 
+	<div class="header__top">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-6">
-					<div class="header__top__left">
+					<div class="header__top__left notice">
 						<ul>
 							<li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-							<li>10만원이상 구매시 무료배송</li>
+							<li>10만원 이상 구매시 무료배송</li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6"> 
+				<div class="col-lg-6 col-md-6">
 					<div class="header__top__right">
 						<c:if test="${empty id }">
 							<div class="header__top__right__auth">
@@ -26,7 +33,11 @@
 						</c:if>
 						<c:if test="${not empty id }">
 							<div class="header__top__right__auth">
-								<a href="memberLogOut.do"><i class="fa fa-user"></i>로그아웃</a>
+								<ul>
+									<li id="user">${id}님</i></a></li>
+									<li id="user"><a href="memberLogOut.do"><i
+											class="fa fa-user"></i>로그아웃</a></li>
+								</ul>
 							</div>
 						</c:if>
 					</div>
@@ -46,38 +57,39 @@
 					<ul>
 						<li class="active"><a href="novelList.do">홈</a></li>
 						<li><a href="noticeListPaging.do">공지사항</a></li>
-						<li><a href="#">카테고리</a>
-							<ul class="header__menu__dropdown">
-								<li><a href="./shop-details.html">Shop Details</a></li>
-								<li><a href="./shoping-cart.html">Shoping Cart</a></li>
-								<li><a href="./checkout.html">Check Out</a></li>
-								<li><a href="./blog-details.html">Blog Details</a></li>
-							</ul></li>
 						<li><a href="bulletinList.do">후기게시판</a></li>
-						<c:if test="${not empty id }">
-						<li><a href="orderList.do">주문내역</a></li>
-						</c:if>
+						<li><a href="#">마이페이지</a>
+							<ul class="header__menu__dropdown">
+								<li><a href="cartList.do">정보수정</a></li>
+								<c:if test="${not empty id }">
+									<li><a href="orderList.do">주문내역</a></li>
+								</c:if>
+								<li><a href="cartList.do">카트</a></li>
+							</ul></li>
+
 						<c:if test="${id eq 'admin' }">
-						<li><a href="adminPage.do">관리자페이지</a></li>
+							<li><a href="adminPage.do">관리자페이지</a>
+								<ul class="header__menu__dropdown">
+									<li><a href="memberList.do">전체회원조회</a></li>
+									<li><a href="productList.do">전체상품조회</a></li>
+									<li><a href="orderList.do">주문조회</a></li>
+									<li><a href="productInsertForm.do">상품입력</a></li>
+								</ul></li>
 						</c:if>
+
 					</ul>
 				</nav>
 			</div>
 			<div class="col-lg-3">
 				<div class="header__cart">
 					<ul>
-						<li>
-							<a href="cartList.do"><i class="fa fa-shopping-bag"></i> 
-								<span>
-									<c:if test="${empty id }">
+						<li><a href="cartList.do"><i class="fa fa-shopping-bag"></i>
+								<span> <c:if test="${empty id }">
 										0
-									</c:if>
-									<c:if test="${not empty id }">
+									</c:if> <c:if test="${not empty id }">
 										${cartCnt }
 									</c:if>
-								</span>
-							</a>
-						</li>
+							</span> </a></li>
 					</ul>
 				</div>
 			</div>
