@@ -19,9 +19,7 @@
 </head>
 <body>
 	<h3>주문내역 리스트</h3>
-	<form id="frm" action="orderSelectList.do" method="post">
-		<input type="hidden" id="id" name="id">
-	</form>
+	
 	<div align="center">
 		<div style="width: 80%">
 			<table class="table" border="1">

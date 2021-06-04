@@ -6,11 +6,17 @@ public class BulletinVO {
 	private String id;
 	private String title;
 	private String content;
-	private Date date;
+	private Date regDate;
 	private String bookCode;
 	private int hit;
-	private String likeIt;
+	private String writer;
 	
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
 	public String getId() {
 		return id;
 	}
@@ -29,12 +35,7 @@ public class BulletinVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+
 	public String getBookCode() {
 		return bookCode;
 	}
@@ -47,12 +48,13 @@ public class BulletinVO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public String getLikeIt() {
-		return likeIt;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setLikeIt(String likeIt) {
-		this.likeIt = likeIt;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
+
 	
 	
 	

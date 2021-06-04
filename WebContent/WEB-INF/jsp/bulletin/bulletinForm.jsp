@@ -39,14 +39,32 @@
 			<div>
 				<table border="1">
 					<tr>
-						<th width="300">제목</th>
-						<td width="150">
+						<th width="100">작성일</th>
+						<td width="100">
 							<input type="text" id="title" name="title">
 						</td>
 					</tr>
 					<tr>
-						<th width="150">내용</th>
-						<td width="300">
+						<th width="100">작성자</th>
+						<td width="100">
+							<input type="text" id="title" name="title">
+						</td>
+					</tr>
+					<tr>
+						<th width="100">제목</th>
+						<td width="100">
+							<input type="text" id="title" name="title">
+						</td>
+					</tr>
+					<tr>
+						<th width="100">도서코드</th>
+						<td width="100">
+							<input type="text" id="title" name="title">
+						</td>
+					</tr>
+					<tr>
+						<th width="100">내용</th>
+						<td width="100">
 							<textarea id="content" name="content" rows="" cols=""></textarea>
 						</td>
 					</tr>

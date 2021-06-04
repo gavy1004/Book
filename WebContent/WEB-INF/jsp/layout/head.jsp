@@ -53,7 +53,7 @@
 								<li><a href="./checkout.html">Check Out</a></li>
 								<li><a href="./blog-details.html">Blog Details</a></li>
 							</ul></li>
-						<li><a href="bulletinForm.do">후기게시판</a></li>
+						<li><a href="bulletinList.do">후기게시판</a></li>
 						<c:if test="${not empty id }">
 						<li><a href="orderList.do">주문내역</a></li>
 						</c:if>
