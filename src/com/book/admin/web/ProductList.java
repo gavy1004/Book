@@ -29,7 +29,7 @@ public class ProductList implements DBCommand {
 		List<ProductVO> total = service.selectProductList(); // 전체 카운트
 
 		service = new ProductServiceImpl();
-		List<ProductVO> list = service.memberListPaging(pageCnt);
+		List<ProductVO> list = service.BookListPaging(pageCnt);
 
 		Paging paging = new Paging();
 		paging.setPageNo(pageCnt);

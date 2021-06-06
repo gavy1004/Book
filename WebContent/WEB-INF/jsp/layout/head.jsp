@@ -63,8 +63,8 @@ style>#user {
 						<li><a href="#">Menu</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="bestSeller.do">Best Seller</a></li>
-								<li><a href="#">Novel</a></li>
-								<li><a href="#">Poem</a></li>
+								<li><a href="novelMenu.do">Novel</a></li>
+								<li><a href="poemMenu.do">Poem</a></li>
 							</ul></li>
 
 						<c:if test="${not empty id }">

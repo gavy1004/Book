@@ -118,6 +118,9 @@ public class FrontController extends HttpServlet {
 		
 		// 카테고리
 		map.put("/bestSeller.do", new BestSellerList());		//베스트셀러메뉴
+		map.put("/novelMenu.do", new NovelMenuList());			//소설메뉴
+		map.put("/poemMenu.do", new PoemMenuList());			//시메뉴
+		
 	}
 	
 	@Override

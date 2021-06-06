@@ -29,7 +29,8 @@
 							<ul class="featured__item__pic__hover">
 								<li><a onclick="likeIt('${vo.bookCode }')"><i
 										class="fa fa-heart"></i></a></li>
-								<li><a onclick="selectNovel('${vo.bookCode }')"><i class="fa fa-retweet"></i></a></li>
+								<li><a onclick="selectNovel('${vo.bookCode }')"><i
+										class="fa fa-retweet"></i></a></li>
 								<li><a onclick="addCart('${vo.bookCode}','${id }')"><i
 										class="fa fa-shopping-cart"></i></a></li>
 							</ul>
@@ -38,7 +39,16 @@
 							<h6>
 								<a onclick="selectNovel('${vo.bookCode }')">${vo.bookName }</a>
 							</h6>
-							<h5>${vo.price}</h5>
+							<c:if test="${vo.sale eq 'Y' }">
+								<h5>
+									<fmt:formatNumber type="currency" value="${vo.salePrice}"></fmt:formatNumber>
+								</h5>
+							</c:if>
+							<c:if test="${vo.sale eq 'N' }">
+								<h5>
+									<fmt:formatNumber type="currency" value="${vo.price}"></fmt:formatNumber>
+								</h5>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -52,7 +62,8 @@
 							<ul class="featured__item__pic__hover">
 								<li><a onclick="likeIt('${vo.bookCode }')"><i
 										class="fa fa-heart"></i></a></li>
-								<li><a onclick="selectNovel('${vo.bookCode }')"><i class="fa fa-retweet"></i></a></li>
+								<li><a onclick="selectNovel('${vo.bookCode }')"><i
+										class="fa fa-retweet"></i></a></li>
 								<li><a onclick="addCart('${vo.bookCode}','${id }')"><i
 										class="fa fa-shopping-cart"></i></a></li>
 							</ul>
@@ -61,7 +72,16 @@
 							<h6>
 								<a onclick="selectNovel('${vo.bookCode }')">${vo.bookName }</a>
 							</h6>
-							<h5>${vo.price}</h5>
+							<c:if test="${vo.sale eq 'Y' }">
+								<h5>
+									<fmt:formatNumber type="currency" value="${vo.salePrice}"></fmt:formatNumber>
+								</h5>
+							</c:if>
+							<c:if test="${vo.sale eq 'N' }">
+								<h5>
+									<fmt:formatNumber type="currency" value="${vo.price}"></fmt:formatNumber>
+								</h5>
+							</c:if>
 						</div>
 					</div>
 				</div>

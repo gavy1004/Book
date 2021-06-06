@@ -25,16 +25,14 @@
 }
 </style>
 
-<h1 class="title">Best Seller</h1>
+<h1 class="title">Novel</h1>
 <div class="contentsCenter">
-	<c:forEach items="${blist }" var="vo">
+	<c:forEach items="${nlist }" var="vo">
 		<div class="blog__item">
 			<div class="blog__item__pic">
 				<img width="200" height="270" src="upload/${vo.bookImage }" alt="">
 			</div>
 			<div class="blog__item__text">
-
-				<h3 style="color: red;">${vo.rank}</h3>
 				<h5>
 					<a class="contentsText">${vo.bookName }</a>
 				</h5>

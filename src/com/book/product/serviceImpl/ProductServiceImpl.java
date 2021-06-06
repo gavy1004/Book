@@ -21,7 +21,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	
 	
 	//페이징
-	public List<ProductVO> memberListPaging(int page) {
+	public List<ProductVO> BookListPaging(int page) {
 		conn=DAO.getConnect();
 		String sql = "select b.* from(select rownum rn, a.*\r\n"
 				+ "from (select * from book n order by n.BOOK_CODE)a) b\r\n"
