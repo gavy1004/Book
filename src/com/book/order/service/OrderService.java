@@ -5,6 +5,7 @@ import java.util.List;
 import com.book.order.vo.OrderVO;
 
 public interface OrderService {
+	List<OrderVO> selectOrderListAll();
 	List<OrderVO> selectOrderListOne(OrderVO vo);
 	List<OrderVO> selectOrderList(String id);
 	OrderVO selectOrder(OrderVO vo);

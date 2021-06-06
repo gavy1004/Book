@@ -24,10 +24,8 @@
 <body>
 	<div align="center">
 	<h3>주문내역 리스트</h3><br>
-	
 		<div style="width: 80%">
 			<table class="table" border="1">
-			</form>
 				<tr>
 					<th width="100">오더코드</th>
 					<th width="200">이름</th>
@@ -35,7 +33,6 @@
 					<th width="100">이메일</th>
 					
 				</tr>
-				<c:if test="${name eq admin }">
 				<c:forEach items="${orderList }" var="vo">
 					<tr onclick="select('${vo.code }')">
 						<td>${vo.code }</td>
@@ -44,17 +41,6 @@
 						<td>${vo.email }</td>
 					</tr>
 				</c:forEach>
-				</c:if>
-		<%-- 		<c:if test="${name eq vo.name }">
-				<c:forEach items="${orderList }" var="vo">
-					<tr onclick="select('${vo.code }')">
-						<td>${vo.code }</td>
-						<td>${vo.name }</td>
-						<td>${vo.phone }</td>
-						<td>${vo.email }</td>
-					</tr>
-				</c:forEach>
-				</c:if> --%>
 			</table>
 		</div>
 		<div>
@@ -62,7 +48,6 @@
 			<button type="button" onclick="location.href=''">삭제</button>
 		</div>
 	</div>	
-			</div>
  		<jsp:include page="../common/paging.jsp" flush="true">
 		    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
 		    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
@@ -72,6 +57,5 @@
 		    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
 		    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
 		</jsp:include>
-	</div>
 </body>
 </html>

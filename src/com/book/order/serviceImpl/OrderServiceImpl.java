@@ -115,7 +115,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getName());
 			psmt.setString(2, vo.getAdress());
-			psmt.setString(3, vo.getAdress());
+			psmt.setString(3, vo.getPhone());
 			psmt.setString(4, vo.getComents());
 
 			int r = psmt.executeUpdate();
@@ -161,7 +161,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 				e.printStackTrace();
 			}
 	}
-
+	//오더코드>오더리스트 조회 
 	@Override
 	public List<OrderVO> selectOrderListOne(OrderVO vo) {
 		List<OrderVO> list = new ArrayList<OrderVO>();
@@ -194,7 +194,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		}
 		return list;
 	}
-
+	// 후기작성위해 북코드 확인
 	public OrderVO selectBookCodeCheck(OrderVO rvo) {
 		conn = DAO.getConnect();
 		boolean chk = false;
@@ -222,6 +222,29 @@ public class OrderServiceImpl extends DAO implements OrderService {
 			close();
 		}
 		return rvo;
+	}
+	//전체오더리스트
+	public List<OrderVO> selectOrderListAll() {
+		List<OrderVO> list = new ArrayList<>();
+		conn = DAO.getConnect();
+		sql = "select * from ordercode o, member m where o.name = m.name order by 1";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				OrderVO vo = new OrderVO();
+				vo.setEmail(rs.getString("email"));
+				vo.setName(rs.getString("name"));
+				vo.setCode(rs.getString("code"));
+				vo.setPhone(rs.getString("phone"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
 	}
 
 }

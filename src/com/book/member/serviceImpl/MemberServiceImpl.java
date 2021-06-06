@@ -127,8 +127,26 @@ public class MemberServiceImpl extends DAO implements MemberService {
 	}
 
 	@Override
-	public MemberVO selectMember() {
-		return null;
+	public MemberVO selectMember(MemberVO vo) {
+		conn = DAO.getConnect();
+		sql = "select * from member where id=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getId());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo.setEmail(rs.getString("email"));
+				vo.setName(rs.getString("name"));
+				vo.setId(rs.getString("id"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setPasswd(rs.getString("passwd"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return vo;
 	}
 
 	@Override
@@ -156,6 +174,20 @@ public class MemberServiceImpl extends DAO implements MemberService {
 
 	@Override
 	public int updateMember(MemberVO vo) {
+		conn = DAO.getConnect();
+		String sql = "update member set name=?, phone=?,email=? where id=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getName());
+			psmt.setString(2, vo.getPhone());
+			psmt.setString(3, vo.getEmail());
+			psmt.setString(4, vo.getId());
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
 		return 0;
 	}
 

@@ -33,7 +33,7 @@ public class OrderInsert implements DBCommand {
 		
 		request.setAttribute("order", vo);
 		
-		return null;
+		return "order/orderList.tiles";
 	}
 
 }

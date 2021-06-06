@@ -68,6 +68,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberLogOut.do", new MemberLogOut());		//로그아웃
 		map.put("/memberList.do", new MemberList());			//회원리스트
 		map.put("/memberUpdate.do", new MemberUpdate());
+		map.put("/memberSelect.do", new MemberSelect());
 		
 		//관리자
 		map.put("/adminPage.do", new AdminPage());					//관리자페이지 
@@ -97,7 +98,8 @@ public class FrontController extends HttpServlet {
 		map.put("/orderInsert.do", new OrderInsert());		//주문정보입력
 		map.put("/orderList.do", new OrderList());			//주문내역리스트
 		map.put("/orderSelect.do", new OrderSelect());		//주문내역한건조회
-	 
+		map.put("/orderListAll.do", new OrderListAll());	//전체주문내역
+		
 		// 공지사항 게시판
 		map.put("/noticeList.do", new NoticeList());			//공지사항리스트
 		map.put("/noticeListPaging.do", new NoticeListPaging());

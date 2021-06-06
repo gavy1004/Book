@@ -19,7 +19,11 @@ textarea {
 	
 }
 th{
-	background-color: #7fad39;
+	background-color: ;
+}
+table {
+	margin-top: 2%;
+	border: 1;
 }
 </style>
 <body>

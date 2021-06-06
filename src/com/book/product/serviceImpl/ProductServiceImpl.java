@@ -82,9 +82,9 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	// 전체 상품 조회
 	@Override
 	public List<ProductVO> selectProductList() {
+		List<ProductVO> list = new ArrayList<>();
 		conn = DAO.getConnect();
 		sql ="select * from book";
-		List<ProductVO> list = new ArrayList<>();
 		
 		try {
 			psmt = conn.prepareStatement(sql);

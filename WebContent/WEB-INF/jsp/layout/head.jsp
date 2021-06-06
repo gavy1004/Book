@@ -70,7 +70,7 @@ style>#user {
 						<c:if test="${not empty id }">
 							<li><a href="#">MyPage</a>
 								<ul class="header__menu__dropdown">
-									<li><a href="memberUpdate.do">정보수정</a></li>
+									<li><a href="memberSelect.do">정보수정</a></li>
 									<li><a href="orderList.do">주문내역</a></li>
 									<li><a href="cartList.do">카트</a></li>
 								</ul></li>
@@ -81,7 +81,7 @@ style>#user {
 								<ul class="header__menu__dropdown">
 									<li><a href="memberList.do">전체회원조회</a></li>
 									<li><a href="productList.do">전체상품조회</a></li>
-									<li><a href="orderList.do">주문조회</a></li>
+									<li><a href="orderListAll.do">전체주문조회</a></li>
 									<li><a href="productInsertForm.do">상품입력</a></li>
 								</ul></li>
 						</c:if>
