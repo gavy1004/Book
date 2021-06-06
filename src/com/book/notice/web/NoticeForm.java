@@ -1,7 +1,9 @@
-package com.book.common;
+package com.book.notice.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.book.common.DBCommand;
 
 public class NoticeForm implements DBCommand {
 

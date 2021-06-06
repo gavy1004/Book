@@ -3,18 +3,13 @@
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Header Section Begin -->
-<<<<<<< HEAD
-<
 <style>
 #user {
 	display: inline-block;
 }
-=======
-<style>
-#user {
+style>#user {
 	display: inline-block;
 }
->>>>>>> branch 'master' of https://github.com/gavy1004/Book.git
 </style>
 <header class="header">
 	<div class="header__top">
@@ -64,21 +59,22 @@
 					<ul style="display: flex;">
 						<li class="active"><a href="novelList.do">Home</a></li>
 						<li><a href="noticeListPaging.do">Notice</a></li>
+						<li><a href="bulletinList.do">Review</a></li>
 						<li><a href="#">Menu</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="bestSeller.do">Best Seller</a></li>
 								<li><a href="#">Novel</a></li>
 								<li><a href="#">Poem</a></li>
 							</ul></li>
-						<li><a href="bulletinList.do">Review</a></li>
-						<li><a href="#">MyPage</a>
-							<ul class="header__menu__dropdown">
-								<li><a href="memberUpdate.do">정보수정</a></li>
-								<c:if test="${not empty id }">
+
+						<c:if test="${not empty id }">
+							<li><a href="#">MyPage</a>
+								<ul class="header__menu__dropdown">
+									<li><a href="memberUpdate.do">정보수정</a></li>
 									<li><a href="orderList.do">주문내역</a></li>
-								</c:if>
-								<li><a href="cartList.do">카트</a></li>
-							</ul></li>
+									<li><a href="cartList.do">카트</a></li>
+								</ul></li>
+						</c:if>
 
 						<c:if test="${id eq 'admin' }">
 							<li><a href="adminPage.do">Admin</a>

@@ -1,10 +1,12 @@
-package com.book.common;
+package com.book.notice.web;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.book.common.DBCommand;
+import com.book.common.Paging;
 import com.book.notice.service.NoticeService;
 import com.book.notice.serviceImpl.NoticeServiceImpl;
 import com.book.notice.vo.NoticeVO;
