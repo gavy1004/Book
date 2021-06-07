@@ -33,6 +33,7 @@ import com.book.member.web.MemberList;
 import com.book.member.web.MemberLogOut;
 import com.book.member.web.MemberLogin;
 import com.book.member.web.MemberLoginForm;
+import com.book.member.web.MemberUpdate;
 import com.book.notice.web.NoticeDelete;
 import com.book.notice.web.NoticeForm;
 import com.book.notice.web.NoticeInsert;

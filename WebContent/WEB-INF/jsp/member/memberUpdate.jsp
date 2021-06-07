@@ -31,7 +31,7 @@
 				</tr>
 				<tr>
 					<th>핸드폰번호</th>
-					<td><input name="contents" ${member.phone }></td>
+					<td><input name="contents" value=" ${member.phone }"></td>
 				</tr>
 				<tr>
 					<th>email</th>
