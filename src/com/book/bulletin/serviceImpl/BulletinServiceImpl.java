@@ -155,7 +155,7 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 			psmt.setString(1, vo.getTitle());
 			psmt.setString(2, vo.getContent());
 			psmt.setString(3, vo.getWriter());
-			psmt.setInt(4, vo.getHit());
+			psmt.setString(4, vo.getBookCode());
 			
 			r = psmt.executeUpdate();
 		} catch (SQLException e) {

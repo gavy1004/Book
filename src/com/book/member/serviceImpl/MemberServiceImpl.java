@@ -176,13 +176,14 @@ public class MemberServiceImpl extends DAO implements MemberService {
 	@Override
 	public int updateMember(MemberVO vo) {
 		conn = DAO.getConnect();
-		String sql = "update member set name=?, phone=?,email=? where id=?";
+		String sql = "update member set passwd=?, phone=?,email=? where id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getName());
+			psmt.setString(1, vo.getPasswd());
 			psmt.setString(2, vo.getPhone());
 			psmt.setString(3, vo.getEmail());
 			psmt.setString(4, vo.getId());
+			
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

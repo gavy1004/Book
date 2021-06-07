@@ -25,7 +25,6 @@ public class NovelList implements DBCommand {
 		List<ProductVO> nlist = service.selectNovelList();	// 소설 조회
 		List<ProductVO> plist = service.selectPoemList();	// 시 조회
 
-		
 		CartService service1 = new CartServiceImpl();
 		int cartCnt = service1.getCountCart(id);
 		

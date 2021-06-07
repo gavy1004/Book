@@ -26,6 +26,9 @@ th {
 	margin-top: 2%;
 	border: 1;
 }
+#title:hover {
+	text-decoration: underline;
+}
 </style>
 <body>
 	<script>
@@ -58,34 +61,26 @@ th {
 				</caption>
 				<tr>
 					<th width="100">BookCode</th>
-					<th width="100">BookNAme</th>
+					<th width="100">BookName</th>
 					<th width="50">Price</th>
 					<th width="50">Sale</th>
 					<th width="100">Author</th>
 					<th width="80">List It</th>
-					<th width="50"></th>
-					<th width="50">Detail</th>
 				</tr>
 				<c:forEach items="${productList }" var="vo">
-					<tr ${vo.bookCode }>
+					<tr onclick="selectNovel('${vo.bookCode }')">
 						<td>${vo.bookCode }</td>
-						<td>${vo.bookName }</td>
+						<td id="title">${vo.bookName }</td>
 						<td>${vo.price }</td>
 						<td>${vo.sale }</td>
 						<td>${vo.writer }</td>
 						<td>${vo.likeIt }</td>
-						<td>
-							<button type="button" onclick="deleteCheck('${vo.bookCode }')">삭제</button>
-						</td>
-						<td>
-							<button type="button" onclick="selectNovel('${vo.bookCode }')">상세보기</button>
-						</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
 	</div>
-	</div>
+
 	<jsp:include page="../common/paging.jsp" flush="true">
 		<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
 		<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
@@ -95,6 +90,6 @@ th {
 		<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
 		<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
 	</jsp:include>
-	</div>
+
 </body>
 </html>

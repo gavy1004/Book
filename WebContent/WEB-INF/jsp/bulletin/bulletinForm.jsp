@@ -30,6 +30,7 @@
 		<div>
 			<form id="frm" action="bulletinInsert.do" method="post">
 				<input type="hidden" name="id" value="${id }">
+				<input type="hidden" name="bookCode" value="${order.bookCode }">
 				<!-- 로그인한 id값 -->
 				<div>
 					<table border="1" width="500">

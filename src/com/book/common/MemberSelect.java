@@ -20,10 +20,10 @@ public class MemberSelect implements DBCommand {
 		
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
-		System.out.println(id);
+
 		MemberService service = new MemberServiceImpl();
 		service.selectMember(vo);
-		
+
 		request.setAttribute("member", vo);
 		return "member/memberUpdate.tiles";
 	}

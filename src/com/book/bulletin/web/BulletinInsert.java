@@ -20,14 +20,15 @@ public class BulletinInsert implements DBCommand {
 		String writer = (String) session.getAttribute("id");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		
-		System.out.println(writer);
-		System.out.println(title);
+		String bookCode = request.getParameter("bookCode");
+
+		System.out.println(bookCode);
 		
 		BulletinVO vo = new BulletinVO();
 		vo.setContent(content);
 		vo.setTitle(title);
 		vo.setWriter(writer);
+		vo.setBookCode(bookCode);
 		
 		BulletinService service = new BulletinServiceImpl();
 		service.insertBulletin(vo);

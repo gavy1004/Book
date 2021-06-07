@@ -19,6 +19,7 @@
 				</div>
 			</div>
 		</div>
+		</div>
 		<!-- 시 -->
 		<div class="row featured__filter">
 			<c:forEach items="${nlist }" var="vo">
@@ -89,7 +90,6 @@
 		</div>
 </section>
 <!-- Featured Section End -->
-
 <script>
 	// 책 제목 클릭시 상세 페이지로 이동
 	function selectNovel(bookCode) {

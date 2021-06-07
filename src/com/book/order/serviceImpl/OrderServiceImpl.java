@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.book.bulletin.vo.BulletinVO;
 import com.book.common.DAO;
 import com.book.order.service.OrderService;
 import com.book.order.vo.OrderListVO;
@@ -18,7 +19,8 @@ public class OrderServiceImpl extends DAO implements OrderService {
 	ResultSet rs;
 	String sql;
 
-	// 페이징
+	
+	// 본인 아이디로 확인 페이징
 	public List<OrderVO> orderListPaging(int page, String id) {
 		conn = DAO.getConnect();
 		String sql = "select b.* from(select rownum rn, a.* \r\n"
@@ -35,7 +37,6 @@ public class OrderServiceImpl extends DAO implements OrderService {
 			psmt.setInt(2, firstCnt);
 			psmt.setInt(3, lastCnt);
 			psmt.setString(1, id);
-
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				OrderVO vo = new OrderVO();
@@ -53,6 +54,38 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		return list;
 	}
 
+	//관리자 페이징
+	public List<OrderVO> orderListAdminPaging(int page) {
+		conn = DAO.getConnect();
+		sql = "select b.* from (select rownum rn,a.* from (select * from ORDERCODE order by code desc) a ) b \r\n"
+				+ "where b.rn between ? and ?";
+		List<OrderVO> list = new ArrayList<>();
+		
+		int firstCnt = 0, lastCnt = 0;
+		firstCnt = (page - 1) * 10 + 1; // 1page 1~11
+		lastCnt = (page * 10); // 2page 11~20
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, firstCnt);
+			psmt.setInt(2, lastCnt);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				OrderVO vo = new OrderVO();
+				vo.setCode(rs.getString("code"));
+				vo.setEmail(rs.getString("email"));
+				vo.setName(rs.getString("name"));
+				vo.setPhone(rs.getString("phone"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+	
 	@Override
 	public List<OrderVO> selectOrderList(String id) {
 		List<OrderVO> list = new ArrayList<OrderVO>();

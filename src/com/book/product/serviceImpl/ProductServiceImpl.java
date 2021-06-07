@@ -115,9 +115,8 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	@Override
 	public List<ProductVO> selectNovelList() {
 		conn = DAO.getConnect();
-		sql ="select * from book where category='n'";
+		sql ="select * from book where category='N'";
 		List<ProductVO> list = new ArrayList<>();
-		
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs= psmt.executeQuery();
@@ -145,7 +144,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	@Override
 	public List<ProductVO> selectPoemList() {
 		conn = DAO.getConnect();
-		sql ="select * from book where category='p'";
+		sql ="select * from book where category='P'";
 		List<ProductVO> list = new ArrayList<>();
 		
 		try {

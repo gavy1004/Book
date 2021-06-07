@@ -22,6 +22,7 @@ public class BulletinDelete implements DBCommand {
 
 		BulletinService service = new BulletinServiceImpl();
 		service.deleteBulletin(vo);
+		
 		return "/bulletinList.do";
 	}
 

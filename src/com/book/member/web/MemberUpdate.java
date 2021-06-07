@@ -16,16 +16,17 @@ public class MemberUpdate implements DBCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
+		String id = (String) session.getAttribute("id");
+		String pass = request.getParameter("passWd");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 	
+		
 		MemberVO vo = new MemberVO();
-		vo.setEmail(email);
 		vo.setId(id);
-		vo.setName(name);
+		vo.setEmail(email);
 		vo.setPhone(phone);
+		vo.setPasswd(pass);
 		
 		MemberService service = new MemberServiceImpl();
 		service.updateMember(vo);
@@ -33,7 +34,8 @@ public class MemberUpdate implements DBCommand {
 		String path = command.execute(request, response);
 		request.setAttribute("member", vo);
 		
-		return "member/memberUpdate.tiles";
+		return "/memberSelect.do";
+		
 	}
 
 }

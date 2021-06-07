@@ -29,7 +29,7 @@ function noticeDelete(id) {
 					<button type="button" onclick="history.back();">Back</button>
 					<c:if test="${id eq bulletin.writer }">
 						<button type="submit">Update</button>
-						<button type="d">Delete</button>
+						<button onclick="noticeDelete('${bulletin.id }')">Delete</button>
 					</c:if>
 				</caption>
 				<tr>
