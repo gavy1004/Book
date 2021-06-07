@@ -10,7 +10,15 @@ public class BulletinVO {
 	private String bookCode;
 	private int hit;
 	private String writer;
+	private String bookName;
 	
+	
+	public String getBookName() {
+		return bookName;
+	}
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
 	public String getWriter() {
 		return writer;
 	}

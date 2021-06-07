@@ -28,9 +28,12 @@
 	function select(id){
 	location.href = "bulletinSelect.do?id=" + id;
 	}
+<<<<<<< HEAD
 	function goPage(page) {
 		location.href= 'bulletinList.do?page='+page;
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/gavy1004/Book.git
 </script>
 </head>
 <body>

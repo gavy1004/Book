@@ -39,7 +39,7 @@
 									<p>
 										이름<span>*</span>
 									</p>
-									<input type="text" name="name">
+									<input type="text" name="name" value="${member.name }">
 								</div>
 							</div>
 
@@ -57,7 +57,7 @@
 									<p>
 										전화번호<span>*</span>
 									</p>
-									<input type="text" name="phone">
+									<input type="text" name="phone" value="${member.phone }">
 								</div>
 							</div>
 							<div class="col-lg-6">
@@ -65,7 +65,7 @@
 									<p>
 										Email<span>*</span>
 									</p>
-									<input type="text" name="email">
+									<input type="text" name="email" value="${member.email }">
 								</div>
 							</div>
 						</div>
@@ -102,8 +102,7 @@
 								Total <span><fmt:formatNumber type="currency"
 										value="${sum }"></fmt:formatNumber></span>
 							</div>
-							<button type="button" onclick="formCheck()" class="site-btn">결제
-								하기</button>
+							<button type="button" onclick="formCheck()" class="site-btn">결제	하기</button>
 						</div>
 					</div>
 				</div>

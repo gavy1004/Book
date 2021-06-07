@@ -127,8 +127,18 @@
 </div>
 
 <script>
+<<<<<<< HEAD
 function select(id){
 	location.href = "bulletinSelect.do?id=" + id;
+=======
+	
+function select(id){
+location.href = "bulletinSelect.do?id=" + id;
+}
+
+	function reviewPage(bookCode) {
+		location.href = "reviewSelect.do?bookCode=" + bookCode;
+>>>>>>> branch 'master' of https://github.com/gavy1004/Book.git
 	}
 
 	function addCart(bookCode, id) {

@@ -45,7 +45,6 @@ import com.book.order.web.OrderInsert;
 import com.book.order.web.OrderList;
 import com.book.order.web.OrderSelect;
 import com.book.product.web.BestSellerList;
-import com.book.product.web.BestSellsrList;
 import com.book.product.web.NovelList;
 import com.book.product.web.NovelSelect;
 import com.book.product.web.ProductDelete;
@@ -85,10 +84,11 @@ public class FrontController extends HttpServlet {
 		map.put("/novelList.do", new NovelList());			// 메인리스트 조회
 		map.put("/novelSelect.do", new NovelSelect()); 		// 한건조회
 		map.put("/likeIt.do", new likeIt());				// 좋아요
-		map.put("/bestSeller.do", new BestSellsrList());	// 베스트셀러조회
+		map.put("/bestSeller.do", new BestSellerList());	// 베스트셀러조회
 		
 		// 장바구니
 		map.put("/cartInsert.do", new CartInsert());		// 장바구니담기
+		map.put("/cartSelectInsert.do", new CartSelectInsert());
 		map.put("/cartList.do", new CartList());			// 장바구니조회
 		map.put("/cartDelete.do", new CartDelete());		// 장바구니삭제
 		map.put("/cartAllDelete.do", new CartAllDelete());	// 장바구니전체삭제(사용안함)

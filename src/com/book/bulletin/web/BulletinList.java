@@ -28,7 +28,6 @@ public class BulletinList implements DBCommand {
 		service = new BulletinServiceImpl();
 		List<BulletinVO> list = service.bulltinListPaging(pageCnt);
 		
-		
         Paging paging = new Paging();
         paging.setPageNo(pageCnt);
         paging.setPageSize(10);
@@ -37,7 +36,7 @@ public class BulletinList implements DBCommand {
         request.setAttribute("paging", paging);
 		request.setAttribute("bulletinList", list);
 		
-		request.setAttribute("bulletinList", list);
+		request.setAttribute("bulletinListAll", total);
 		
 		
 		return "bulletin/bulletinList.tiles";

@@ -8,7 +8,7 @@
 <title>noticeListPaging.jsp</title>
 <style>
 .table {
-	width: 70%;
+	width: 80%;
 	text-align: center;
 	margin-top: 2%;
 	border:1;
@@ -44,7 +44,6 @@
 		<div style="width: 90%">
 			<table class="table">
 				<caption align="right">
-					<button type="button" onclick="location.href='novelList.do'">Home</button>
 					<c:if test="${id eq 'admin' }">
 						<button type="button" onclick="location.href='noticeForm.do'">Insert</button>
 					</c:if>

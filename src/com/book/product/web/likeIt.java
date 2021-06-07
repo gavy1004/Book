@@ -16,15 +16,14 @@ public class likeIt implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		// 메인 화면에서 좋아요 추가 하는 경우 
 		String bookCode = request.getParameter("bookCode");
-		System.out.println(bookCode);
-		
+
 		ProductVO vo = new ProductVO();
 		vo.setBookCode(bookCode);
 		 
 		ProductService service = new ProductServiceImpl();
 		service.insertLikeIt(vo);
-		
 		return "/novelList.do";
 	}
 

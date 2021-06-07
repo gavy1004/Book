@@ -1,60 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.table{
+	margin-top: 2%;
+	width:800px;
+	border:1;
+}
+</style>
 </head>
+<script>
+function noticeDelete(id) {
+	location.href = "bulletinDelte.do?id=" + id;
+}
+</script>
 <body>
 	<div align="center">
-		<h3>게시글 내용보기</h3>
+		<h3>Review</h3>
 		<form id="frm" action="bulletinUpdate.do" method="post">
 			<input type="hidden" name="id" value="${bulletin.id }">
-			<table border="1" width="700" height="300"> 
+			<table class="table">
+				<caption>
+					<button type="button" onclick="history.back();">Back</button>
+					<c:if test="${id eq bulletin.writer }">
+						<button type="submit">Update</button>
+						<button type="d">Delete</button>
+					</c:if>
+				</caption>
 				<tr>
-					<th height="40">순번</th>
+					<th height="40">No</th>
 					<td id="cid">${bulletin.id }</td>
-					<th>작성일자</th>
+					<th>Date</th>
 					<td>${bulletin.regDate }</td>
-					<th>작성자</th>
+					<th>Writer</th>
 					<td>${bulletin.writer }</td>
-					<th>조회수</th>
-					<td>${bulletin.hit }</td>
+					<th>Hit</th>
+					<td>${bulletin.hit +1 }</td>
 				</tr>
 				<tr>
-					<th>북코드</th>
-					<td>${bulletin.bookCode }</td>
+					<th>책제목</th>
+					<td>${bulletin.bookName }</td>
 					<th height="30">제목</th>
-					<td colspan="7">
-						<c:if test="${id eq bulletin.writer }">
-							<input id="ctitle" name="title" type="text" value="${bulletin.title }">
-						</c:if>
-						<c:if test="${id ne bulletin.writer }">
+					<td colspan="7"><c:if test="${id eq bulletin.writer }">
+							<input id="ctitle" name="title" type="text"
+								value="${bulletin.title }">
+						</c:if> <c:if test="${id ne bulletin.writer }">
 							${bulletin.title }
-						</c:if>
-					</td>
+						</c:if></td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td colspan="7">
-						<c:if test="${id eq bulletin.writer }">
-							<textarea id="ccontent" name="content" rows="6" cols="90">${bulletin.content }</textarea>
-						</c:if>
-						<c:if test="${id ne bulletin.writer }">		
-							${bulletin.content }
-						</c:if>
-					</td>		
+					<td colspan="7"><c:if test="${id eq bulletin.writer }">
+							<textarea id="ccontent" name="content" rows="15" cols="90">${bulletin.content }</textarea>
+						</c:if> <c:if test="${id ne bulletin.writer }">		
+							<textarea name="content"  rows="15" cols="90" readonly="readonly">${bulletin.content }</textarea>
+						</c:if></td>
 				</tr>
 			</table>
-			<div>
-				<button type="button" onclick="location.href='bulletinList.do'">목록보기</button>
-				<c:if test="${id eq bulletin.writer }">
-					<button type="submit">수정</button>
-					<button type="d" >삭제</button>
-				</c:if>
-			</div>
+
 		</form>
 	</div>
 </body>

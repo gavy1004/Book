@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.book.common.DAO;
 import com.book.order.service.OrderService;
+import com.book.order.vo.OrderListVO;
 import com.book.order.vo.OrderVO;
 
 public class OrderServiceImpl extends DAO implements OrderService {
@@ -131,10 +132,48 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		return 0;
 	}
 
+<<<<<<< HEAD
 
 	private void insertListOrder(String name) {
 		// TODO Auto-generated method stub
 		
+=======
+	public void insertListOrder(String id) {
+		sql = "select c.book_code, c.book_qty, b.price, b.sale_price\r\n"
+				+ "from cart c, book b, member m\r\n"
+				+ "where c.book_code = b.BOOK_CODE\r\n"
+				+ "and m.id = c.user_id\r\n"
+				+ "and m.name = ?";
+		List<OrderListVO> list = new ArrayList<>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				OrderListVO order = new OrderListVO();
+				order.setBookCode(rs.getString("book_code"));
+				order.setCode(rs.getString("code"));
+				order.setPrice(rs.getString("price"));
+				order.setQty(rs.getString("qty"));
+				list.add(order);
+			}
+			sql = "insert into orderlist values(?,?,?,?)";
+			psmt = conn.prepareStatement(sql);
+
+			for (OrderListVO vo : list) {
+				psmt.setString(1, vo.getBookCode());
+				psmt.setString(2, vo.getCode());
+				psmt.setString(3, vo.getPrice());
+				psmt.setString(4, vo.getQty());
+				int r = psmt.executeUpdate();
+				System.out.println(r + "입력");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+>>>>>>> branch 'master' of https://github.com/gavy1004/Book.git
 	}
 
 	@Override
@@ -176,7 +215,11 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		List<OrderVO> list = new ArrayList<OrderVO>();
 		conn = DAO.getConnect();
 		sql = "select * from orderlist\r\n" + "inner join ordercode\r\n" + "on orderlist.code = ordercode.code\r\n"
+<<<<<<< HEAD
 				+ "where orderlist.ordercode= ?";
+=======
+				+ "where orderlist.code= ?";
+>>>>>>> branch 'master' of https://github.com/gavy1004/Book.git
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getCode());

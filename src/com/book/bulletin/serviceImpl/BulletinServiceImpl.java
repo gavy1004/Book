@@ -85,9 +85,11 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 	
 	@Override
 	public List<BulletinVO> bulletinSelectList() {
-		List<BulletinVO> list = new ArrayList<>();
 		conn = DAO.getConnect();
-		sql = "select * from bulletin order by 1";
+		List<BulletinVO> list = new ArrayList<>();
+		sql = "select a.*, b.* from bulletin a , book b\r\n"
+				+ "where a.BOOK_CODE = b.BOOK_CODE\r\n"
+				+ "order by reg_date";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -100,6 +102,7 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 				vo.setId(rs.getString("id"));
 				vo.setWriter(rs.getString("writer"));
 				vo.setTitle(rs.getString("title"));
+				vo.setBookName(rs.getString("book_name"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -113,7 +116,10 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 	@Override
 	public BulletinVO bulletinSelect(BulletinVO vo) {
 		conn = DAO.getConnect();
-		sql = "select * from bulletin where id=?";
+		sql = "select a.*, b.book_name \r\n"
+				+ "from bulletin a , book b \r\n"
+				+ "where a.BOOK_CODE = b.BOOK_CODE\r\n"
+				+ "and a.id=?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getId());
@@ -121,7 +127,7 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				hitCount(vo.getId());
-				
+				vo.setBookName(rs.getString("book_name"));
 				vo.setBookCode(rs.getString("book_code"));
 				vo.setContent(rs.getString("content"));
 				vo.setHit(rs.getInt("hit"));

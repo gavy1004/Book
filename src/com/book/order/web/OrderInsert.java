@@ -3,6 +3,7 @@ package com.book.order.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.book.admin.web.ProductList;
 import com.book.common.DBCommand;
 import com.book.order.service.OrderService;
 import com.book.order.serviceImpl.OrderServiceImpl;
@@ -17,6 +18,7 @@ public class OrderInsert implements DBCommand {
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		String coments = request.getParameter("coments");
+		
 		String qty = request.getParameter("qty");
 		String bookCode = request.getParameter("bookCode");
 		String sum = request.getParameter("sum");
@@ -37,7 +39,10 @@ public class OrderInsert implements DBCommand {
 
 		OrderService service = new OrderServiceImpl();
 		int order = service.insertOrder(vo);
-
+		
+		DBCommand command = new ProductList();
+		command.execute(request, response);
+		
 		request.setAttribute("order", vo);
 
 		return "order/orderList.tiles";

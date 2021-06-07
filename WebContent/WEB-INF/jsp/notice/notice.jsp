@@ -46,7 +46,7 @@
 		<div style="width:800px">
 		<table class="table">
 		<caption> 
-			<button type="button" onclick="location.href='noticeListPaging.do'">Back</button>
+			<button type="button" onclick="history.back();">Back</button>
 			<c:if test="${id eq 'admin' }">
 				<button type="submit">Update</button>
 				<button type="button" onclick="noticeDelete('${notice.id}')">Delete</button>
