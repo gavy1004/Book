@@ -14,9 +14,7 @@
 	width: 100%;
 }
 
-.imgSize {
-	width: -webkit-fill-available;
-}
+
 </style>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
@@ -28,8 +26,8 @@
 			<div class="row">
 				<div class="col-lg-6 col-md-6">
 					<div class="product__details__pic">
-						<div class="product__details__pic__item">
-							<img class="product__details__pic__item--large"
+						<div >
+							<img 
 								style="width: 250px;" src="upload/${book.bookImage }" alt="">
 						</div>
 					</div>
@@ -57,15 +55,10 @@
 							저자 - ${book.writer } <br> [ ${book.contents } ]
 						</p>
 						<div class="product__details__quantity">
-							<div class="quantity">
-								<div class="pro-qty">
-									<input type="text" value="1">
-								</div>
-							</div>
 						</div>
-						<a onclick="addCart('${vo.bookCode}','${id }')"
-							class="primary-btn">ADD TO CARD</a> <a
-							onclick="likeIt('${vo.bookCode }')"><i class="fa fa-heart"></i></a>
+						<a onclick="addCart('${book.bookCode}','${id }')"
+							class="primary-btn">ADD TO CARD</a> 
+						<%-- <a onclick="likeIt('${book.bookCode }')"><i class="fa fa-heart"></i></a> --%>
 					</div>
 				</div>
 				<div class="col-lg-12">
@@ -134,33 +127,26 @@
 </div>
 
 <script>
-	function reviewPage(bookCode) {
-		location.href = "reviewSelect.do?bookCode=" + bookCode;
+function select(id){
+	location.href = "bulletinSelect.do?id=" + id;
 	}
 
 	function addCart(bookCode, id) {
 		if (id == "") {
 			alert('로그인해 주십시오');
 		} else {
-			$.ajax({
-				url : "${pageContext.request.contextPath}/cartInsert.do",
-				data : {
-					bookCode : bookCode
-				},
-				success : function(bookCode, id) {
-					alert('장바구니에 상품이 추가되었습니다.');
-				},
-				error : function() {
-				}
-			});
+			location.href = "cartSelectInsert.do?bookCode=" + bookCode;
+			alert('장바구니에 상품이 추가되었습니다.');
+		
 		}
 	}
-	// 비로그인 상태에서도 좋아요 누르기 가능
-	function likeIt(bookCode) {
+	
+/* 	// 비로그인 상태에서도 좋아요 누르기
+	function likeIt(bookCode,id) {
 		$.ajax({
 			url : "${pageContext.request.contextPath}/likeIt.do",
 			data : {
-				bookCode : bookCode
+				bookCode : bookCode 
 			},
 			success : function() {
 				alert('좋아요가 추가되었습니다.');
@@ -168,5 +154,5 @@
 			error : function() {
 			}
 		});
-	}
+	} */
 </script>

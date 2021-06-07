@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.book.common.DAO;
-import com.book.member.vo.MemberVO;
 import com.book.order.service.OrderService;
 import com.book.order.vo.OrderVO;
 
@@ -122,6 +121,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 입력");
+			insertListOrder(vo.getName());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -129,6 +129,12 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		}
 
 		return 0;
+	}
+
+
+	private void insertListOrder(String name) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -163,12 +169,13 @@ public class OrderServiceImpl extends DAO implements OrderService {
 				e.printStackTrace();
 			}
 	}
-	//오더코드>오더리스트 조회 
+
+	// 오더코드>오더리스트 조회
 	@Override
 	public List<OrderVO> selectOrderListOne(OrderVO vo) {
 		List<OrderVO> list = new ArrayList<OrderVO>();
 		conn = DAO.getConnect();
-		sql = "select * from orderlist\r\n" + "inner join ordercode\r\n" + "on orderlist.ordercode = ordercode.code\r\n"
+		sql = "select * from orderlist\r\n" + "inner join ordercode\r\n" + "on orderlist.code = ordercode.code\r\n"
 				+ "where orderlist.ordercode= ?";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -178,7 +185,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 			while (rs.next()) {
 				OrderVO rvo = new OrderVO();
 				rvo.setCode(rs.getString("code"));
-				rvo.setOrderCode(rs.getString("ordercode"));
+				rvo.setOrderCode(rs.getString("code"));
 				rvo.setComents(rs.getString("coments"));
 				rvo.setEmail(rs.getString("email"));
 				rvo.setName(rs.getString("name"));
@@ -196,12 +203,12 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		}
 		return list;
 	}
-	
+
 	// 후기작성위해 북코드 확인
 	public OrderVO selectBookCodeCheck(OrderVO rvo) {
 		conn = DAO.getConnect();
 		boolean chk = false;
-		sql = "select * from orderlist o, ordercode c where c.code = o.ordercode and c.code = ? and o.book_code = ?";
+		sql = "select * from orderlist o, ordercode c where c.code = o.code and c.code = ? and o.book_code = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, rvo.getCode());
@@ -209,7 +216,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 			rs = psmt.executeQuery();
 			if (rs.next()) {
 				rvo.setCode(rs.getString("code"));
-				rvo.setOrderCode(rs.getString("ordercode"));
+				rvo.setOrderCode(rs.getString("code"));
 				rvo.setComents(rs.getString("coments"));
 				rvo.setEmail(rs.getString("email"));
 				rvo.setName(rs.getString("name"));
@@ -226,7 +233,8 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		}
 		return rvo;
 	}
-	//전체오더리스트
+
+	// 전체오더리스트
 	public List<OrderVO> selectOrderListAll() {
 		List<OrderVO> list = new ArrayList<>();
 		conn = DAO.getConnect();

@@ -8,7 +8,7 @@
 <title>후기게시판 리스트</title>
 <style>
 .table {
-	width: 70%;
+	width: 100%;
 	text-align: center;
 	margin-top: 2%;
 	border: 1;
@@ -28,7 +28,10 @@
 	function select(id){
 	location.href = "bulletinSelect.do?id=" + id;
 	}
-	</script>
+	function goPage(page) {
+		location.href= 'bulletinList.do?page='+page;
+	}
+</script>
 </head>
 <body>
 	<div align="center">
@@ -43,21 +46,17 @@
 					<th width="150">Date</th>
 					<th width="100">Hit</th>
 				</tr>
-				<c:forEach items="${bulletinList }" var="vo">
+				<c:forEach items="${bulletinListAll }" var="vo">
 					<tr onclick="select(${vo.id })">
 						<td>${vo.id }</td>
-						<td id="title">${vo.title }</td>
+						<td id="title">[${vo.bookName } ]&nbsp; ${vo.title }</td>
 						<td>${vo.writer }</td>
 						<td>${vo.regDate }</td>
 						<td>${vo.hit }</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<div>
-				<button type="button" onclick="location.href='novelList.do'">홈</button>
-				<c:if test="${!empty id }">
-				</c:if>
-			</div>
+
 		</div>
 		<jsp:include page="../common/paging.jsp" flush="true">
 			<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
