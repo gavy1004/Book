@@ -30,7 +30,7 @@
 				</tr>
 				<tr>
 					<th>핸드폰번호</th>
-					<td><input name="phone" value=" ${member.phone }"></td>
+					<td><input name="phone" value="${member.phone }"></td>
 				</tr>
 				<tr>
 					<th>email</th>

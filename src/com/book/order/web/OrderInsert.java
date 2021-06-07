@@ -12,27 +12,34 @@ public class OrderInsert implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String code = request.getParameter("code");
 		String name = request.getParameter("name");
 		String adress = request.getParameter("adress");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		String coments = request.getParameter("coments");
+		String qty = request.getParameter("qty");
+		String bookCode = request.getParameter("bookCode");
+		String sum = request.getParameter("sum");
+		
+		
+		System.out.println(name);
+		System.out.println(phone);
+		System.out.println(email);
+		System.out.println(adress);
+
 		
 		OrderVO vo = new OrderVO();
-		vo.setCode(code);
-		vo.setAdress(adress);
 		vo.setName(name);
+		vo.setAdress(adress);
 		vo.setPhone(phone);
 		vo.setEmail(email);
 		vo.setComents(coments);
-		
+
 		OrderService service = new OrderServiceImpl();
-	
 		int order = service.insertOrder(vo);
-		
+
 		request.setAttribute("order", vo);
-		
+
 		return "order/orderList.tiles";
 	}
 

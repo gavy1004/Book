@@ -118,6 +118,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 			psmt.setString(2, vo.getAdress());
 			psmt.setString(3, vo.getPhone());
 			psmt.setString(4, vo.getComents());
+			psmt.setString(5, vo.getEmail());
 
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 입력");
