@@ -4,7 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<style>
+.table {
+	margin-top: 2%;
+	border: 1;
+	width: 70%;
+}
+</style>
 <script>
 	function formCheck() {
 		if (frm.bookName.value == "") {
@@ -20,7 +26,12 @@
 	<div align="center">
 		<form name="frm" action="productInsert.do"
 			enctype="multipart/form-data" method="post">
-			<table style="width: 80%">
+			<table class="table">
+				<caption>
+					<button type="button" onclick="formCheck()">Insert</button>
+					<input type="reset" value="Reset">
+					<button type="button" onclick="history.back();">Back</button>
+				</caption>
 				<tr>
 					<th colspan="2">상품 등록</th>
 				</tr>
@@ -58,10 +69,8 @@
 				</tr>
 
 				<tr>
-					<td colspan="2"><br />
-						<button type="button" onclick="formCheck()">등록</button> 
-						<input type="reset" value="새로입력"></td>
-						<button type="button" onclick="history.back();">뒤로가기</button>
+					<td colspan="2"><br /></td>
+
 				</tr>
 			</table>
 		</form>

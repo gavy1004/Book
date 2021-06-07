@@ -5,7 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문내역</title>
+<style>
+.table {
+	margin-top: 2%;
+	border: 1;
+}
+</style>
 <script>
 function bulletinForm(code, bookCode){
 	console.log(code, bookCode);
@@ -16,9 +21,9 @@ function bulletinForm(code, bookCode){
 </head>
 <body>
 	<div align="center">
-	<h3>주문내역</h3><br>
+	<h3>Order Detail</h3><br>
 		<div style="width: 80%">
-			<table class="table" border="1">
+			<table class="table">
 				<tr>
 					<th width="100">주문번호</th>
 					<th width="200">주 문 자</th>
@@ -50,7 +55,6 @@ function bulletinForm(code, bookCode){
 		</div>
 		<div>
 			<button type="button" onclick="location.href='orderList.do'">홈</button>
-			<button type="button" onclick="location.href=''">삭제</button>
 		</div>
 	</div>
 </body>

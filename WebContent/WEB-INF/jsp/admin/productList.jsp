@@ -16,12 +16,13 @@ textarea {
 
 .hero__search__form {
 	align: center;
-	
 }
-th{
-	background-color: ;
+
+th {
+	background-color:;
 }
-table {
+
+.table {
 	margin-top: 2%;
 	border: 1;
 }
@@ -43,27 +44,27 @@ table {
 		}
 		//페이징
 		function goPage(page) {
-			location.href= 'productList.do?page='+page;
+			location.href = 'productList.do?page=' + page;
 		}
 	</script>
-	<div align="right" style="width: 90%">
-		<button type="button" onclick="location.href='adminPage.do'">홈</button>
-		<button type="button" onclick="location.href='productInsertForm.do'">등록</button>
-		<button type="button" onclick="history.back();">뒤로가기</button>
-	</div>
 	<div align="center">
-		<h3>도서 리스트 관리</h3>
+		<h3>Book List</h3>
 		<div style="width: 80%">
-			<table class="table" border="1">
+			<table class="table">
+				<caption>
+					<button type="button"
+						onclick="location.href='productInsertForm.do'">등록</button>
+					<button type="button" onclick="history.back();">뒤로가기</button>
+				</caption>
 				<tr>
-					<th width="100">북코드</th>
-					<th width="100">상품명</th>
-					<th width="50">정가</th>
-					<th width="50">세일여부</th>
-					<th width="100">저자</th>
-					<th width="80">좋아요</th>
-					<th width="50">삭제</th>
-					<th width="50">상세보기</th>
+					<th width="100">BookCode</th>
+					<th width="100">BookNAme</th>
+					<th width="50">Price</th>
+					<th width="50">Sale</th>
+					<th width="100">Author</th>
+					<th width="80">List It</th>
+					<th width="50"></th>
+					<th width="50">Detail</th>
 				</tr>
 				<c:forEach items="${productList }" var="vo">
 					<tr ${vo.bookCode }>
@@ -76,7 +77,7 @@ table {
 						<td>
 							<button type="button" onclick="deleteCheck('${vo.bookCode }')">삭제</button>
 						</td>
-						<td>	
+						<td>
 							<button type="button" onclick="selectNovel('${vo.bookCode }')">상세보기</button>
 						</td>
 					</tr>
@@ -84,16 +85,16 @@ table {
 			</table>
 		</div>
 	</div>
-			</div>
- 		<jsp:include page="../common/paging.jsp" flush="true">
-		    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-		    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
-		    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
-		    <jsp:param name="pageNo" value="${paging.pageNo}" />
-		    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
-		    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
-		    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-		</jsp:include>
+	</div>
+	<jsp:include page="../common/paging.jsp" flush="true">
+		<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+		<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+		<jsp:param name="startPageNo" value="${paging.startPageNo}" />
+		<jsp:param name="pageNo" value="${paging.pageNo}" />
+		<jsp:param name="endPageNo" value="${paging.endPageNo}" />
+		<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+		<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+	</jsp:include>
 	</div>
 </body>
 </html>
