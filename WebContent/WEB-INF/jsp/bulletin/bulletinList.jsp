@@ -28,12 +28,10 @@
 	function select(id){
 	location.href = "bulletinSelect.do?id=" + id;
 	}
-<<<<<<< HEAD
+	
 	function goPage(page) {
 		location.href= 'bulletinList.do?page='+page;
 	}
-=======
->>>>>>> branch 'master' of https://github.com/gavy1004/Book.git
 </script>
 </head>
 <body>
@@ -49,10 +47,10 @@
 					<th width="150">Date</th>
 					<th width="100">Hit</th>
 				</tr>
-				<c:forEach items="${bulletinListAll }" var="vo">
+				<c:forEach items="${bulletinList }" var="vo">
 					<tr onclick="select(${vo.id })">
 						<td>${vo.id }</td>
-						<td id="title">[${vo.bookName } ]&nbsp; ${vo.title }</td>
+						<td id="title">${vo.title }</td>
 						<td>${vo.writer }</td>
 						<td>${vo.regDate }</td>
 						<td>${vo.hit }</td>

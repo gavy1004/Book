@@ -36,8 +36,6 @@ public class BulletinList implements DBCommand {
         request.setAttribute("paging", paging);
 		request.setAttribute("bulletinList", list);
 		
-		request.setAttribute("bulletinListAll", total);
-		
 		
 		return "bulletin/bulletinList.tiles";
 	}

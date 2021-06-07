@@ -132,12 +132,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		return 0;
 	}
 
-<<<<<<< HEAD
 
-	private void insertListOrder(String name) {
-		// TODO Auto-generated method stub
-		
-=======
 	public void insertListOrder(String id) {
 		sql = "select c.book_code, c.book_qty, b.price, b.sale_price\r\n"
 				+ "from cart c, book b, member m\r\n"
@@ -173,7 +168,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		} finally {
 			close();
 		}
->>>>>>> branch 'master' of https://github.com/gavy1004/Book.git
+
 	}
 
 	@Override
@@ -215,11 +210,8 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		List<OrderVO> list = new ArrayList<OrderVO>();
 		conn = DAO.getConnect();
 		sql = "select * from orderlist\r\n" + "inner join ordercode\r\n" + "on orderlist.code = ordercode.code\r\n"
-<<<<<<< HEAD
-				+ "where orderlist.ordercode= ?";
-=======
 				+ "where orderlist.code= ?";
->>>>>>> branch 'master' of https://github.com/gavy1004/Book.git
+
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getCode());

@@ -89,7 +89,7 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 		List<BulletinVO> list = new ArrayList<>();
 		sql = "select a.*, b.* from bulletin a , book b\r\n"
 				+ "where a.BOOK_CODE = b.BOOK_CODE\r\n"
-				+ "order by reg_date";
+				+ "order by reg_date desc";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
