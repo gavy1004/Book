@@ -110,19 +110,23 @@ public class OrderServiceImpl extends DAO implements OrderService {
 
 	@Override
 	public int insertOrder(OrderVO vo) {
+		String newOrder = getNextOrderNo();
 		conn = DAO.getConnect();
-		sql = "insert into ordercode values('od'||or_seq.nextval,?,?,?,?,?)";
+		sql = "insert into ordercode values(?,?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getName());
-			psmt.setString(2, vo.getAdress());
-			psmt.setString(3, vo.getPhone());
-			psmt.setString(4, vo.getComents());
-			psmt.setString(5, vo.getEmail());
+
+			psmt.setString(1, newOrder);
+			psmt.setString(2, vo.getName());
+			psmt.setString(3, vo.getAdress());
+			psmt.setString(4, vo.getPhone());
+			psmt.setString(5, vo.getComents());
+			psmt.setString(6, vo.getEmail());
 
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 입력");
-			insertListOrder(vo.getName());
+			insertListOrder(newOrder, vo.getName());
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -132,13 +136,28 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		return 0;
 	}
 
+	public String getNextOrderNo() {
+		String newOrder = "";
+		conn = DAO.getConnect();
+		sql = "select 'od'||or_seq.nextval from dual";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				newOrder = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return newOrder;
+	}
 
-	public void insertListOrder(String id) {
-		sql = "select c.book_code, c.book_qty, b.price, b.sale_price\r\n"
-				+ "from cart c, book b, member m\r\n"
-				+ "where c.book_code = b.BOOK_CODE\r\n"
-				+ "and m.id = c.user_id\r\n"
-				+ "and m.name = ?";
+	public void insertListOrder(String newOrder, String id) {
+		sql = "select c.book_code, c.book_qty, b.price, b.sale_price\r\n" + "from cart c, book b, member m\r\n"
+				+ "where c.book_code = b.BOOK_CODE\r\n" + "and m.id = c.user_id\r\n" + "and m.name = ?";
 		List<OrderListVO> list = new ArrayList<>();
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -147,9 +166,9 @@ public class OrderServiceImpl extends DAO implements OrderService {
 			while (rs.next()) {
 				OrderListVO order = new OrderListVO();
 				order.setBookCode(rs.getString("book_code"));
-				order.setCode(rs.getString("code"));
+				order.setCode(newOrder);
 				order.setPrice(rs.getString("price"));
-				order.setQty(rs.getString("qty"));
+				order.setQty(rs.getString("book_qty"));
 				list.add(order);
 			}
 			sql = "insert into orderlist values(?,?,?,?)";
