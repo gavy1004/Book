@@ -18,9 +18,9 @@ public class MemberUpdate implements DBCommand {
 		
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
-		String email = request.getParameter("phone");
+		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		
+	
 		MemberVO vo = new MemberVO();
 		vo.setEmail(email);
 		vo.setId(id);

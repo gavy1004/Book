@@ -15,11 +15,10 @@
 		<form id="frm" action="memberUpdate.do" method="post">
 		<input type="hidden" id="id" name="id" value="${id }">
 		
-		
 			<table border="1" width="600" height="400">
 				<tr>
 					<th>I D</th>
-					<td><input name="category" value="${member.id }"></td>
+					<td><input name="id" value="${member.id }"></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
@@ -27,15 +26,15 @@
 				</tr>
 				<tr>
 					<th>이 름</th>
-					<td><input name="bookCode" value="${member.name }"></td>
+					<td><input name="name" value="${member.name }"></td>
 				</tr>
 				<tr>
 					<th>핸드폰번호</th>
-					<td><input name="contents" value=" ${member.phone }"></td>
+					<td><input name="phone" value=" ${member.phone }"></td>
 				</tr>
 				<tr>
 					<th>email</th>
-					<td><input name="writer" value="${member.email }"></td>
+					<td><input name="email" value="${member.email }"></td>
 				</tr>
 			</table>
 			<button type="submit">수정</button>

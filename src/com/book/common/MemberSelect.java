@@ -24,11 +24,6 @@ public class MemberSelect implements DBCommand {
 		MemberService service = new MemberServiceImpl();
 		service.selectMember(vo);
 		
-		/*
-		 * DBCommand command = new MemberList(); String path = command.execute(request,
-		 * response);
-		 */
-		
 		request.setAttribute("member", vo);
 		return "member/memberUpdate.tiles";
 	}
