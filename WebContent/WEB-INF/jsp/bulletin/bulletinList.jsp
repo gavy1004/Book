@@ -28,7 +28,7 @@
 	function select(id){
 	location.href = "bulletinSelect.do?id=" + id;
 	}
-	</script>
+</script>
 </head>
 <body>
 	<div align="center">

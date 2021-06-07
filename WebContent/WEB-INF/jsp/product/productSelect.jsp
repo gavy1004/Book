@@ -20,6 +20,10 @@ textarea {
 			return false;
 		}
 	}
+	
+	function reviewPage(bookCode) {
+		location.href = "reviewSelect.do?bookCode=" + bookCode;
+	}
 </script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
@@ -80,7 +84,8 @@ textarea {
 		</tr>
 
 		<tr>
-			<th colspan="3">후기보러가기</th>
+			<th colspan="3">
+			<button onclick="reviewPage('${book.bookCode }')">후기조회</button></th>
 		</tr>
 	</table>
 	<button type="submit">수정</button>

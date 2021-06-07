@@ -5,7 +5,8 @@ import java.util.List;
 import com.book.bulletin.vo.BulletinVO;
 
 public interface BulletinService {
-	 List<BulletinVO> reviewSelect(BulletinVO vo);
+	
+	List<BulletinVO> reviewSelect(BulletinVO vo);
 	List<BulletinVO> bulletinSelectList();
 	BulletinVO bulletinSelect(BulletinVO vo);
 	int insertBulletin(BulletinVO vo);

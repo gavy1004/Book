@@ -134,6 +134,11 @@
 </div>
 
 <script>
+	
+function select(id){
+location.href = "bulletinSelect.do?id=" + id;
+}
+
 	function reviewPage(bookCode) {
 		location.href = "reviewSelect.do?bookCode=" + bookCode;
 	}
