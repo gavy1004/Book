@@ -2,8 +2,11 @@ package com.book.order.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.book.admin.web.ProductList;
+import com.book.cart.serviceImpl.CartServiceImpl;
+import com.book.cart.vo.CartVO;
 import com.book.common.DBCommand;
 import com.book.order.service.OrderService;
 import com.book.order.serviceImpl.OrderServiceImpl;
@@ -13,6 +16,8 @@ public class OrderInsert implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		
 		String name = request.getParameter("name");
 		String adress = request.getParameter("adress");
 		String phone = request.getParameter("phone");
@@ -39,6 +44,12 @@ public class OrderInsert implements DBCommand {
 
 		OrderService service = new OrderServiceImpl();
 		int order = service.insertOrder(vo);
+		
+		//카트비우기
+		CartServiceImpl cartservice = new CartServiceImpl();
+		CartVO cartvo = new CartVO();
+		cartvo.setUserId((String) session.getAttribute("id")); 
+		cartservice.deleteAllCart(cartvo);
 		
 		DBCommand command = new ProductList();
 		command.execute(request, response);

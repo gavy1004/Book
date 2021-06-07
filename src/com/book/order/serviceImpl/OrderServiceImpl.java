@@ -115,14 +115,12 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		sql = "insert into ordercode values(?,?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
-
 			psmt.setString(1, newOrder);
 			psmt.setString(2, vo.getName());
 			psmt.setString(3, vo.getAdress());
 			psmt.setString(4, vo.getPhone());
 			psmt.setString(5, vo.getComents());
 			psmt.setString(6, vo.getEmail());
-
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 입력");
 			insertListOrder(newOrder, vo.getName());

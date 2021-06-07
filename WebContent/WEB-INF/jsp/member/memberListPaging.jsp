@@ -27,18 +27,14 @@ function goPage(page) {
 		<div style="width: 80%">
 			<table class="table">
 				<caption>
-					<div>
-						<button type="button" onclick="location.href='novelList.do'">Home</button>
 						<button type="button" onclick="location.href='adminPage.do'">Back</button>
-						<button type="button" onclick="location.href=''">Delete</button>
-					</div>
 				</caption>
 				<tr>
-					<th width="100">아이디</th>
-					<th width="200">이름</th>
-					<th width="150">비밀번호</th>
-					<th width="150">핸드폰번호</th>
-					<th width="100">이메일</th>
+					<th width="100">ID</th>
+					<th width="200">Name</th>
+					<th width="150">PassWord</th>
+					<th width="150">Phone</th>
+					<th width="100">Email</th>
 				</tr>
 				<c:forEach items="${memberList }" var="vo">
 					<tr onclick="formSubmit(${vo.id })">
