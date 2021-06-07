@@ -20,11 +20,11 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 	
 	
 	//페이징
-	public List<NoticeVO> bulltinListPaging(int page) {
+	public List<BulletinVO> bulltinListPaging(int page) {
 		conn = DAO.getConnect();
-		sql = "select b.* from (select rownum rn,a.* from (select * from notice order by id) a ) b \r\n"
+		sql = "select b.* from (select rownum rn,a.* from (select * from BULLETIN order by reg_date desc) a ) b \r\n"
 				+ "where b.rn between ? and ?";
-		List<NoticeVO> list = new ArrayList<>();
+		List<BulletinVO> list = new ArrayList<>();
 		
 		int firstCnt = 0, lastCnt = 0;
 		firstCnt = (page - 1) * 10 + 1; // 1page 1~11
@@ -36,13 +36,13 @@ public class BulletinServiceImpl extends DAO implements BulletinService {
 			psmt.setInt(2, lastCnt);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
-				NoticeVO vo = new NoticeVO();
-				vo.setId(rs.getInt("id"));
+				BulletinVO vo = new BulletinVO();
+				vo.setId(rs.getString("id"));
 				vo.setTitle(rs.getString("title"));
-				vo.setContents(rs.getString("contents"));
+				vo.setContent(rs.getString("content"));
+				vo.setWriter(rs.getString("writer"));
 				vo.setRegDate(rs.getDate("reg_date"));
 				vo.setHit(rs.getInt("hit"));
-				
 				list.add(vo);
 			}
 		} catch (SQLException e) {
