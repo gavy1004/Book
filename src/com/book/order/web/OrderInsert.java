@@ -18,6 +18,7 @@ public class OrderInsert implements DBCommand {
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		String coments = request.getParameter("coments");
+		
 		String qty = request.getParameter("qty");
 		String bookCode = request.getParameter("bookCode");
 		String sum = request.getParameter("sum");
