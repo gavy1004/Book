@@ -14,7 +14,7 @@ public class BulletinForm implements DBCommand {
 
 		String code = request.getParameter("code");
 		String bookCode = request.getParameter("bookCode");
-
+		
 		OrderVO vo = new OrderVO();
 		vo.setCode(code);
 		vo.setBookCode(bookCode);

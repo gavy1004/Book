@@ -10,12 +10,49 @@ import java.util.List;
 import com.book.bulletin.service.BulletinService;
 import com.book.bulletin.vo.BulletinVO;
 import com.book.common.DAO;
+import com.book.notice.vo.NoticeVO;
 
 public class BulletinServiceImpl extends DAO implements BulletinService {
 	Connection conn;
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
+	
+	
+	//페이징
+	public List<NoticeVO> bulltinListPaging(int page) {
+		conn = DAO.getConnect();
+		sql = "select b.* from (select rownum rn,a.* from (select * from notice order by id) a ) b \r\n"
+				+ "where b.rn between ? and ?";
+		List<NoticeVO> list = new ArrayList<>();
+		
+		int firstCnt = 0, lastCnt = 0;
+		firstCnt = (page - 1) * 10 + 1; // 1page 1~11
+		lastCnt = (page * 10); // 2page 11~20
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, firstCnt);
+			psmt.setInt(2, lastCnt);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				NoticeVO vo = new NoticeVO();
+				vo.setId(rs.getInt("id"));
+				vo.setTitle(rs.getString("title"));
+				vo.setContents(rs.getString("contents"));
+				vo.setRegDate(rs.getDate("reg_date"));
+				vo.setHit(rs.getInt("hit"));
+				
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+	
 	//상세내용보기에서 후기조회
 	public  List<BulletinVO> reviewSelect(BulletinVO vo) {
 		List<BulletinVO> list = new ArrayList<>();

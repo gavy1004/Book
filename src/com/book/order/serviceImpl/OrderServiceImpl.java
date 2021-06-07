@@ -60,6 +60,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		sql = "select * from ordercode o, member m where o.name = m.name and m.id = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				OrderVO vo = new OrderVO();
@@ -194,6 +195,7 @@ public class OrderServiceImpl extends DAO implements OrderService {
 		}
 		return list;
 	}
+	
 	// 후기작성위해 북코드 확인
 	public OrderVO selectBookCodeCheck(OrderVO rvo) {
 		conn = DAO.getConnect();
