@@ -141,6 +141,7 @@ public class MemberServiceImpl extends DAO implements MemberService {
 				vo.setPhone(rs.getString("phone"));
 				vo.setPasswd(rs.getString("passwd"));
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

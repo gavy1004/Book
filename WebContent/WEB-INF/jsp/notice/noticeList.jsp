@@ -13,7 +13,6 @@
 	margin-top: 2%;
 	border:1;
 }
-
 #title {
 	text-align: left;
 	width: 200;
