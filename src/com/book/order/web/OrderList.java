@@ -15,8 +15,8 @@ public class OrderList implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String page = request.getParameter("page"); // 페이지번호
 		HttpSession session = request.getSession();
+		String page = request.getParameter("page"); // 페이지번호
 		String id = (String) session.getAttribute("id");
 		
 		if (page == null)
