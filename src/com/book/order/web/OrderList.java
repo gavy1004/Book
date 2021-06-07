@@ -18,6 +18,7 @@ public class OrderList implements DBCommand {
 		String page = request.getParameter("page"); // 페이지번호
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		
 		if (page == null)
 			page = "1";
 

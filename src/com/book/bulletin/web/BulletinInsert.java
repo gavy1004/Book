@@ -2,6 +2,7 @@ package com.book.bulletin.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.book.admin.web.ProductList;
 import com.book.bulletin.service.BulletinService;
@@ -14,9 +15,14 @@ public class BulletinInsert implements DBCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String writer = request.getParameter("id");
+		HttpSession session = request.getSession();
+		
+		String writer = (String) session.getAttribute("id");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		
+		System.out.println(writer);
+		System.out.println(title);
 		
 		BulletinVO vo = new BulletinVO();
 		vo.setContent(content);

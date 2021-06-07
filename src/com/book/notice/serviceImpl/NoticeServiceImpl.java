@@ -18,6 +18,7 @@ public class NoticeServiceImpl extends DAO implements NoticeService {
 	ResultSet rs;
 	String sql;
 	
+	//페이징
 	public List<NoticeVO> noticeListPaging(int page) {
 		conn = DAO.getConnect();
 		sql = "select b.* from (select rownum rn,a.* from (select * from notice order by id) a ) b \r\n"
